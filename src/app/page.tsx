@@ -8,7 +8,7 @@ import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
-import { eventTitle, isPubliclyVisible } from "@/lib/utils";
+import { compareHomepageEvents, eventTitle, isPubliclyVisible } from "@/lib/utils";
 import { sportIcon } from "@/lib/sports";
 
 export const dynamic = "force-dynamic";
@@ -25,15 +25,19 @@ export default async function Home() {
   const visible = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const importantLive = visible
     .filter((event) => event.status === "live" && !event.excludedFromLive && event.importance >= data.settings.liveThreshold)
-    .sort((a, b) => b.importance - a.importance)
+    .sort(compareHomepageEvents)
     .slice(0, data.settings.maxFeaturedLive);
   const upcoming = visible
     .filter((event) => event.status === "upcoming")
-    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.importance - a.importance)
+    .sort(compareHomepageEvents)
     .slice(0, 6);
   const recentResults = visible
     .filter((event) => event.status === "finished")
-    .sort((a, b) => new Date(b.startsAt).getTime() - new Date(a.startsAt).getTime())
+    .sort((a, b) => {
+      const byScore = compareHomepageEvents(a, b);
+      if (byScore !== 0) return byScore;
+      return new Date(b.startsAt).getTime() - new Date(a.startsAt).getTime();
+    })
     .slice(0, 4);
   const heroEvent = importantLive[0] || upcoming[0];
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());

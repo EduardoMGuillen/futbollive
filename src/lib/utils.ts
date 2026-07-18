@@ -67,6 +67,46 @@ export function isPubliclyVisible(event: SportsEvent, now = Date.now()) {
   return now - estimatedEnd < 6 * 60 * 60 * 1000;
 }
 
+/** Editorial ranking for the homepage: major football first, then other sports. */
+const FOOTBALL_LEAGUE_BOOST: Record<string, number> = {
+  "copa-del-mundo-fifa": 55,
+  "copa-del-mundo-femenina-fifa": 48,
+  "uefa-champions-league": 50,
+  "copa-america": 48,
+  eurocopa: 48,
+  laliga: 45,
+  "premier-league": 42,
+  "copa-libertadores": 42,
+  "liga-mx": 40,
+  "liga-profesional-argentina": 36,
+  "copa-sudamericana": 34,
+  "serie-a": 34,
+  bundesliga: 34,
+  mls: 32,
+  brasileirao: 32,
+};
+
+export function homepageScore(event: SportsEvent) {
+  let score = event.importance;
+  if (event.sportSlug === "futbol") score += 30;
+  score += FOOTBALL_LEAGUE_BOOST[event.leagueSlug] || 0;
+  if (event.featured) score += 8;
+  if (event.status === "live") score += 12;
+  // High-volume individual sports should not crowd the main feed.
+  if (event.sportSlug === "tenis") score -= 28;
+  if (event.sportSlug === "golf") score -= 22;
+  if (event.sportSlug === "lacrosse" || event.sportSlug === "cricket") score -= 18;
+  if (event.sportSlug === "mma") score -= 8;
+  if (event.sportSlug === "automovilismo") score -= 6;
+  return score;
+}
+
+export function compareHomepageEvents(a: SportsEvent, b: SportsEvent) {
+  const byScore = homepageScore(b) - homepageScore(a);
+  if (byScore !== 0) return byScore;
+  return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+}
+
 export function formatEventTime(iso: string, withDate = false) {
   return new Intl.DateTimeFormat("es-419", {
     weekday: withDate ? "short" : undefined,
