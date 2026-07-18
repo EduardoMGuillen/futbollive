@@ -79,6 +79,13 @@ export default function RootLayout({
   return (
     <html lang="es" data-theme="dark" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-DB68T3MYWH" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-DB68T3MYWH');
+        `}</Script>
         {publisher && (
           <Script
             id="adsense"
