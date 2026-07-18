@@ -3,7 +3,7 @@ const DEFAULT_ADSENSE_CLIENT = "ca-pub-5358801062744911";
 const DEFAULT_ADSENSE_SLOTS = {
   top: "9527712632",
   feed: "3904685010",
-  sidebar: "",
+  sidebar: "7109552999",
   detail: "",
   footer: "",
 } as const;
