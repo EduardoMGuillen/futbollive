@@ -8,7 +8,7 @@ import { TeamLogo } from "@/components/TeamLogo";
 import { getEvent, readStore } from "@/lib/store";
 import { formatEventDate, formatEventTime, siteUrl } from "@/lib/utils";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

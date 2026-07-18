@@ -35,6 +35,8 @@ export interface SportsEvent {
   homeLineup?: LineupPlayer[];
   awayLineup?: LineupPlayer[];
   source: "demo" | "thesportsdb" | "espn" | "manual";
+  sourceEventId?: string;
+  sourceLeaguePath?: string;
   updatedAt: string;
 }
 

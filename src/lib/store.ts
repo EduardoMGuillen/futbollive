@@ -25,6 +25,9 @@ function refreshTemporalStatuses(data: StoreData) {
     banners,
     events: data.events.map((event) => {
       if (event.status === "finished") return event;
+      // A fresh ESPN status is authoritative (important for delayed starts).
+      const sourceAge = now - new Date(event.updatedAt).getTime();
+      if (event.source === "espn" && sourceAge < 2 * 60 * 1000) return event;
       const elapsed = now - new Date(event.startsAt).getTime();
       if (elapsed >= 6 * 60 * 60 * 1000) return { ...event, status: "finished" as const, minute: undefined };
       if (elapsed >= 0) return { ...event, status: "live" as const, minute: event.minute || "EN VIVO" };

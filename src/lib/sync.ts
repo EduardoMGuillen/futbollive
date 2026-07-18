@@ -1,4 +1,4 @@
-import { fetchEspnEvents } from "./espn";
+import { fetchEspnEvents, fetchEspnLiveUpdate } from "./espn";
 import { readStore, writeStore } from "./store";
 import { fetchSportsDbEvents } from "./thesportsdb";
 import type { SportsEvent } from "./types";
@@ -65,4 +65,45 @@ export async function ensureFreshEvents(maxAgeMinutes = 30) {
     inflight = runSync().catch(() => null).finally(() => { inflight = null; });
   }
   await inflight;
+}
+
+export async function updateLiveEvents() {
+  const data = await readStore();
+  const now = Date.now();
+  const candidates = data.events.filter((event) => {
+    if (event.source !== "espn" || event.status === "finished") return false;
+    const start = new Date(event.startsAt).getTime();
+    return event.status === "live" || (start >= now - 8 * 60 * 60 * 1000 && start <= now + 30 * 60 * 1000);
+  });
+  const updates = (await Promise.all(candidates.map(fetchEspnLiveUpdate))).filter(
+    (update): update is NonNullable<typeof update> => Boolean(update),
+  );
+  if (!updates.length) return { checked: candidates.length, updated: 0, events: [] };
+
+  const byId = new Map(updates.map((update) => [update.id, update]));
+  data.events = data.events.map((event) => {
+    const update = byId.get(event.id);
+    if (!update) return event;
+    return {
+      ...event,
+      status: update.status,
+      minute: update.minute,
+      home: { ...event.home, score: update.homeScore },
+      away: { ...event.away, score: update.awayScore },
+      updatedAt: update.updatedAt,
+    };
+  });
+  await writeStore(data);
+  return { checked: candidates.length, updated: updates.length, events: updates };
+}
+
+let liveInflight: ReturnType<typeof updateLiveEvents> | null = null;
+
+export function updateLiveEventsOnce() {
+  if (!liveInflight) {
+    liveInflight = updateLiveEvents().finally(() => {
+      liveInflight = null;
+    });
+  }
+  return liveInflight;
 }

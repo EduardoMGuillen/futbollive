@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { GlobalAd } from "@/components/GlobalAd";
 import { Header } from "@/components/Header";
+import { LiveRefresh } from "@/components/LiveRefresh";
 import { adsenseClient, siteUrl } from "@/lib/utils";
 import "./globals.css";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisher}`}
           />
         )}
+        <LiveRefresh />
         <Header />
         <main className="site-main">{children}</main>
         <GlobalAd />

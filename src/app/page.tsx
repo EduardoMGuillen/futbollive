@@ -8,7 +8,7 @@ import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
 import { formatEventSchedule } from "@/lib/utils";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Partidos de hoy: horarios, en vivo y dónde ver",
   description: "Consulta los partidos de hoy y próximos eventos de fútbol, NBA, MLB, tenis y más. Horarios locales, sedes, alineaciones y dónde ver legalmente.",

@@ -111,6 +111,7 @@ type EspnEvent = {
   competitions?: Array<{
     venue?: { fullName?: string; address?: { city?: string; country?: string } };
     competitors?: EspnCompetitor[];
+    status?: EspnEvent["status"];
   }>;
 };
 
@@ -174,6 +175,8 @@ async function fetchLeagueRange(league: EspnLeague, range: string): Promise<Spor
         importance: status === "live" ? Math.min(100, league.importance + 2) : league.importance,
         featured: league.importance >= 90,
         source: "espn",
+        sourceEventId: event.id,
+        sourceLeaguePath: league.path,
         updatedAt: new Date().toISOString(),
       };
       return [item];
@@ -206,4 +209,57 @@ export async function fetchEspnEvents(): Promise<SportsEvent[]> {
   const unique = new Map<string, SportsEvent>();
   for (const event of results) unique.set(event.id, event);
   return Array.from(unique.values());
+}
+
+export type EspnLiveUpdate = {
+  id: string;
+  status: SportsEvent["status"];
+  minute?: string;
+  homeScore?: number;
+  awayScore?: number;
+  updatedAt: string;
+};
+
+function sourceDetails(event: SportsEvent) {
+  const sourceEventId = event.sourceEventId || event.id.match(/-(\d+)$/)?.[1];
+  const sourceLeaguePath =
+    event.sourceLeaguePath || leagues.find((league) => league.league === event.league)?.path;
+  return { sourceEventId, sourceLeaguePath };
+}
+
+export async function fetchEspnLiveUpdate(event: SportsEvent): Promise<EspnLiveUpdate | null> {
+  const { sourceEventId, sourceLeaguePath } = sourceDetails(event);
+  if (!sourceEventId || !sourceLeaguePath) return null;
+  try {
+    const response = await fetch(
+      `https://site.api.espn.com/apis/site/v2/sports/${sourceLeaguePath}/summary?event=${sourceEventId}`,
+      { cache: "no-store", headers: { accept: "application/json" } },
+    );
+    if (!response.ok) return null;
+    const body = (await response.json()) as {
+      header?: { competitions?: EspnEvent["competitions"] };
+    };
+    const competition = body.header?.competitions?.[0];
+    if (!competition) return null;
+    const detailEvent: EspnEvent = {
+      id: sourceEventId,
+      date: event.startsAt,
+      status: competition.status,
+      competitions: [competition],
+    };
+    const competitors = competition.competitors || [];
+    const home = competitors.find((item) => item.homeAway === "home") || competitors[0];
+    const away = competitors.find((item) => item.homeAway === "away") || competitors[1];
+    const status = statusFrom(detailEvent);
+    return {
+      id: event.id,
+      status,
+      minute: status === "live" ? minuteFrom(detailEvent) : undefined,
+      homeScore: home?.score !== undefined && home.score !== "" ? Number(home.score) : undefined,
+      awayScore: away?.score !== undefined && away.score !== "" ? Number(away.score) : undefined,
+      updatedAt: new Date().toISOString(),
+    };
+  } catch {
+    return null;
+  }
 }
