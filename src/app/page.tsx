@@ -4,10 +4,11 @@ import Link from "next/link";
 import { AdSlot } from "@/components/AdSlot";
 import { Countdown } from "@/components/Countdown";
 import { EventCard } from "@/components/EventCard";
+import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
-import { eventTitle, formatEventSchedule, isPubliclyVisible } from "@/lib/utils";
+import { eventTitle, isPubliclyVisible } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -40,7 +41,6 @@ export default async function Home() {
     .sort((a, b) => new Date(b.startsAt).getTime() - new Date(a.startsAt).getTime())
     .slice(0, 4);
   const heroEvent = importantLive[0] || upcoming[0];
-  const heroSchedule = heroEvent ? formatEventSchedule(heroEvent.startsAt) : null;
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
 
   return (
@@ -57,7 +57,7 @@ export default async function Home() {
                 <Link className="secondary-btn" href="/buscar"><SearchCheck size={18} /> Explorar partidos</Link>
               </div>
             </div>
-            {heroEvent && heroSchedule && (
+            {heroEvent && (
               <Link href={`/partido/${heroEvent.slug}`} className="hero-card">
                 <div className="hero-card-top">
                   <span>{heroEvent.league}</span>
@@ -73,8 +73,8 @@ export default async function Home() {
                   <div><TeamLogo name={heroEvent.away.name} src={heroEvent.away.logo} size={64} /><span>{heroEvent.away.name}</span></div>
                 </div>}
                 <div className="hero-schedule">
-                  <strong>{heroSchedule.day}</strong>
-                  <span>{heroSchedule.time}</span>
+                  <LocalTime iso={heroEvent.startsAt} mode="day" as="strong" />
+                  <LocalTime iso={heroEvent.startsAt} mode="time" as="span" />
                   {heroEvent.status === "upcoming" && <Countdown startsAt={heroEvent.startsAt} className="countdown-badge countdown-hero" />}
                 </div>
               </Link>

@@ -4,12 +4,13 @@ import { Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { initials } from "@/lib/utils";
+import { formatEventSchedule, initials } from "@/lib/utils";
 
 type SearchResult = {
   id: string;
   title: string;
   subtitle: string;
+  startsAt?: string;
   href: string;
   image?: string;
   type: "Partido" | "Equipo" | "Competición";
@@ -102,7 +103,14 @@ export function SearchBox() {
                     <span>{initials(result.title)}</span>
                   )}
                 </div>
-                <div><strong>{result.title}</strong><small>{result.subtitle}</small></div>
+                <div>
+                  <strong>{result.title}</strong>
+                  <small>
+                    {result.startsAt
+                      ? `${result.subtitle} · ${formatEventSchedule(result.startsAt).label}`
+                      : result.subtitle}
+                  </small>
+                </div>
                 <em>{result.type}</em>
               </Link>
             ))}

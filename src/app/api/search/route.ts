@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readStore } from "@/lib/store";
-import { eventTitle, formatEventSchedule, isPubliclyVisible } from "@/lib/utils";
+import { eventTitle, isPubliclyVisible } from "@/lib/utils";
 
 function normalize(value: string) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -26,7 +26,8 @@ export async function GET(request: NextRequest) {
     ...events.map((event) => ({
       id: event.id,
       title: eventTitle(event),
-      subtitle: `${event.league} · ${statusLabel(event.status)} · ${formatEventSchedule(event.startsAt).label}`,
+      subtitle: `${event.league} · ${statusLabel(event.status)}`,
+      startsAt: event.startsAt,
       href: `/partido/${event.slug}`,
       image: event.home.logo,
       type: "Partido" as const,

@@ -6,6 +6,7 @@ import { BroadcastGuide } from "@/components/BroadcastGuide";
 import { Countdown } from "@/components/Countdown";
 import { EventActions } from "@/components/EventActions";
 import { EventCard } from "@/components/EventCard";
+import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
 import { fetchEspnBroadcasts } from "@/lib/espn";
 import { getEvent, readStore } from "@/lib/store";
@@ -129,7 +130,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
       </div></section>
       <div className="container detail-wrap">
         <div className="match-detail">
-          <div className="detail-top"><Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link><span>{event.status === "live" ? "En vivo" : event.status === "finished" ? "FINALIZADO" : formatEventDate(event.startsAt)}</span></div>
+          <div className="detail-top"><Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link><span>{event.status === "live" ? "En vivo" : event.status === "finished" ? "FINALIZADO" : <LocalTime iso={event.startsAt} mode="date" as="span" />}</span></div>
           {event.format === "multi" ? (
             <div className="detail-multi">
               <h2>{name}</h2>
@@ -155,14 +156,14 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
               ) : event.status === "finished" ? (
                 <><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b><span className="versus">FINALIZADO</span></>
               ) : (
-                <><time>{formatEventTime(event.startsAt)}</time><span className="versus">VS</span><Countdown startsAt={event.startsAt} /></>
+                <><LocalTime iso={event.startsAt} mode="time" /><span className="versus">VS</span><Countdown startsAt={event.startsAt} /></>
               )}
               <a className="disabled-watch transmission-link" href="#donde-se-transmite">Dónde se transmite</a>
             </div>
             <Link className="detail-team" href={`/equipo/${event.away.slug}`}><TeamLogo name={event.away.name} src={event.away.logo} size={84} /><h2>{event.away.name}</h2></Link>
           </div>}
           <div className="detail-info-grid">
-            <div><small>Fecha y hora local</small><strong>{formatEventDate(event.startsAt)} · {formatEventTime(event.startsAt)}</strong></div>
+            <div><small>Fecha y hora local</small><strong><LocalTime iso={event.startsAt} mode="datetime" as="span" /></strong></div>
             <div><small>Sede</small><strong>{event.venue || "Por confirmar"}</strong></div>
             <div><small>País</small><strong>{event.country || "Por confirmar"}</strong></div>
           </div>
@@ -177,12 +178,12 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
           <h3>¿Se puede ver gratis?</h3>
           <p>{freeViewing}</p>
           <div className="quick-facts">
-            <div><small>¿Cuándo juegan?</small><strong>{formatEventDate(event.startsAt)} a las {formatEventTime(event.startsAt)}</strong></div>
+            <div><small>¿Cuándo juegan?</small><strong><LocalTime iso={event.startsAt} mode="datetime" as="span" /></strong></div>
             <div><small>¿En qué competición?</small><strong>{event.league}</strong></div>
             <div><small>¿Dónde se juega?</small><strong>{event.venue || "Sede por confirmar"}{event.country ? `, ${event.country}` : ""}</strong></div>
           </div>
           <p className="editorial-note">Dónde Juega revisa la agenda y ordena los eventos según su relevancia para Latinoamérica. Esta página se actualiza automáticamente cuando cambian el horario, el estado, la sede o las alineaciones disponibles. No alojamos transmisiones ni enlazamos señales no autorizadas.</p>
-          <p className="data-trust">Última actualización: {new Intl.DateTimeFormat("es-419", { dateStyle: "medium", timeStyle: "short" }).format(new Date(event.updatedAt))} · Fuente: {event.source === "thesportsdb" ? "TheSportsDB y revisión editorial" : "Equipo editorial de Dónde Juega"}.</p>
+          <p className="data-trust">Última actualización: <LocalTime iso={event.updatedAt} mode="datetime" as="span" /> · Fuente: {event.source === "thesportsdb" ? "TheSportsDB y revisión editorial" : "Equipo editorial de Dónde Juega"}.</p>
         </section>
         {event.format !== "multi" && <div className="lineups">
           <div className="panel"><h2>Alineación de {event.home.name}</h2>{event.homeLineup?.length ? <ul className="lineup-list">{event.homeLineup.map((player) => <li key={player.name}><span>{player.number} {player.name}</span><small>{player.position}</small></li>)}</ul> : <p>La alineación aún no está disponible.</p>}</div>

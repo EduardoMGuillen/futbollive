@@ -1,15 +1,15 @@
 import { CalendarDays, ChevronRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { SportsEvent } from "@/lib/types";
-import { eventTitle, formatEventSchedule } from "@/lib/utils";
+import { eventTitle } from "@/lib/utils";
 import { Countdown } from "./Countdown";
 import { FavoriteButton } from "./FavoriteButton";
+import { LocalSchedule, LocalTime } from "./LocalTime";
 import { TeamLogo } from "./TeamLogo";
 
 export function EventCard({ event, compact = false }: { event: SportsEvent; compact?: boolean }) {
   const isLive = event.status === "live";
   const isUpcoming = event.status === "upcoming";
-  const schedule = formatEventSchedule(event.startsAt);
   const showCountdown = isUpcoming || Boolean(event.featured && isUpcoming);
   const title = eventTitle(event);
   return (
@@ -24,7 +24,7 @@ export function EventCard({ event, compact = false }: { event: SportsEvent; comp
       {event.format === "multi" ? (
         <Link href={`/partido/${event.slug}`} className="event-card-body event-multi-body">
           <div className="multi-event-heading">
-            <time dateTime={event.startsAt}>{schedule.label}</time>
+            <LocalTime iso={event.startsAt} mode="datetime-short" />
             <h3>{title}</h3>
             <span className={`versus ${event.status === "finished" ? "is-finished" : ""}`}>
               {isLive ? event.minute || "EN VIVO" : event.status === "finished" ? "FINALIZADO" : "PRÓXIMO"}
@@ -55,20 +55,17 @@ export function EventCard({ event, compact = false }: { event: SportsEvent; comp
             <>
               <span className="live-badge"><i /> {event.minute || "EN VIVO"}</span>
               <b className="score">{event.home.score ?? 0} - {event.away.score ?? 0}</b>
-              <time dateTime={event.startsAt} className="event-when-mini">{schedule.label}</time>
+              <LocalTime iso={event.startsAt} mode="datetime-short" className="event-when-mini" />
             </>
           ) : event.status === "finished" ? (
             <>
               <b className="score">{event.home.score ?? 0} - {event.away.score ?? 0}</b>
               <span className="versus">FINALIZADO</span>
-              <time dateTime={event.startsAt} className="event-when-mini">{schedule.label}</time>
+              <LocalTime iso={event.startsAt} mode="datetime-short" className="event-when-mini" />
             </>
           ) : (
             <>
-              <time dateTime={event.startsAt} className="event-when">
-                <span className="event-when-day">{schedule.day}</span>
-                <span className="event-when-time">{schedule.time}</span>
-              </time>
+              <LocalSchedule iso={event.startsAt} />
               <span className="versus">VS</span>
               {showCountdown && <Countdown startsAt={event.startsAt} />}
             </>
@@ -81,7 +78,11 @@ export function EventCard({ event, compact = false }: { event: SportsEvent; comp
       </Link>
       )}
       <div className="event-card-footer">
-        <span>{event.venue ? <><MapPin size={14} /> {event.venue}</> : <><CalendarDays size={14} /> {schedule.label}</>}</span>
+        <span>
+          {event.venue
+            ? <><MapPin size={14} /> {event.venue}</>
+            : <><CalendarDays size={14} /> <LocalTime iso={event.startsAt} mode="datetime-short" as="span" /></>}
+        </span>
         <Link href={`/partido/${event.slug}#donde-se-transmite`} className="watch-btn" aria-label={`Ver dónde se transmite ${title}`}>
           Dónde se transmite <ChevronRight size={15} />
         </Link>
