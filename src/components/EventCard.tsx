@@ -2,14 +2,17 @@ import { CalendarDays, ChevronRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { SportsEvent } from "@/lib/types";
 import { formatEventSchedule } from "@/lib/utils";
+import { Countdown } from "./Countdown";
 import { FavoriteButton } from "./FavoriteButton";
 import { TeamLogo } from "./TeamLogo";
 
 export function EventCard({ event, compact = false }: { event: SportsEvent; compact?: boolean }) {
   const isLive = event.status === "live";
+  const isUpcoming = event.status === "upcoming";
   const schedule = formatEventSchedule(event.startsAt);
+  const showCountdown = isUpcoming || Boolean(event.featured && isUpcoming);
   return (
-    <article className={`event-card ${isLive ? "is-live" : ""} ${compact ? "is-compact" : ""}`}>
+    <article className={`event-card ${isLive ? "is-live" : ""} ${event.featured ? "is-featured" : ""} ${compact ? "is-compact" : ""}`}>
       <div className="event-card-top">
         <Link href={`/liga/${event.leagueSlug}`} className="league-label">{event.league}</Link>
         <div className="event-meta-actions">
@@ -36,6 +39,7 @@ export function EventCard({ event, compact = false }: { event: SportsEvent; comp
                 <span className="event-when-time">{schedule.time}</span>
               </time>
               <span className="versus">{event.status === "finished" ? "FINAL" : "VS"}</span>
+              {showCountdown && <Countdown startsAt={event.startsAt} />}
             </>
           )}
         </div>

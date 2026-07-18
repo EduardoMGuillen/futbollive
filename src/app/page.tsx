@@ -2,6 +2,7 @@ import { CalendarCheck, ChevronRight, Clock3, Radio, SearchCheck, ShieldCheck } 
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdSlot } from "@/components/AdSlot";
+import { Countdown } from "@/components/Countdown";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
@@ -67,6 +68,7 @@ export default async function Home() {
                 <div className="hero-schedule">
                   <strong>{heroSchedule.day}</strong>
                   <span>{heroSchedule.time}</span>
+                  {heroEvent.status === "upcoming" && <Countdown startsAt={heroEvent.startsAt} className="countdown-badge countdown-hero" />}
                 </div>
               </Link>
             )}

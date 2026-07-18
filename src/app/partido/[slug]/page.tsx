@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
+import { Countdown } from "@/components/Countdown";
 import { EventActions } from "@/components/EventActions";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
@@ -121,7 +122,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
               ) : event.status === "finished" ? (
                 <><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b><span className="versus">FINAL</span></>
               ) : (
-                <><time>{formatEventTime(event.startsAt)}</time><span className="versus">VS</span></>
+                <><time>{formatEventTime(event.startsAt)}</time><span className="versus">VS</span><Countdown startsAt={event.startsAt} /></>
               )}
               <button className="disabled-watch" disabled>{event.status === "finished" ? "Partido finalizado" : "Ver partido · Próximamente"}</button>
             </div>

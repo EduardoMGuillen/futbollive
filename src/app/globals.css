@@ -204,6 +204,31 @@ button { color: inherit; }
   color: var(--muted);
   text-transform: capitalize;
 }
+.countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--green) 16%, transparent);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.event-card.is-featured .countdown-badge {
+  background: color-mix(in srgb, var(--green) 22%, transparent);
+  font-size: 12px;
+}
+.countdown-hero {
+  margin-top: 0;
+  background: rgba(8, 167, 106, .22);
+  color: #9ef0c8;
+  font-size: 13px;
+  padding: 6px 10px;
+}
 .versus { color: var(--muted); font-size: 11px; font-weight: 900; }
 .live-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--green); background: var(--green-soft); border-radius: 99px; padding: 5px 9px; font-size: 10px; font-weight: 900; }
 .live-badge i { width: 6px; height: 6px; background: currentColor; border-radius: 50%; animation: pulse 1.5s infinite; }
