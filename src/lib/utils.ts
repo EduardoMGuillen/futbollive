@@ -1,5 +1,12 @@
 const DEFAULT_SITE_URL = "https://dondejuega.com";
 
+/** Normaliza el ID de AdSense: acepta "pub-123" o "ca-pub-123" y devuelve "ca-pub-123". */
+export function adsenseClient() {
+  const raw = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim().replace(/^["']|["']$/g, "");
+  if (!raw || raw.includes("0000000000000000")) return undefined;
+  return raw.startsWith("ca-") ? raw : `ca-${raw}`;
+}
+
 export function siteUrl() {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (explicit && !explicit.includes("localhost")) return explicit.replace(/\/$/, "");

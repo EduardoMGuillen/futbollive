@@ -4,7 +4,7 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { GlobalAd } from "@/components/GlobalAd";
 import { Header } from "@/components/Header";
-import { siteUrl } from "@/lib/utils";
+import { adsenseClient, siteUrl } from "@/lib/utils";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
   verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
-  other: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ? { "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_CLIENT } : undefined,
+  other: adsenseClient() ? { "google-adsense-account": adsenseClient() as string } : undefined,
 };
 
 export default function RootLayout({
@@ -49,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const site = siteUrl();
-  const publisher = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+  const publisher = adsenseClient();
   const graph = {
     "@context": "https://schema.org",
     "@graph": [

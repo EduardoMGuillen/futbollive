@@ -3,6 +3,7 @@
 import { Megaphone } from "lucide-react";
 import { useEffect, useRef } from "react";
 import type { Banner } from "@/lib/types";
+import { adsenseClient } from "@/lib/utils";
 
 export function AdSlot({ banner, variant = "wide" }: { banner?: Banner; variant?: "wide" | "box" }) {
   if (!banner?.active) return null;
@@ -11,7 +12,7 @@ export function AdSlot({ banner, variant = "wide" }: { banner?: Banner; variant?
 
 function AdContent({ banner, variant }: { banner: Banner; variant: "wide" | "box" }) {
   const initialized = useRef(false);
-  const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+  const client = adsenseClient();
   const slots: Record<Banner["position"], string | undefined> = {
     top: process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP,
     feed: process.env.NEXT_PUBLIC_ADSENSE_SLOT_FEED,
