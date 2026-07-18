@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { GlobalAd } from "@/components/GlobalAd";
 import { Header } from "@/components/Header";
+import { siteUrl } from "@/lib/utils";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(siteUrl()),
   title: {
     default: "Dónde Juega — Partidos de hoy y deportes en vivo",
     template: "%s | Dónde Juega",
@@ -47,28 +48,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = siteUrl();
   const publisher = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
+        "@id": `${site}/#organization`,
         name: "Dónde Juega",
-        url: siteUrl,
-        logo: { "@type": "ImageObject", url: `${siteUrl}/icon.png` },
+        url: site,
+        logo: { "@type": "ImageObject", url: `${site}/icon.png` },
       },
       {
         "@type": "WebSite",
-        "@id": `${siteUrl}/#website`,
-        url: siteUrl,
+        "@id": `${site}/#website`,
+        url: site,
         name: "Dónde Juega",
         inLanguage: "es-419",
-        publisher: { "@id": `${siteUrl}/#organization` },
+        publisher: { "@id": `${site}/#organization` },
         potentialAction: {
           "@type": "SearchAction",
-          target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/buscar?q={search_term_string}` },
+          target: { "@type": "EntryPoint", urlTemplate: `${site}/buscar?q={search_term_string}` },
           "query-input": "required name=search_term_string",
         },
       },

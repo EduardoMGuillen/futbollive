@@ -1,3 +1,14 @@
+const DEFAULT_SITE_URL = "https://dondejuega.com";
+
+export function siteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit && !explicit.includes("localhost")) return explicit.replace(/\/$/, "");
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  if (vercel) return `https://${vercel.replace(/\/$/, "")}`;
+  if (explicit) return explicit.replace(/\/$/, "");
+  return DEFAULT_SITE_URL;
+}
+
 export function slugify(value: string) {
   return value
     .normalize("NFD")

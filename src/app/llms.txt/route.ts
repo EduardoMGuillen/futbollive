@@ -1,7 +1,8 @@
 import { readStore } from "@/lib/store";
+import { siteUrl } from "@/lib/utils";
 
 export async function GET() {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const base = siteUrl();
   const data = await readStore();
   const important = data.events
     .filter((event) => !event.hidden && (event.featured || event.status === "live"))

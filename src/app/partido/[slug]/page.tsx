@@ -6,7 +6,7 @@ import { EventActions } from "@/components/EventActions";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { getEvent, readStore } from "@/lib/store";
-import { formatEventDate, formatEventTime } from "@/lib/utils";
+import { formatEventDate, formatEventTime, siteUrl } from "@/lib/utils";
 
 export const revalidate = 300;
 export const dynamicParams = true;
@@ -52,8 +52,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const data = await readStore();
   const related = data.events.filter((item) => item.id !== event.id && (item.sportSlug === event.sportSlug || item.leagueSlug === event.leagueSlug) && !item.hidden).slice(0, 2);
   const isLive = event.status === "live";
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const eventUrl = `${siteUrl}/partido/${event.slug}`;
+  const eventUrl = `${siteUrl()}/partido/${event.slug}`;
   const whereToWatch = `Las opciones legales para ver ${event.home.name} vs ${event.away.name} se publicarán aquí cuando estén verificadas para tu región.`;
   const graph = {
     "@context": "https://schema.org",
