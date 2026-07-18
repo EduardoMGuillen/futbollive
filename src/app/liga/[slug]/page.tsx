@@ -24,7 +24,13 @@ export default async function LeaguePage({ params }: { params: Promise<{ slug: s
   const data = await readStore();
   const allEvents = data.events.filter((event) => event.leagueSlug === slug && !event.hidden);
   if (!allEvents.length) notFound();
-  const events = allEvents.filter((event) => event.status !== "finished");
+  const events = allEvents
+    .filter((event) => event.status !== "finished")
+    .sort((a, b) => {
+      if (a.status === "live" && b.status !== "live") return -1;
+      if (b.status === "live" && a.status !== "live") return 1;
+      return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+    });
   const league = allEvents[0].league;
   return (
     <>

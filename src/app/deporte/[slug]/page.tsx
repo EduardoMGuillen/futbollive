@@ -30,7 +30,13 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
   const data = await readStore();
   const allEvents = data.events.filter((event) => event.sportSlug === slug && !event.hidden);
   if (!allEvents.length) notFound();
-  const events = allEvents.filter((event) => event.status !== "finished");
+  const events = allEvents
+    .filter((event) => event.status !== "finished")
+    .sort((a, b) => {
+      if (a.status === "live" && b.status !== "live") return -1;
+      if (b.status === "live" && a.status !== "live") return 1;
+      return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+    });
   const sport = allEvents[0].sport;
   const leagues = Array.from(new Map(events.map((event) => [event.leagueSlug, event.league])).entries());
 
