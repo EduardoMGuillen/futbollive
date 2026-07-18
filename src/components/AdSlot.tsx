@@ -1,9 +1,7 @@
-"use client";
-
 import { Megaphone } from "lucide-react";
 import { useEffect, useRef } from "react";
 import type { Banner } from "@/lib/types";
-import { adsenseClient } from "@/lib/utils";
+import { adsenseClient, adsenseSlot } from "@/lib/utils";
 
 export function AdSlot({ banner, variant = "wide" }: { banner?: Banner; variant?: "wide" | "box" }) {
   if (!banner?.active) return null;
@@ -13,14 +11,7 @@ export function AdSlot({ banner, variant = "wide" }: { banner?: Banner; variant?
 function AdContent({ banner, variant }: { banner: Banner; variant: "wide" | "box" }) {
   const initialized = useRef(false);
   const client = adsenseClient();
-  const slots: Record<Banner["position"], string | undefined> = {
-    top: process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP,
-    feed: process.env.NEXT_PUBLIC_ADSENSE_SLOT_FEED,
-    sidebar: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR,
-    detail: process.env.NEXT_PUBLIC_ADSENSE_SLOT_DETAIL,
-    footer: process.env.NEXT_PUBLIC_ADSENSE_SLOT_FOOTER,
-  };
-  const slot = slots[banner.position];
+  const slot = adsenseSlot(banner.position);
 
   useEffect(() => {
     if (!client || !slot || initialized.current) return;
@@ -39,7 +30,7 @@ function AdContent({ banner, variant }: { banner: Banner; variant: "wide" | "box
         <span>PUBLICIDAD</span>
         <ins
           className="adsbygoogle"
-          style={{ display: "block", width: "100%" }}
+          style={{ display: "block", width: "100%", minHeight: variant === "box" ? 250 : 90 }}
           data-ad-client={client}
           data-ad-slot={slot}
           data-ad-format="auto"
