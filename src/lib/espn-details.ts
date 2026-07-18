@@ -98,6 +98,7 @@ type EspnSummary = {
   leaders?: Array<{
     name?: string;
     displayName?: string;
+    team?: { id?: string; displayName?: string };
     leaders?: Array<{
       name?: string;
       displayName?: string;
@@ -318,25 +319,30 @@ function playerStatGroups(raw?: EspnSummary["boxscore"]): StatisticGroup[] {
 
 function leaderGroups(raw?: EspnSummary["leaders"]): StatisticGroup[] {
   const groups: StatisticGroup[] = [];
-  for (const category of raw || []) {
-    for (const leaderCategory of category.leaders || []) {
+  (raw || []).forEach((category, categoryIndex) => {
+    // Soccer nests leaders per team; the team name disambiguates repeated category names.
+    const teamName = category.team?.displayName;
+    (category.leaders || []).forEach((leaderCategory, leaderIndex) => {
       const values = (leaderCategory.leaders || [])
         .filter((item) => item.athlete?.displayName && item.displayValue)
         .map((item, index) => ({
-          key: `${leaderCategory.name || "leader"}-${item.athlete?.id || index}`,
+          key: `${leaderCategory.name || "leader"}-${item.athlete?.id || index}-${index}`,
           label: item.athlete?.displayName || "Atleta",
           displayValue: String(item.displayValue),
           participantId: item.athlete?.id || item.team?.id,
           rank: index + 1,
         }));
-      if (!values.length) continue;
+      if (!values.length) return;
+      const baseLabel = leaderCategory.displayName || category.displayName || category.name || "Líderes";
       groups.push({
-        key: `leaders-${category.name || "cat"}-${leaderCategory.name || leaderCategory.displayName || "lead"}`,
-        label: leaderCategory.displayName || category.displayName || category.name || "Líderes",
+        key: `leaders-${categoryIndex}-${leaderIndex}-${leaderCategory.name || leaderCategory.displayName || "lead"}`,
+        label: teamName ? `${teamName} · ${baseLabel}` : baseLabel,
+        participantId: category.team?.id,
+        participantName: teamName,
         statistics: values,
       });
-    }
-  }
+    });
+  });
   return groups;
 }
 
