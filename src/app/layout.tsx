@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
   verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
-  other: adsenseClient() ? { "google-adsense-account": adsenseClient() as string } : undefined,
+  other: { "google-adsense-account": adsenseClient() },
 };
 
 export default function RootLayout({

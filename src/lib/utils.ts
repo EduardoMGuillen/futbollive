@@ -1,9 +1,10 @@
 const DEFAULT_SITE_URL = "https://dondejuega.com";
+const DEFAULT_ADSENSE_CLIENT = "ca-pub-5358801062744911";
 
 /** Normaliza el ID de AdSense: acepta "pub-123" o "ca-pub-123" y devuelve "ca-pub-123". */
 export function adsenseClient() {
-  const raw = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim().replace(/^["']|["']$/g, "");
-  if (!raw || raw.includes("0000000000000000")) return undefined;
+  const raw = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim().replace(/^["']|["']$/g, "") || DEFAULT_ADSENSE_CLIENT;
+  if (!raw || raw.includes("0000000000000000")) return DEFAULT_ADSENSE_CLIENT;
   return raw.startsWith("ca-") ? raw : `ca-${raw}`;
 }
 
