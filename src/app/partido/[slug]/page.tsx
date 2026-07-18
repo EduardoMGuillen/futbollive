@@ -21,13 +21,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const event = await getEvent(slug);
   if (!event) return { title: "Partido no encontrado" };
-  const title = `Ver ${event.home.name} vs ${event.away.name}: horario y dónde ver`;
-  const description = `¿Dónde ver ${event.home.name} vs ${event.away.name}? Consulta la hora, fecha, sede, alineaciones y opciones legales del partido de ${event.league}.`;
+  const title = `Dónde ver ${event.home.name} vs ${event.away.name} gratis`;
+  const description = `¿Dónde ver gratis ${event.home.name} vs ${event.away.name}? Consulta horario, fecha y opciones para ver el partido de ${event.league}.`;
   return {
     title,
     description,
     keywords: [
       `ver ${event.home.name} vs ${event.away.name}`,
+      `dónde ver ${event.home.name} vs ${event.away.name} gratis`,
+      `ver partido ${event.home.name} ${event.away.name} gratis`,
+      `${event.home.name} vs ${event.away.name} gratis`,
       `${event.home.name} vs ${event.away.name} dónde ver`,
       `${event.home.name} vs ${event.away.name} horario`,
       `partido ${event.home.name} ${event.away.name}`,
@@ -53,8 +56,10 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const data = await readStore();
   const related = data.events.filter((item) => item.id !== event.id && item.status !== "finished" && (item.sportSlug === event.sportSlug || item.leagueSlug === event.leagueSlug) && !item.hidden).slice(0, 2);
   const isLive = event.status === "live";
-  const eventUrl = `${siteUrl()}/partido/${event.slug}`;
-  const whereToWatch = `Las opciones legales para ver ${event.home.name} vs ${event.away.name} se publicarán aquí cuando estén verificadas para tu región.`;
+  const baseUrl = siteUrl();
+  const eventUrl = `${baseUrl}/partido/${event.slug}`;
+  const whereToWatch = `Las opciones para ver ${event.home.name} vs ${event.away.name} se publicarán aquí cuando estén disponibles para tu región.`;
+  const freeViewing = `Si existe una señal gratuita para ${event.home.name} vs ${event.away.name} en tu país, la publicaremos aquí. La disponibilidad depende de los derechos de transmisión de cada región.`;
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -62,7 +67,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
         "@type": "SportsEvent",
         "@id": `${eventUrl}#event`,
         name: `${event.home.name} vs ${event.away.name}`,
-        description: `${event.home.name} se enfrenta a ${event.away.name} por ${event.league}. Consulta horario, sede, alineaciones y dónde verlo legalmente.`,
+        description: `${event.home.name} se enfrenta a ${event.away.name} por ${event.league}. Consulta horario, sede, alineaciones y dónde verlo.`,
         url: eventUrl,
         image: [event.home.logo, event.away.logo].filter(Boolean),
         startDate: event.startsAt,
@@ -75,9 +80,9 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Inicio", item: siteUrl },
-          { "@type": "ListItem", position: 2, name: event.sport, item: `${siteUrl}/deporte/${event.sportSlug}` },
-          { "@type": "ListItem", position: 3, name: event.league, item: `${siteUrl}/liga/${event.leagueSlug}` },
+          { "@type": "ListItem", position: 1, name: "Inicio", item: baseUrl },
+          { "@type": "ListItem", position: 2, name: event.sport, item: `${baseUrl}/deporte/${event.sportSlug}` },
+          { "@type": "ListItem", position: 3, name: event.league, item: `${baseUrl}/liga/${event.leagueSlug}` },
           { "@type": "ListItem", position: 4, name: `${event.home.name} vs ${event.away.name}`, item: eventUrl },
         ],
       },
@@ -99,6 +104,11 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
             name: `¿Dónde ver ${event.home.name} vs ${event.away.name}?`,
             acceptedAnswer: { "@type": "Answer", text: whereToWatch },
           },
+          {
+            "@type": "Question",
+            name: `¿Dónde ver gratis ${event.home.name} vs ${event.away.name}?`,
+            acceptedAnswer: { "@type": "Answer", text: freeViewing },
+          },
         ],
       },
     ],
@@ -108,8 +118,8 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
     <>
       <section className="page-hero"><div className="container">
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${event.sportSlug}`}>{event.sport}</Link> / {event.league}</div>
-        <h1>Ver {event.home.name} vs {event.away.name}: horario y dónde ver</h1>
-        <p>Información actualizada del partido de {event.league}: fecha, hora local, sede, alineaciones y opciones legales de transmisión.</p>
+        <h1>Dónde ver {event.home.name} vs {event.away.name} gratis</h1>
+        <p>Horario, fecha, sede, alineaciones y opciones para seguir el partido de {event.league}.</p>
       </div></section>
       <div className="container detail-wrap">
         <div className="match-detail">
@@ -140,6 +150,8 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
           <span className="eyebrow"><i /> Respuesta rápida</span>
           <h2>¿Dónde ver {event.home.name} vs {event.away.name}?</h2>
           <p>{whereToWatch}</p>
+          <h3>¿Se puede ver gratis?</h3>
+          <p>{freeViewing}</p>
           <div className="quick-facts">
             <div><small>¿Cuándo juegan?</small><strong>{formatEventDate(event.startsAt)} a las {formatEventTime(event.startsAt)}</strong></div>
             <div><small>¿En qué competición?</small><strong>{event.league}</strong></div>
