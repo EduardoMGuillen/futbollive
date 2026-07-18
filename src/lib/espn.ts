@@ -9,6 +9,14 @@ type EspnLeague = {
 };
 
 const leagues: EspnLeague[] = [
+  // Torneos de selecciones (Mundial y similares) primero: máxima prioridad editorial.
+  { path: "soccer/fifa.world", league: "Copa del Mundo FIFA", sport: "Fútbol", importance: 100 },
+  { path: "soccer/fifa.wwc", league: "Copa del Mundo Femenina FIFA", sport: "Fútbol", importance: 95 },
+  { path: "soccer/fifa.cwc", league: "Mundial de Clubes FIFA", sport: "Fútbol", importance: 94 },
+  { path: "soccer/uefa.euro", league: "Eurocopa", sport: "Fútbol", importance: 98 },
+  { path: "soccer/conmebol.america", league: "Copa América", sport: "Fútbol", importance: 97 },
+  { path: "soccer/concacaf.gold", league: "Copa Oro Concacaf", sport: "Fútbol", importance: 90 },
+  { path: "soccer/uefa.nations", league: "UEFA Nations League", sport: "Fútbol", importance: 86 },
   { path: "soccer/uefa.champions", league: "UEFA Champions League", sport: "Fútbol", importance: 97 },
   { path: "soccer/uefa.europa", league: "UEFA Europa League", sport: "Fútbol", importance: 88 },
   { path: "soccer/esp.1", league: "LaLiga", sport: "Fútbol", importance: 93 },
@@ -28,6 +36,14 @@ const leagues: EspnLeague[] = [
   { path: "football/nfl", league: "NFL", sport: "Fútbol americano", importance: 95 },
   { path: "hockey/nhl", league: "NHL", sport: "Hockey", importance: 86 },
 ];
+
+/** Ventana más amplia para torneos de selecciones (fases eliminatorias). */
+function dateWindowDays(league: EspnLeague) {
+  if (league.importance >= 97 || league.path.includes("fifa.world") || league.path.includes("fifa.wwc")) {
+    return { past: 10, future: 14 };
+  }
+  return { past: 1, future: 5 };
+}
 
 type EspnCompetitor = {
   homeAway?: string;
@@ -123,13 +139,18 @@ export async function fetchEspnEvents(): Promise<SportsEvent[]> {
     date.setUTCDate(date.getUTCDate() + offset);
     return date.toISOString().slice(0, 10).replace(/-/g, "");
   };
-  const range = `${format(-1)}-${format(5)}`;
   const results: SportsEvent[] = [];
   // Small sequential groups keep us polite with the public API.
   const groupSize = 6;
   for (let index = 0; index < leagues.length; index += groupSize) {
     const group = leagues.slice(index, index + groupSize);
-    const batches = await Promise.all(group.map((league) => fetchLeagueRange(league, range)));
+    const batches = await Promise.all(
+      group.map((league) => {
+        const window = dateWindowDays(league);
+        const range = `${format(-window.past)}-${format(window.future)}`;
+        return fetchLeagueRange(league, range);
+      }),
+    );
     results.push(...batches.flat());
   }
   const unique = new Map<string, SportsEvent>();

@@ -38,10 +38,14 @@ export async function runSync() {
   const merged = Array.from(existing.values());
   // Once real data exists, demo events disappear and old finished events are pruned.
   const hasRealData = merged.some((event) => event.source === "espn" || event.source === "thesportsdb");
-  const cutoff = Date.now() - 3 * 24 * 60 * 60 * 1000;
+  const now = Date.now();
   data.events = merged.filter((event) => {
     if (hasRealData && event.source === "demo") return false;
-    if (event.status === "finished" && new Date(event.startsAt).getTime() < cutoff && event.source !== "manual") return false;
+    if (event.status === "finished" && event.source !== "manual") {
+      // Keep major tournaments (Mundial, Euro, Copa América) longer for SEO pages.
+      const keepMs = event.importance >= 97 ? 21 * 24 * 60 * 60 * 1000 : 3 * 24 * 60 * 60 * 1000;
+      if (now - new Date(event.startsAt).getTime() > keepMs) return false;
+    }
     return true;
   });
   data.settings.lastSync = new Date().toISOString();
