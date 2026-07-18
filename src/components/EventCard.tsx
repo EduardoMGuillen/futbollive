@@ -1,12 +1,13 @@
 import { CalendarDays, ChevronRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { SportsEvent } from "@/lib/types";
-import { formatEventTime } from "@/lib/utils";
+import { formatEventSchedule } from "@/lib/utils";
 import { FavoriteButton } from "./FavoriteButton";
 import { TeamLogo } from "./TeamLogo";
 
 export function EventCard({ event, compact = false }: { event: SportsEvent; compact?: boolean }) {
   const isLive = event.status === "live";
+  const schedule = formatEventSchedule(event.startsAt);
   return (
     <article className={`event-card ${isLive ? "is-live" : ""} ${compact ? "is-compact" : ""}`}>
       <div className="event-card-top">
@@ -26,11 +27,15 @@ export function EventCard({ event, compact = false }: { event: SportsEvent; comp
             <>
               <span className="live-badge"><i /> {event.minute || "EN VIVO"}</span>
               <b className="score">{event.home.score ?? 0} - {event.away.score ?? 0}</b>
+              <time dateTime={event.startsAt} className="event-when-mini">{schedule.label}</time>
             </>
           ) : (
             <>
-              <time>{formatEventTime(event.startsAt)}</time>
-              <span className="versus">VS</span>
+              <time dateTime={event.startsAt} className="event-when">
+                <span className="event-when-day">{schedule.day}</span>
+                <span className="event-when-time">{schedule.time}</span>
+              </time>
+              <span className="versus">{event.status === "finished" ? "FINAL" : "VS"}</span>
             </>
           )}
         </div>
@@ -40,7 +45,7 @@ export function EventCard({ event, compact = false }: { event: SportsEvent; comp
         </div>
       </Link>
       <div className="event-card-footer">
-        <span>{event.venue ? <><MapPin size={14} /> {event.venue}</> : <><CalendarDays size={14} /> Horario local</>}</span>
+        <span>{event.venue ? <><MapPin size={14} /> {event.venue}</> : <><CalendarDays size={14} /> {schedule.label}</>}</span>
         <Link href={`/partido/${event.slug}`} className="watch-btn" aria-label={`Ver detalles de ${event.home.name} contra ${event.away.name}`}>
           Dónde ver <ChevronRight size={15} />
         </Link>

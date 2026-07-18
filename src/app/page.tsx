@@ -6,6 +6,7 @@ import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
+import { formatEventSchedule } from "@/lib/utils";
 
 export const revalidate = 300;
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default async function Home() {
     .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.importance - a.importance)
     .slice(0, 6);
   const heroEvent = importantLive[0] || upcoming[0];
+  const heroSchedule = heroEvent ? formatEventSchedule(heroEvent.startsAt) : null;
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
 
   return (
@@ -50,14 +52,21 @@ export default async function Home() {
                 <Link className="secondary-btn" href="/buscar"><SearchCheck size={18} /> Explorar partidos</Link>
               </div>
             </div>
-            {heroEvent && (
+            {heroEvent && heroSchedule && (
               <Link href={`/partido/${heroEvent.slug}`} className="hero-card">
-                <div className="hero-card-top"><span>{heroEvent.league}</span><span>Ahora</span></div>
+                <div className="hero-card-top">
+                  <span>{heroEvent.league}</span>
+                  <span>{heroEvent.status === "live" ? "En vivo" : "Próximo"}</span>
+                </div>
                 <span className="live-badge"><i /> {heroEvent.status === "live" ? heroEvent.minute || "EN VIVO" : "PRÓXIMO"}</span>
                 <div className="hero-match">
                   <div><TeamLogo name={heroEvent.home.name} src={heroEvent.home.logo} size={64} /><span>{heroEvent.home.name}</span></div>
                   <b>{heroEvent.status === "live" ? `${heroEvent.home.score ?? 0} – ${heroEvent.away.score ?? 0}` : "VS"}</b>
                   <div><TeamLogo name={heroEvent.away.name} src={heroEvent.away.logo} size={64} /><span>{heroEvent.away.name}</span></div>
+                </div>
+                <div className="hero-schedule">
+                  <strong>{heroSchedule.day}</strong>
+                  <span>{heroSchedule.time}</span>
                 </div>
               </Link>
             )}

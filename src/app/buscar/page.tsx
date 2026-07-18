@@ -10,7 +10,16 @@ export const metadata = {
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;
-  const events = q ? await listEvents({ query: q }) : [];
+  const found = q ? await listEvents({ query: q }) : [];
+  const statusOrder = { live: 0, upcoming: 1, finished: 2 } as const;
+  const events = [...found].sort((a, b) => {
+    const byStatus = statusOrder[a.status] - statusOrder[b.status];
+    if (byStatus !== 0) return byStatus;
+    // Upcoming: soonest first. Finished: most recent first.
+    const timeA = new Date(a.startsAt).getTime();
+    const timeB = new Date(b.startsAt).getTime();
+    return a.status === "finished" ? timeB - timeA : timeA - timeB;
+  });
   return (
     <>
       <section className="page-hero"><div className="container">

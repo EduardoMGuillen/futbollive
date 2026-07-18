@@ -28,6 +28,21 @@ export function formatEventTime(iso: string, withDate = false) {
   }).format(new Date(iso));
 }
 
+/** Fecha corta + hora para tarjetas y destacados (ej. "sáb 18 jul · 3:00 p. m."). */
+export function formatEventSchedule(iso: string) {
+  const date = new Date(iso);
+  const day = new Intl.DateTimeFormat("es-419", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  }).format(date);
+  const time = new Intl.DateTimeFormat("es-419", {
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(date);
+  return { day, time, label: `${day} · ${time}` };
+}
+
 export function formatEventDate(iso: string) {
   return new Intl.DateTimeFormat("es-419", {
     weekday: "long",

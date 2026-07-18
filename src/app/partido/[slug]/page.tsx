@@ -116,8 +116,14 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
           <div className="detail-scoreboard">
             <Link className="detail-team" href={`/equipo/${event.home.slug}`}><TeamLogo name={event.home.name} src={event.home.logo} size={84} /><h2>{event.home.name}</h2></Link>
             <div className="detail-center">
-              {isLive ? <><span className="live-badge"><i /> {event.minute}</span><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b></> : <><time>{formatEventTime(event.startsAt)}</time><span className="versus">VS</span></>}
-              <button className="disabled-watch" disabled>Ver partido · Próximamente</button>
+              {isLive ? (
+                <><span className="live-badge"><i /> {event.minute}</span><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b></>
+              ) : event.status === "finished" ? (
+                <><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b><span className="versus">FINAL</span></>
+              ) : (
+                <><time>{formatEventTime(event.startsAt)}</time><span className="versus">VS</span></>
+              )}
+              <button className="disabled-watch" disabled>{event.status === "finished" ? "Partido finalizado" : "Ver partido · Próximamente"}</button>
             </div>
             <Link className="detail-team" href={`/equipo/${event.away.slug}`}><TeamLogo name={event.away.name} src={event.away.logo} size={84} /><h2>{event.away.name}</h2></Link>
           </div>
