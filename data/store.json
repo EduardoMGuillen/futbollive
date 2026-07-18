@@ -27,7 +27,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:06:12.450Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "tsdb-2432557",
@@ -54,7 +54,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:06:12.450Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "tsdb-2432558",
@@ -81,7 +81,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:06:12.450Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "tsdb-2432559",
@@ -108,7 +108,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:06:12.451Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "tsdb-2475821",
@@ -135,7 +135,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:06:12.451Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "tsdb-2476144",
@@ -163,7 +163,7 @@
       "featured": false,
       "description": "GFL Süd",
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:06:12.451Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "tsdb-2388374",
@@ -275,7 +275,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877042",
@@ -303,7 +303,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877041",
@@ -331,7 +331,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877040",
@@ -359,7 +359,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877038",
@@ -387,7 +387,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877039",
@@ -415,7 +415,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877037",
@@ -443,7 +443,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877036",
@@ -471,7 +471,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-mex-1-401877035",
@@ -499,7 +499,7 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761663",
@@ -527,7 +527,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761664",
@@ -555,7 +555,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761668",
@@ -583,7 +583,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761669",
@@ -611,7 +611,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761667",
@@ -639,7 +639,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761666",
@@ -667,7 +667,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761665",
@@ -695,7 +695,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.397Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761670",
@@ -723,7 +723,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761674",
@@ -751,7 +751,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761671",
@@ -779,7 +779,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761673",
@@ -807,7 +807,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761672",
@@ -835,7 +835,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761675",
@@ -863,7 +863,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761678",
@@ -891,7 +891,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761679",
@@ -919,7 +919,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761677",
@@ -947,7 +947,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-usa-1-761676",
@@ -975,7 +975,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:44.377Z"
     },
     {
       "id": "espn-soccer-arg-1-401841435",
@@ -1003,7 +1003,7 @@
       "importance": 89,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-arg-1-401841437",
@@ -1031,7 +1031,7 @@
       "importance": 89,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-arg-1-401841448",
@@ -1059,7 +1059,7 @@
       "importance": 89,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401879459",
@@ -1087,7 +1087,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841153",
@@ -1115,7 +1115,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841155",
@@ -1143,7 +1143,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841148",
@@ -1171,7 +1171,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841152",
@@ -1199,7 +1199,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841150",
@@ -1227,7 +1227,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841154",
@@ -1255,7 +1255,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841156",
@@ -1283,7 +1283,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401879458",
@@ -1311,7 +1311,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-soccer-bra-1-401841151",
@@ -1339,7 +1339,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.398Z"
+      "updatedAt": "2026-07-18T10:08:45.075Z"
     },
     {
       "id": "espn-basketball-wnba-401857073",
@@ -1367,7 +1367,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857074",
@@ -1395,7 +1395,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857075",
@@ -1423,7 +1423,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857076",
@@ -1451,7 +1451,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857077",
@@ -1479,7 +1479,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857078",
@@ -1507,7 +1507,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857079",
@@ -1535,7 +1535,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857080",
@@ -1563,7 +1563,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857081",
@@ -1591,7 +1591,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857082",
@@ -1619,7 +1619,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857083",
@@ -1647,7 +1647,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401892393",
@@ -1675,7 +1675,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857084",
@@ -1703,7 +1703,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857085",
@@ -1731,7 +1731,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857086",
@@ -1759,7 +1759,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857087",
@@ -1787,7 +1787,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857088",
@@ -1815,7 +1815,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857089",
@@ -1843,7 +1843,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857090",
@@ -1871,7 +1871,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-basketball-wnba-401857091",
@@ -1899,7 +1899,7 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401872178",
@@ -1927,7 +1927,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816142",
@@ -1955,7 +1955,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816144",
@@ -1983,7 +1983,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816145",
@@ -2011,7 +2011,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816141",
@@ -2039,7 +2039,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816146",
@@ -2067,7 +2067,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816148",
@@ -2095,7 +2095,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.436Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816149",
@@ -2123,7 +2123,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816147",
@@ -2151,7 +2151,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816150",
@@ -2179,7 +2179,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816151",
@@ -2207,7 +2207,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816152",
@@ -2235,7 +2235,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816154",
@@ -2263,7 +2263,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816155",
@@ -2291,7 +2291,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816153",
@@ -2319,7 +2319,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401896568",
@@ -2347,7 +2347,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816164",
@@ -2375,7 +2375,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816156",
@@ -2403,7 +2403,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816166",
@@ -2431,7 +2431,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816158",
@@ -2459,7 +2459,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816160",
@@ -2487,7 +2487,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816161",
@@ -2515,7 +2515,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816162",
@@ -2543,7 +2543,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816163",
@@ -2571,7 +2571,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816165",
@@ -2599,7 +2599,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816169",
@@ -2627,7 +2627,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816159",
@@ -2655,7 +2655,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816157",
@@ -2683,7 +2683,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816168",
@@ -2711,7 +2711,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816170",
@@ -2739,7 +2739,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816167",
@@ -2767,7 +2767,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816171",
@@ -2795,7 +2795,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816173",
@@ -2823,7 +2823,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816175",
@@ -2851,7 +2851,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816176",
@@ -2879,7 +2879,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816174",
@@ -2907,7 +2907,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816177",
@@ -2935,7 +2935,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816178",
@@ -2963,7 +2963,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816180",
@@ -2991,7 +2991,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816179",
@@ -3019,7 +3019,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816181",
@@ -3047,7 +3047,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816185",
@@ -3075,7 +3075,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816182",
@@ -3103,7 +3103,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.437Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816183",
@@ -3131,7 +3131,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816184",
@@ -3159,7 +3159,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816172",
@@ -3187,7 +3187,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816188",
@@ -3215,7 +3215,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816187",
@@ -3243,7 +3243,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816189",
@@ -3271,7 +3271,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816191",
@@ -3299,7 +3299,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816186",
@@ -3327,7 +3327,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816190",
@@ -3355,7 +3355,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816195",
@@ -3383,7 +3383,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816196",
@@ -3411,7 +3411,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816192",
@@ -3439,7 +3439,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816193",
@@ -3467,7 +3467,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816194",
@@ -3495,7 +3495,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816197",
@@ -3523,7 +3523,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816198",
@@ -3551,7 +3551,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816199",
@@ -3579,7 +3579,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816200",
@@ -3607,7 +3607,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816202",
@@ -3635,7 +3635,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816203",
@@ -3663,7 +3663,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816204",
@@ -3691,7 +3691,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816206",
@@ -3719,7 +3719,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816201",
@@ -3747,7 +3747,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816205",
@@ -3775,7 +3775,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816210",
@@ -3803,7 +3803,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816211",
@@ -3831,7 +3831,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816207",
@@ -3859,7 +3859,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816208",
@@ -3887,7 +3887,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816209",
@@ -3915,7 +3915,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816212",
@@ -3943,7 +3943,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816215",
@@ -3971,7 +3971,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816213",
@@ -3999,7 +3999,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.334Z"
     },
     {
       "id": "espn-baseball-mlb-401816214",
@@ -4027,7 +4027,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816219",
@@ -4055,7 +4055,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816225",
@@ -4083,7 +4083,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816226",
@@ -4111,7 +4111,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816227",
@@ -4139,7 +4139,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816228",
@@ -4167,7 +4167,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816229",
@@ -4195,7 +4195,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.438Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816230",
@@ -4223,7 +4223,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816217",
@@ -4251,7 +4251,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816218",
@@ -4279,7 +4279,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816221",
@@ -4307,7 +4307,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816216",
@@ -4335,7 +4335,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816220",
@@ -4363,7 +4363,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816223",
@@ -4391,7 +4391,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816222",
@@ -4419,7 +4419,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816224",
@@ -4447,7 +4447,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816233",
@@ -4475,7 +4475,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816232",
@@ -4503,7 +4503,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816234",
@@ -4531,7 +4531,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401881162",
@@ -4559,7 +4559,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-baseball-mlb-401816231",
@@ -4587,7 +4587,7 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:13.439Z"
+      "updatedAt": "2026-07-18T10:08:46.335Z"
     },
     {
       "id": "espn-soccer-fifa-world-760510",
@@ -4615,7 +4615,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.894Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760511",
@@ -4643,7 +4643,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760512",
@@ -4671,7 +4671,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760513",
@@ -4699,7 +4699,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760514",
@@ -4727,7 +4727,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760515",
@@ -4755,7 +4755,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760516",
@@ -4783,7 +4783,7 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
     },
     {
       "id": "espn-soccer-fifa-world-760517",
@@ -4811,7 +4811,1431 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:06:12.895Z"
+      "updatedAt": "2026-07-18T10:08:42.636Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874150",
+      "slug": "nacional-vs-tigre-401874150",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Nacional",
+        "slug": "nacional",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2684.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Tigre",
+        "slug": "tigre",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7767.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-21T22:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Gran Parque Central",
+      "country": "Uruguay",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874072",
+      "slug": "ucv-fc-vs-santos-401874072",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "UCV FC",
+        "slug": "ucv-fc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10094.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Santos",
+        "slug": "santos",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2674.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-22T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Misael Delgado",
+      "country": "Venezuela",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874157",
+      "slug": "independiente-medellin-vs-vasco-da-gama-401874157",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Independiente Medellín",
+        "slug": "independiente-medellin",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2690.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Vasco da Gama",
+        "slug": "vasco-da-gama",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3454.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-22T22:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Atanasio Girardot",
+      "country": "Colombia",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874166",
+      "slug": "lanus-vs-cienciano-del-cusco-401874166",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Lanús",
+        "slug": "lanus",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/12.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Cienciano del Cusco",
+        "slug": "cienciano-del-cusco",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3372.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-23T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Ciudad de Lanús",
+      "country": "Argentina",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874148",
+      "slug": "sporting-cristal-vs-red-bull-bragantino-401874148",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Sporting Cristal",
+        "slug": "sporting-cristal",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2673.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Red Bull Bragantino",
+        "slug": "red-bull-bragantino",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6079.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-23T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Nacional de Lima",
+      "country": "Peru",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874144",
+      "slug": "bolivar-vs-gremio-401874144",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Bolívar",
+        "slug": "bolivar",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2681.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Grêmio",
+        "slug": "gremio",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6273.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-23T22:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Hernando Siles",
+      "country": "Bolivia",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874154",
+      "slug": "boca-juniors-vs-o-higgins-401874154",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Boca Juniors",
+        "slug": "boca-juniors",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+        "score": 0
+      },
+      "away": {
+        "name": "O'Higgins",
+        "slug": "o-higgins",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6072.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-24T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Alberto José Armando (La Bombonera)",
+      "country": "Argentina",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-conmebol-sudamericana-401874165",
+      "slug": "independiente-santa-fe-vs-caracas-fc-401874165",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Sudamericana",
+      "leagueSlug": "copa-sudamericana",
+      "home": {
+        "name": "Independiente Santa Fe",
+        "slug": "independiente-santa-fe",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5488.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Caracas FC",
+        "slug": "caracas-fc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4811.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-24T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Nemesio Camacho El Campín",
+      "country": "Colombia",
+      "importance": 90,
+      "featured": true,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.219Z"
+    },
+    {
+      "id": "espn-soccer-arg-copa-401873912",
+      "slug": "san-lorenzo-vs-deportivo-riestra-401873912",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Argentina",
+      "leagueSlug": "copa-argentina",
+      "home": {
+        "name": "San Lorenzo",
+        "slug": "san-lorenzo",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18.png",
+        "score": 1
+      },
+      "away": {
+        "name": "Deportivo Riestra",
+        "slug": "deportivo-riestra",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17702.png",
+        "score": 1
+      },
+      "startsAt": "2026-07-17T21:45:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Nuevo Francisco Urbano",
+      "country": "Argentina",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.223Z"
+    },
+    {
+      "id": "espn-soccer-arg-copa-401861869",
+      "slug": "river-plate-vs-aldosivi-401861869",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Copa Argentina",
+      "leagueSlug": "copa-argentina",
+      "home": {
+        "name": "River Plate",
+        "slug": "river-plate",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png",
+        "score": 1
+      },
+      "away": {
+        "name": "Aldosivi",
+        "slug": "aldosivi",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9739.png",
+        "score": 3
+      },
+      "startsAt": "2026-07-18T00:45:00.000Z",
+      "status": "finished",
+      "venue": "Padre Ernesto Martearena",
+      "country": "Argentina",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.223Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874354",
+      "slug": "fc-cajamarca-vs-juan-pablo-ii-401874354",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "FC Cajamarca",
+        "slug": "fc-cajamarca",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131655.png",
+        "score": 2
+      },
+      "away": {
+        "name": "Juan Pablo II",
+        "slug": "juan-pablo-ii",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22534.png",
+        "score": 2
+      },
+      "startsAt": "2026-07-17T18:00:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Héroes de San Ramón",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874340",
+      "slug": "sporting-cristal-vs-deportivo-garcilaso-401874340",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Sporting Cristal",
+        "slug": "sporting-cristal",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2673.png",
+        "score": 1
+      },
+      "away": {
+        "name": "Deportivo Garcilaso",
+        "slug": "deportivo-garcilaso",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21819.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-17T20:15:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Alberto Gallardo",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874341",
+      "slug": "cienciano-del-cusco-vs-melgar-401874341",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Cienciano del Cusco",
+        "slug": "cienciano-del-cusco",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3372.png",
+        "score": 1
+      },
+      "away": {
+        "name": "Melgar",
+        "slug": "melgar",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7312.png",
+        "score": 3
+      },
+      "startsAt": "2026-07-18T01:00:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Inca Garcilaso de la Vega",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874337",
+      "slug": "deportivo-moquegua-vs-comerciantes-unidos-401874337",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Deportivo Moquegua",
+        "slug": "deportivo-moquegua",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131654.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Comerciantes Unidos",
+        "slug": "comerciantes-unidos",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18153.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T16:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio 25 de Noviembre",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874338",
+      "slug": "adt-vs-universitario-401874338",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "ADT",
+        "slug": "adt",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21314.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Universitario",
+        "slug": "universitario",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2685.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T18:15:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Unión Tarma",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874356",
+      "slug": "atletico-grau-vs-utc-401874356",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Atlético Grau",
+        "slug": "atletico-grau",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20293.png",
+        "score": 0
+      },
+      "away": {
+        "name": "UTC",
+        "slug": "utc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10122.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T20:30:00.000Z",
+      "status": "upcoming",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874339",
+      "slug": "cusco-fc-vs-alianza-atletico-401874339",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Cusco FC",
+        "slug": "cusco-fc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11995.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Alianza Atlético",
+        "slug": "alianza-atletico",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5267.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T23:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Inca Garcilaso de la Vega",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874355",
+      "slug": "los-chankas-vs-sport-boys-401874355",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Los Chankas",
+        "slug": "los-chankas",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22168.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Sport Boys",
+        "slug": "sport-boys",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5570.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T16:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Los Chankas",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-per-1-401874357",
+      "slug": "alianza-lima-vs-sport-huancayo-401874357",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga 1 Perú",
+      "leagueSlug": "liga-1-peru",
+      "home": {
+        "name": "Alianza Lima",
+        "slug": "alianza-lima",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2680.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Sport Huancayo",
+        "slug": "sport-huancayo",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10318.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T00:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Alejandro Villanueva",
+      "country": "Peru",
+      "importance": 82,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:46.018Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872721",
+      "slug": "albion-fc-vs-juventud-401872721",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Albion FC",
+        "slug": "albion-fc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21403.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Juventud",
+        "slug": "juventud",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8416.png",
+        "score": 1
+      },
+      "startsAt": "2026-07-17T18:00:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Luis Franzini",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872725",
+      "slug": "nacional-vs-montevideo-wanderers-401872725",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Nacional",
+        "slug": "nacional",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2684.png",
+        "score": 1
+      },
+      "away": {
+        "name": "Montevideo Wanderers",
+        "slug": "montevideo-wanderers",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5501.png",
+        "score": 2
+      },
+      "startsAt": "2026-07-17T22:30:00.000Z",
+      "status": "finished",
+      "venue": "Gran Parque Central",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872723",
+      "slug": "progreso-vs-deportivo-maldonado-401872723",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Progreso",
+        "slug": "progreso",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6866.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Deportivo Maldonado",
+        "slug": "deportivo-maldonado",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10000.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T15:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Parque Abraham Paladino",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872724",
+      "slug": "penarol-vs-boston-river-401872724",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Peñarol",
+        "slug": "penarol",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2683.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Boston River",
+        "slug": "boston-river",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9999.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T19:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Campeón del Siglo",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872720",
+      "slug": "central-espanol-futbol-club-vs-cerro-largo-401872720",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Central Español Fútbol Club",
+        "slug": "central-espanol-futbol-club",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131688.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Cerro Largo",
+        "slug": "cerro-largo",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9902.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T13:00:00.000Z",
+      "status": "upcoming",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872719",
+      "slug": "cerro-vs-racing-montevideo-401872719",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Cerro",
+        "slug": "cerro",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5490.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Racing (Montevideo)",
+        "slug": "racing-montevideo",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9903.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T16:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Luis Tróccoli",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872726",
+      "slug": "montevideo-city-torque-vs-danubio-401872726",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Montevideo City Torque",
+        "slug": "montevideo-city-torque",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19002.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Danubio",
+        "slug": "danubio",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4817.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T20:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Charrúa",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-uru-1-401872722",
+      "slug": "defensor-sporting-vs-liverpool-401872722",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Liga AUF Uruguaya",
+      "leagueSlug": "liga-auf-uruguaya",
+      "home": {
+        "name": "Defensor Sporting",
+        "slug": "defensor-sporting",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1007.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Liverpool",
+        "slug": "liverpool",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5492.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T23:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Luis Franzini",
+      "country": "Uruguay",
+      "importance": 83,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.917Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859620",
+      "slug": "delfin-vs-macara-401859620",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Delfín",
+        "slug": "delfin",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1011.png",
+        "score": 2
+      },
+      "away": {
+        "name": "Macará",
+        "slug": "macara",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18439.png",
+        "score": 1
+      },
+      "startsAt": "2026-07-18T00:00:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Jocay",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859619",
+      "slug": "deportivo-cuenca-vs-universidad-catolica-quito-401859619",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Deportivo Cuenca",
+        "slug": "deportivo-cuenca",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4812.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Universidad Católica (Quito)",
+        "slug": "universidad-catolica-quito",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9283.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T19:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Banco del Austro Alejandro Serrano Aguil",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859715",
+      "slug": "liga-de-quito-vs-leones-401859715",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Liga de Quito",
+        "slug": "liga-de-quito",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4816.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Leones",
+        "slug": "leones",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131702.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T21:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Rodrigo Paz Delgado",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859621",
+      "slug": "barcelona-sc-vs-libertad-ecuador-401859621",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Barcelona SC",
+        "slug": "barcelona-sc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2686.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Libertad (Ecuador)",
+        "slug": "libertad-ecuador",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21843.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T00:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Banco Pichincha",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859625",
+      "slug": "tecnico-universitario-vs-aucas-401859625",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Técnico Universitario",
+        "slug": "tecnico-universitario",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9292.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Aucas",
+        "slug": "aucas",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6017.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T16:45:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Bellavista",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859622",
+      "slug": "guayaquil-city-fc-vs-manta-f-c-401859622",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Guayaquil City FC",
+        "slug": "guayaquil-city-fc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11124.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Manta F.C.",
+        "slug": "manta-f-c",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10307.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T21:45:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Christian Benítez Betancourt",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859623",
+      "slug": "independiente-del-valle-vs-emelec-401859623",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Independiente del Valle",
+        "slug": "independiente-del-valle",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17086.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Emelec",
+        "slug": "emelec",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2668.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T00:15:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Banco Guayaquil",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859624",
+      "slug": "mushuc-runa-vs-orense-401859624",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Mushuc Runa",
+        "slug": "mushuc-runa",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17176.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Orense",
+        "slug": "orense",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20695.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T19:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio COAC Mushuc Runa",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859628",
+      "slug": "libertad-ecuador-vs-delfin-401859628",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Libertad (Ecuador)",
+        "slug": "libertad-ecuador",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21843.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Delfín",
+        "slug": "delfin",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1011.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-21T21:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Federativo Reina del Cisne",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859629",
+      "slug": "universidad-catolica-quito-vs-barcelona-sc-401859629",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Universidad Católica (Quito)",
+        "slug": "universidad-catolica-quito",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9283.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Barcelona SC",
+        "slug": "barcelona-sc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2686.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-22T00:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Olímpico Atahualpa",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859632",
+      "slug": "macara-vs-deportivo-cuenca-401859632",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Macará",
+        "slug": "macara",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18439.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Deportivo Cuenca",
+        "slug": "deportivo-cuenca",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4812.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-22T19:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Bellavista",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859626",
+      "slug": "independiente-del-valle-vs-tecnico-universitario-401859626",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Independiente del Valle",
+        "slug": "independiente-del-valle",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17086.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Técnico Universitario",
+        "slug": "tecnico-universitario",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9292.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-22T21:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Banco Guayaquil",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859631",
+      "slug": "manta-f-c-vs-liga-de-quito-401859631",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Manta F.C.",
+        "slug": "manta-f-c",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10307.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Liga de Quito",
+        "slug": "liga-de-quito",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4816.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-23T00:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Jocay",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859716",
+      "slug": "leones-vs-guayaquil-city-fc-401859716",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Leones",
+        "slug": "leones",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131702.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Guayaquil City FC",
+        "slug": "guayaquil-city-fc",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11124.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-23T21:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Olímpico de Ibarra",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859630",
+      "slug": "orense-vs-aucas-401859630",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Orense",
+        "slug": "orense",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20695.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Aucas",
+        "slug": "aucas",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6017.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-23T21:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio 9 de Mayo",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-ecu-1-401859627",
+      "slug": "emelec-vs-mushuc-runa-401859627",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LigaPro Ecuador",
+      "leagueSlug": "ligapro-ecuador",
+      "home": {
+        "name": "Emelec",
+        "slug": "emelec",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2668.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Mushuc Runa",
+        "slug": "mushuc-runa",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17176.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-24T00:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio George Capwell Banco del Austro",
+      "country": "Ecuador",
+      "importance": 81,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.771Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867185",
+      "slug": "bolivar-vs-guabira-401867185",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "Bolívar",
+        "slug": "bolivar",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2681.png",
+        "score": 4
+      },
+      "away": {
+        "name": "Guabirá",
+        "slug": "guabira",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9497.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T00:00:00.000Z",
+      "status": "finished",
+      "venue": "Estadio Hernando Siles",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867181",
+      "slug": "always-ready-vs-universitario-de-vinto-401867181",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "Always Ready",
+        "slug": "always-ready",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19425.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Universitario de Vinto",
+        "slug": "universitario-de-vinto",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21379.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-18T19:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Municipal Villa Ingenio",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867186",
+      "slug": "aurora-vs-oriente-petrolero-401867186",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "Aurora",
+        "slug": "aurora",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6046.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Oriente Petrolero",
+        "slug": "oriente-petrolero",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2682.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Félix Capriles",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867180",
+      "slug": "gv-san-jose-vs-the-strongest-401867180",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "GV San José",
+        "slug": "gv-san-jose",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22174.png",
+        "score": 0
+      },
+      "away": {
+        "name": "The Strongest",
+        "slug": "the-strongest",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2687.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-19T15:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Jesús Bermúdez",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867183",
+      "slug": "blooming-vs-real-tomayapo-401867183",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "Blooming",
+        "slug": "blooming",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6047.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Real Tomayapo",
+        "slug": "real-tomayapo",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20890.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T00:30:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Ramón Tahuichi",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867179",
+      "slug": "san-antonio-bulo-bulo-vs-abb-401867179",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "San Antonio Bulo Bulo",
+        "slug": "san-antonio-bulo-bulo",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22137.png",
+        "score": 0
+      },
+      "away": {
+        "name": "ABB",
+        "slug": "abb",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/130875.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T19:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Félix Capriles",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867184",
+      "slug": "nacional-potosi-vs-real-oruro-401867184",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "Nacional Potosí",
+        "slug": "nacional-potosi",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10311.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Real Oruro",
+        "slug": "real-oruro",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22523.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-20T23:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Víctor Agustín Ugarte",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
+    },
+    {
+      "id": "espn-soccer-bol-1-401867182",
+      "slug": "independiente-petrolero-vs-real-potosi-401867182",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "División Profesional Bolivia",
+      "leagueSlug": "division-profesional-bolivia",
+      "home": {
+        "name": "Independiente Petrolero",
+        "slug": "independiente-petrolero",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20889.png",
+        "score": 0
+      },
+      "away": {
+        "name": "Real Potosí",
+        "slug": "real-potosi",
+        "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6051.png",
+        "score": 0
+      },
+      "startsAt": "2026-07-21T23:00:00.000Z",
+      "status": "upcoming",
+      "venue": "Estadio Olímpico Patria",
+      "country": "Bolivia",
+      "importance": 76,
+      "featured": false,
+      "source": "espn",
+      "updatedAt": "2026-07-18T10:08:45.901Z"
     }
   ],
   "banners": [
@@ -4855,6 +6279,6 @@
     "liveThreshold": 85,
     "maxFeaturedLive": 6,
     "ctaEnabled": false,
-    "lastSync": "2026-07-18T10:06:13.448Z"
+    "lastSync": "2026-07-18T10:08:46.339Z"
   }
 }
