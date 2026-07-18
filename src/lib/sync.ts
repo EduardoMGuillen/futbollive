@@ -57,7 +57,7 @@ export async function runSync() {
 
 let inflight: Promise<unknown> | null = null;
 
-export async function ensureFreshEvents(maxAgeMinutes = 30) {
+export async function ensureFreshEvents(maxAgeMinutes = 10) {
   const data = await readStore();
   const last = data.settings.lastSync ? new Date(data.settings.lastSync).getTime() : 0;
   const stale = Date.now() - last > maxAgeMinutes * 60 * 1000;
