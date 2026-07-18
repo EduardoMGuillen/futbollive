@@ -12,6 +12,7 @@ export function Footer() {
         <div>
           <strong>Explorar</strong>
           <Link href="/en-vivo">En vivo</Link>
+          <Link href="/deportes">Todos los deportes</Link>
           <Link href="/resultados">Resultados</Link>
           <Link href="/deporte/futbol">Fútbol</Link>
           <Link href="/deporte/baloncesto">Baloncesto</Link>

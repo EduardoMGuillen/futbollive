@@ -9,6 +9,7 @@ import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
 import { eventTitle, isPubliclyVisible } from "@/lib/utils";
+import { sportIcon } from "@/lib/sports";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -16,12 +17,6 @@ export const metadata: Metadata = {
   description: "Consulta los partidos de hoy y próximos eventos de fútbol, NBA, MLB, tenis y más. Horarios locales, sedes, participantes y dónde ver.",
   alternates: { canonical: "/" },
   openGraph: { url: "/", title: "Partidos de hoy y dónde verlos | Dónde Juega" },
-};
-
-const sportIcons: Record<string, string> = {
-  futbol: "⚽", baloncesto: "🏀", beisbol: "⚾", tenis: "🎾",
-  automovilismo: "🏎", hockey: "🏒", "futbol-americano": "🏈",
-  mma: "🥊", voleibol: "🏐",
 };
 
 export default async function Home() {
@@ -92,9 +87,12 @@ export default async function Home() {
 
       <section className="content-section">
         <div className="container">
-          <div className="section-head"><div><span className="eyebrow"><i /> Explora</span><h2>Todos tus deportes</h2></div></div>
+          <div className="section-head">
+            <div><span className="eyebrow"><i /> Explora</span><h2>Todos tus deportes</h2></div>
+            <Link className="section-link" href="/deportes">Ver todos <ChevronRight size={17} /></Link>
+          </div>
           <div className="sports-row">
-            {sports.map(([slug, name]) => <Link key={slug} href={`/deporte/${slug}`}><span>{sportIcons[slug] || "🏆"}</span>{name}</Link>)}
+            {sports.map(([slug, name]) => <Link key={slug} href={`/deporte/${slug}`}><span>{sportIcon(slug)}</span>{name}</Link>)}
           </div>
         </div>
       </section>

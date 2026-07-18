@@ -53,7 +53,7 @@ export function Header() {
               {label === "En vivo" && <span className="live-dot" />} {label}
             </Link>
           ))}
-          <Link href="/en-vivo">Más deportes</Link>
+          <Link href="/deportes" onClick={() => setMenuOpen(false)}>Más deportes</Link>
         </div>
       </nav>
     </header>

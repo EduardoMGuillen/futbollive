@@ -3,21 +3,29 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
 import { EventCard } from "@/components/EventCard";
+import { getEspnSportsCatalog } from "@/lib/espn";
 import { readStore } from "@/lib/store";
 import { isPubliclyVisible } from "@/lib/utils";
 
 export async function generateStaticParams() {
+  const catalog = getEspnSportsCatalog();
   const data = await readStore();
-  return Array.from(new Set(data.events.filter((event) => !event.hidden).map((event) => event.sportSlug))).map((slug) => ({ slug }));
+  const slugs = new Set([
+    ...catalog.map((sport) => sport.slug),
+    ...data.events.filter((event) => !event.hidden).map((event) => event.sportSlug),
+  ]);
+  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const catalogSport = getEspnSportsCatalog().find((item) => item.slug === slug);
   const data = await readStore();
   const event = data.events.find((item) => item.sportSlug === slug);
-  if (!event) return { title: "Deporte" };
-  const title = `${event.sport} hoy: partidos, horarios y dónde ver`;
-  const description = `Consulta todos los eventos de ${event.sport.toLocaleLowerCase("es")} de hoy, horarios locales, competiciones y dónde ver cada evento.`;
+  const sport = event?.sport || catalogSport?.name;
+  if (!sport) return { title: "Deporte" };
+  const title = `${sport} hoy: partidos, horarios y dónde ver`;
+  const description = `Consulta todos los eventos de ${sport.toLocaleLowerCase("es")} de hoy, horarios locales, competiciones y dónde ver cada evento.`;
   return {
     title,
     description,
@@ -28,9 +36,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function SportPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const catalogSport = getEspnSportsCatalog().find((item) => item.slug === slug);
   const data = await readStore();
   const allEvents = data.events.filter((event) => event.sportSlug === slug && !event.hidden);
-  if (!allEvents.length) notFound();
+  const sport = allEvents[0]?.sport || catalogSport?.name;
+  if (!sport) notFound();
   const events = allEvents
     .filter((event) => isPubliclyVisible(event))
     .sort((a, b) => {
@@ -40,13 +50,14 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
       const timeB = new Date(b.startsAt).getTime();
       return a.status === "finished" ? timeB - timeA : timeA - timeB;
     });
-  const sport = allEvents[0].sport;
-  const leagues = Array.from(new Map(events.map((event) => [event.leagueSlug, event.league])).entries());
+  const leagues = Array.from(new Map(
+    (events.length ? events : allEvents).map((event) => [event.leagueSlug, event.league]),
+  ).entries());
 
   return (
     <>
       <section className="page-hero"><div className="container">
-        <div className="breadcrumbs">Inicio / Deportes / {sport}</div>
+        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href="/deportes">Deportes</Link> / {sport}</div>
         <h1>{sport}</h1>
         <p>Partidos, horarios y eventos destacados de {sport.toLocaleLowerCase("es")} en tu hora local.</p>
       </div></section>
@@ -56,7 +67,12 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
           {events.length ? <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div> : <div className="empty-state">No hay próximos eventos disponibles.</div>}
         </div>
         <aside className="sidebar">
-          <div className="league-list"><h3>Competiciones</h3>{leagues.map(([leagueSlug, name]) => <Link href={`/liga/${leagueSlug}`} key={leagueSlug}>{name}<span>›</span></Link>)}</div>
+          <div className="league-list">
+            <h3>Competiciones</h3>
+            {leagues.length
+              ? leagues.map(([leagueSlug, name]) => <Link href={`/liga/${leagueSlug}`} key={leagueSlug}>{name}<span>›</span></Link>)
+              : <p style={{ color: "var(--muted)", fontSize: 13, margin: 0 }}>Sin competiciones activas.</p>}
+          </div>
           <AdSlot variant="box" banner={data.banners.find((banner) => banner.position === "feed")} />
         </aside>
       </div>

@@ -486,6 +486,12 @@ export function getEspnLeagueCatalog() {
   }));
 }
 
+export function getEspnSportsCatalog() {
+  return Array.from(
+    new Map(getEspnLeagueCatalog().map((item) => [item.sportSlug, { slug: item.sportSlug, name: item.sport }])).values(),
+  ).sort((a, b) => a.name.localeCompare(b.name, "es"));
+}
+
 export async function fetchEspnResults(path: string, year: number) {
   const league = leagues.find((item) => item.path === path);
   if (!league) return [];
