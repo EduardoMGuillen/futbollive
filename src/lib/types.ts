@@ -34,7 +34,7 @@ export interface SportsEvent {
   description?: string;
   homeLineup?: LineupPlayer[];
   awayLineup?: LineupPlayer[];
-  source: "demo" | "thesportsdb" | "manual";
+  source: "demo" | "thesportsdb" | "espn" | "manual";
   updatedAt: string;
 }
 

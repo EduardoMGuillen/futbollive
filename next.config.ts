@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "r2.thesportsdb.com" },
       { protocol: "https", hostname: "www.thesportsdb.com" },
+      { protocol: "https", hostname: "a.espncdn.com" },
     ],
   },
   experimental: {

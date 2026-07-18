@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AdSlot } from "@/components/AdSlot";
 import { EventCard } from "@/components/EventCard";
 import { readStore } from "@/lib/store";
+import { ensureFreshEvents } from "@/lib/sync";
 
 export const metadata: Metadata = {
   title: "Partidos en vivo hoy y agenda deportiva completa",
@@ -18,6 +19,7 @@ export default async function LivePage({
   searchParams: Promise<{ deporte?: string; estado?: string }>;
 }) {
   const filters = await searchParams;
+  await ensureFreshEvents();
   const data = await readStore();
   const visible = data.events.filter((event) => !event.hidden);
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());

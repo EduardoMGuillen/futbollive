@@ -5,6 +5,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
+import { ensureFreshEvents } from "@/lib/sync";
 
 export const revalidate = 300;
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ const sportIcons: Record<string, string> = {
 };
 
 export default async function Home() {
+  await ensureFreshEvents();
   const data = await readStore();
   const visible = data.events.filter((event) => !event.hidden);
   const importantLive = visible
