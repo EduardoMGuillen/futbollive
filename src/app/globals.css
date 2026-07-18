@@ -212,24 +212,24 @@ button { color: inherit; }
 .event-card-footer > span { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .watch-btn { color: var(--green); font-size: 12px; font-weight: 900; display: flex; align-items: center; white-space: nowrap; }
 
-.ad-slot { border: 1px dashed #a9bcb3; background: linear-gradient(135deg, var(--surface), var(--green-soft)); border-radius: 18px; display: grid; place-items: center; text-align: center; color: var(--muted); position: relative; }
-.ad-wide { min-height: 108px; margin: 22px auto; }
-.ad-box { min-height: 280px; }
-.ad-slot > span { position: absolute; top: 9px; right: 11px; font-size: 8px; letter-spacing: .12em; }
-.ad-slot svg { color: var(--green); margin-bottom: 7px; }
-.ad-slot strong { color: var(--foreground); font-size: 15px; }
-.ad-slot small { margin-top: 3px; }
-.adsense-wrap { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; display: block; }
-.adsense-wrap > span { position: absolute; top: 4px; right: 8px; z-index: 1; color: var(--muted); font-size: 8px; letter-spacing: .12em; }
-.adsense-wrap.ad-wide { min-height: 108px; margin: 22px auto; padding-top: 12px; }
-.adsense-wrap.ad-box { min-height: 280px; padding-top: 12px; }
+.promo-card { border: 1px dashed #a9bcb3; background: linear-gradient(135deg, var(--surface), var(--green-soft)); border-radius: 18px; display: grid; place-items: center; text-align: center; color: var(--muted); position: relative; }
+.promo-wide { min-height: 108px; margin: 22px auto; }
+.promo-box { min-height: 280px; }
+.promo-card > span { position: absolute; top: 9px; right: 11px; font-size: 8px; letter-spacing: .12em; }
+.promo-card svg { color: var(--green); margin-bottom: 7px; }
+.promo-card strong { color: var(--foreground); font-size: 15px; }
+.promo-card small { margin-top: 3px; }
+.promo-wrap { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; display: block; }
+.promo-wrap > span { position: absolute; top: 4px; right: 8px; z-index: 1; color: var(--muted); font-size: 8px; letter-spacing: .12em; }
+.promo-wrap.promo-wide { min-height: 108px; margin: 22px auto; padding-top: 12px; }
+.promo-wrap.promo-box { min-height: 280px; padding-top: 12px; }
 /* Placeholder visible mientras AdSense no llena la unidad; se oculta al servirse el anuncio. */
-.adsense-wrap .ad-fallback { border: 0; border-radius: 0; position: absolute; inset: 0; }
-.adsense-wrap:has(ins.adsbygoogle[data-ad-status="filled"]) .ad-fallback { display: none; }
-.adsense-wrap ins.adsbygoogle[data-ad-status="filled"] { position: relative; z-index: 1; }
-.ad-slot.ad-wide { min-height: 108px; }
-.ad-slot.ad-box { min-height: 280px; }
-.global-ad { margin-top: 38px; margin-bottom: 8px; }
+.promo-wrap .promo-fallback { border: 0; border-radius: 0; position: absolute; inset: 0; }
+.promo-wrap:has(ins.adsbygoogle[data-ad-status="filled"]) .promo-fallback { display: none; }
+.promo-wrap ins.adsbygoogle[data-ad-status="filled"] { position: relative; z-index: 1; }
+.promo-card.promo-wide { min-height: 108px; }
+.promo-card.promo-box { min-height: 280px; }
+.global-promo { margin-top: 38px; margin-bottom: 8px; }
 .category-layout { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 24px; }
 .sidebar { display: grid; gap: 16px; align-content: start; }
 .league-list { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }

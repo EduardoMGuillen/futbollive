@@ -27,7 +27,7 @@ function AdContent({ banner, variant }: { banner: Banner; variant: "wide" | "box
   }, [client, slot]);
 
   const placeholder = (
-    <div className={`ad-slot ad-${variant} ad-fallback`}>
+    <div className={`promo-card promo-${variant} promo-fallback`}>
       <span>{banner.label}</span>
       <Megaphone size={22} />
       <strong>{banner.title}</strong>
@@ -38,7 +38,7 @@ function AdContent({ banner, variant }: { banner: Banner; variant: "wide" | "box
   if (client && slot) {
     // The placeholder stays visible until AdSense fills the unit (data-ad-status="filled").
     return (
-      <div className={`adsense-wrap ad-${variant}`} aria-label="Publicidad">
+      <div className={`promo-wrap promo-${variant}`} aria-label="Publicidad">
         <span>PUBLICIDAD</span>
         <ins
           className="adsbygoogle"
