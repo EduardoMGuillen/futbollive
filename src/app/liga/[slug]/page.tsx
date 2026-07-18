@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/BackLink";
 import { EventCard } from "@/components/EventCard";
 import { readStore } from "@/lib/store";
 import { isPubliclyVisible } from "@/lib/utils";
@@ -38,6 +39,7 @@ export default async function LeaguePage({ params }: { params: Promise<{ slug: s
   return (
     <>
       <section className="page-hero"><div className="container">
+        <BackLink href={`/deporte/${allEvents[0].sportSlug}`} label={`Volver a ${allEvents[0].sport}`} />
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${allEvents[0].sportSlug}`}>{allEvents[0].sport}</Link> / {league}</div>
         <h1>{league}</h1>
         <p>Calendario, horarios y eventos disponibles de {league}.</p>

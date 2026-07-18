@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/BackLink";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { isIndividualSport } from "@/lib/sports";
@@ -76,9 +77,12 @@ export async function ParticipantPage({
     });
   const participant = participantFromEvent(allEvents[0], slug);
   const crumb = kind === "atleta" ? "Atletas" : "Equipos";
+  const backHref = `/deporte/${allEvents[0].sportSlug}`;
+  const backLabel = `Volver a ${allEvents[0].sport}`;
   return (
     <>
       <section className="page-hero"><div className="container">
+        <BackLink href={backHref} label={backLabel} />
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / {crumb} / {participant.name}</div>
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <TeamLogo name={participant.name} src={participant.logo} size={76} />

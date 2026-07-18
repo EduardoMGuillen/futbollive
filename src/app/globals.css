@@ -298,6 +298,17 @@ button { color: inherit; }
 .page-hero .breadcrumbs { color: #92a099; font-size: 13px; margin-bottom: 15px; }
 .page-hero h1 { margin: 0; font-size: clamp(34px, 5vw, 56px); letter-spacing: -.045em; }
 .page-hero p { color: #aeb9b3; max-width: 680px; line-height: 1.65; }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: #9ef0c8;
+  font-size: 13px;
+  font-weight: 800;
+}
+.back-link:hover { color: #fff; }
+.page-hero .back-link { color: #9ef0c8; }
 .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0; }
 .filter-bar a, .filter-bar button { border: 1px solid var(--line); background: var(--surface); padding: 9px 14px; border-radius: 10px; color: var(--muted); font-weight: 700; font-size: 13px; cursor: pointer; }
 .filter-bar a.active { color: #fff; background: var(--green); border-color: var(--green); }

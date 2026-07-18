@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
+import { BackLink } from "@/components/BackLink";
 import { EventCard } from "@/components/EventCard";
 import { getEspnSportsCatalog } from "@/lib/espn";
 import { readStore } from "@/lib/store";
@@ -57,6 +58,7 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
   return (
     <>
       <section className="page-hero"><div className="container">
+        <BackLink href="/deportes" label="Volver a todos los deportes" />
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href="/deportes">Deportes</Link> / {sport}</div>
         <h1>{sport}</h1>
         <p>Partidos, horarios y eventos destacados de {sport.toLocaleLowerCase("es")} en tu hora local.</p>

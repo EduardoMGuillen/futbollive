@@ -40,7 +40,13 @@ type EspnCompetitor = {
   score?: string;
   winner?: boolean;
   type?: string;
-  team?: { id?: string; displayName?: string; shortDisplayName?: string; logo?: string };
+  team?: {
+    id?: string;
+    displayName?: string;
+    shortDisplayName?: string;
+    logo?: string;
+    logos?: Array<{ href?: string; rel?: string[] }>;
+  };
   athlete?: EspnAthlete;
   statistics?: EspnStat[];
   linescores?: Array<{ value?: number | string; displayValue?: string }>;
@@ -204,6 +210,18 @@ function pct(value?: string | number) {
   return number <= 1 ? Math.round(number * 1000) / 10 : Math.round(number * 10) / 10;
 }
 
+function competitorLogo(competitor?: EspnCompetitor) {
+  if (!competitor) return undefined;
+  const defaultLogo = competitor.team?.logos?.find((item) => item.rel?.includes("default") && !item.rel?.includes("dark"));
+  return (
+    competitor.team?.logo ||
+    defaultLogo?.href ||
+    competitor.team?.logos?.[0]?.href ||
+    competitor.athlete?.headshot?.href ||
+    competitor.athlete?.flag?.href
+  );
+}
+
 function participantFrom(competitor?: EspnCompetitor): DetailParticipant | null {
   const name = competitor?.team?.displayName || competitor?.athlete?.displayName;
   if (!name || !competitor) return null;
@@ -214,7 +232,7 @@ function participantFrom(competitor?: EspnCompetitor): DetailParticipant | null 
     shortName: competitor.team?.shortDisplayName || competitor.athlete?.shortName,
     slug: slugify(name),
     side: competitor.homeAway === "away" ? "away" : competitor.homeAway === "home" ? "home" : undefined,
-    logo: competitor.team?.logo || competitor.athlete?.headshot?.href || competitor.athlete?.flag?.href,
+    logo: competitorLogo(competitor),
     score: normalizeScore(competitor.score),
     winner: competitor.winner,
     kind: competitor.athlete || competitor.type === "athlete" ? "athlete" : "team",
@@ -691,6 +709,33 @@ async function fetchScoreboardForEvent(event: SportsEvent) {
   );
 }
 
+function withStoredLogos(event: SportsEvent, details: EventDetails): EventDetails {
+  const logoBySlug = new Map<string, string>();
+  if (event.home.logo) logoBySlug.set(event.home.slug, event.home.logo);
+  if (event.away.logo) logoBySlug.set(event.away.slug, event.away.logo);
+  for (const participant of event.participants || []) {
+    if (participant.logo) logoBySlug.set(participant.slug, participant.logo);
+  }
+  const fill = <T extends { slug?: string; name?: string; logo?: string }>(item: T): T => {
+    if (item.logo) return item;
+    const bySlug = item.slug ? logoBySlug.get(item.slug) : undefined;
+    const byName = item.name ? logoBySlug.get(slugify(item.name)) : undefined;
+    return { ...item, logo: bySlug || byName || item.logo };
+  };
+  return {
+    ...details,
+    participants: details.participants.map(fill),
+    standings: details.standings?.map((entry) => ({
+      ...entry,
+      participant: fill(entry.participant),
+    })),
+    contests: details.contests?.map((contest) => ({
+      ...contest,
+      participants: contest.participants.map(fill),
+    })),
+  };
+}
+
 export async function fetchEspnEventDetails(event: SportsEvent): Promise<EventDetails> {
   const fallback = emptyDetails(event);
   if (event.source !== "espn" || !event.sourceLeaguePath) return fallback;
@@ -706,12 +751,12 @@ export async function fetchEspnEventDetails(event: SportsEvent): Promise<EventDe
     if (summary) {
       const details = detailsFromSummary(event, summary);
       if (!details.broadcasts?.length && event.broadcasts?.length) details.broadcasts = event.broadcasts;
-      return details;
+      return withStoredLogos(event, details);
     }
   }
 
   // Tennis/combat/racing/golf and summary failures fall back to scoreboard.
   const scoreboard = await fetchScoreboardForEvent(event);
-  if (scoreboard) return detailsFromScoreboard(event, scoreboard);
+  if (scoreboard) return withStoredLogos(event, detailsFromScoreboard(event, scoreboard));
   return fallback;
 }

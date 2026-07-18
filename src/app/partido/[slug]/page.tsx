@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
+import { BackLink } from "@/components/BackLink";
 import { BroadcastGuide } from "@/components/BroadcastGuide";
 import { Countdown } from "@/components/Countdown";
 import { EventActions } from "@/components/EventActions";
@@ -85,11 +86,21 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
     ? `${name} se transmite por ${broadcasterNames}. La disponibilidad puede variar según tu país.`
     : `Los canales para ver ${name} aún están por confirmar. Esta página se actualizará automáticamente cuando la transmisión esté disponible para tu región.`;
   const freeViewing = `Si existe una señal gratuita para ${name} en tu país, la publicaremos aquí. La disponibilidad depende de los derechos de transmisión de cada región.`;
-  const home = details.participants.find((item) => item.side === "home") || details.participants[0] || {
-    id: event.home.slug, name: event.home.name, slug: event.home.slug, logo: event.home.logo, score: event.home.score,
+  const homeRaw = details.participants.find((item) => item.side === "home") || details.participants[0];
+  const awayRaw = details.participants.find((item) => item.side === "away") || details.participants[1];
+  const home = {
+    id: homeRaw?.id || event.home.slug,
+    name: homeRaw?.name || event.home.name,
+    slug: homeRaw?.slug || event.home.slug,
+    logo: homeRaw?.logo || event.home.logo,
+    score: homeRaw?.score ?? event.home.score,
   };
-  const away = details.participants.find((item) => item.side === "away") || details.participants[1] || {
-    id: event.away.slug, name: event.away.name, slug: event.away.slug, logo: event.away.logo, score: event.away.score,
+  const away = {
+    id: awayRaw?.id || event.away.slug,
+    name: awayRaw?.name || event.away.name,
+    slug: awayRaw?.slug || event.away.slug,
+    logo: awayRaw?.logo || event.away.logo,
+    score: awayRaw?.score ?? event.away.score,
   };
   const graph = {
     "@context": "https://schema.org",
@@ -152,7 +163,8 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   return (
     <>
       <section className="page-hero"><div className="container">
-        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${event.sportSlug}`}>{event.sport}</Link> / {event.league}</div>
+        <BackLink href={`/liga/${event.leagueSlug}`} label={`Volver a ${event.league}`} />
+        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${event.sportSlug}`}>{event.sport}</Link> / <Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link></div>
         <h1>Dónde ver {name} gratis</h1>
         <p>Horario, sede, estadísticas y opciones para seguir el evento de {event.league}.</p>
       </div></section>
