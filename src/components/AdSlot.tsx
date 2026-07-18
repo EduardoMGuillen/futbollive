@@ -1,3 +1,5 @@
+"use client";
+
 import { Megaphone } from "lucide-react";
 import { useEffect, useRef } from "react";
 import type { Banner } from "@/lib/types";
