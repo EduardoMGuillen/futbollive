@@ -21,10 +21,10 @@ export default async function LivePage({
   const filters = await searchParams;
   await ensureFreshEvents();
   const data = await readStore();
-  const visible = data.events.filter((event) => !event.hidden);
+  const visible = data.events.filter((event) => !event.hidden && event.status !== "finished");
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
   const selectedSport = filters.deporte;
-  const selectedStatus = filters.estado || "all";
+  const selectedStatus = filters.estado === "live" || filters.estado === "upcoming" ? filters.estado : "all";
   const events = visible
     .filter((event) => !selectedSport || event.sportSlug === selectedSport)
     .filter((event) => selectedStatus === "all" || event.status === selectedStatus)
@@ -47,7 +47,7 @@ export default async function LivePage({
           {sports.map(([slug, name]) => <Link className={selectedSport === slug ? "is-active" : ""} key={slug} href={`/en-vivo?deporte=${slug}&estado=${selectedStatus}`}>{name}</Link>)}
         </div>
         <div className="filter-bar">
-          {[["all", "Todos"], ["live", "En vivo"], ["upcoming", "Próximos"], ["finished", "Finalizados"]].map(([value, label]) => (
+          {[["all", "Todos"], ["live", "En vivo"], ["upcoming", "Próximos"]].map(([value, label]) => (
             <Link className={selectedStatus === value ? "active" : ""} key={value} href={`/en-vivo?${selectedSport ? `deporte=${selectedSport}&` : ""}estado=${value}`}>{label}</Link>
           ))}
         </div>

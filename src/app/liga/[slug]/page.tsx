@@ -22,19 +22,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function LeaguePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data = await readStore();
-  const events = data.events.filter((event) => event.leagueSlug === slug && !event.hidden);
-  if (!events.length) notFound();
-  const league = events[0].league;
+  const allEvents = data.events.filter((event) => event.leagueSlug === slug && !event.hidden);
+  if (!allEvents.length) notFound();
+  const events = allEvents.filter((event) => event.status !== "finished");
+  const league = allEvents[0].league;
   return (
     <>
       <section className="page-hero"><div className="container">
-        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${events[0].sportSlug}`}>{events[0].sport}</Link> / {league}</div>
+        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${allEvents[0].sportSlug}`}>{allEvents[0].sport}</Link> / {league}</div>
         <h1>{league}</h1>
         <p>Calendario, horarios y eventos disponibles de {league}.</p>
       </div></section>
       <section className="container content-section">
         <div className="section-head"><div><h2>Partidos</h2><p>Horarios mostrados automáticamente en tu zona local.</p></div></div>
-        <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div>
+        {events.length ? <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div> : <div className="empty-state">No hay próximos partidos disponibles.</div>}
       </section>
     </>
   );

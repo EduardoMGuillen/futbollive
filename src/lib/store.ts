@@ -89,11 +89,13 @@ export async function listEvents(options?: {
   status?: string;
   query?: string;
   includeHidden?: boolean;
+  includeFinished?: boolean;
 }) {
   const { events } = await readStore();
   const query = options?.query?.trim().toLocaleLowerCase("es");
   return events
     .filter((event) => options?.includeHidden || !event.hidden)
+    .filter((event) => options?.includeFinished || event.status !== "finished")
     .filter((event) => !options?.sport || event.sportSlug === options.sport)
     .filter((event) => !options?.status || event.status === options.status)
     .filter(

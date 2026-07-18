@@ -28,20 +28,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function TeamPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data = await readStore();
-  const events = data.events.filter((event) => (event.home.slug === slug || event.away.slug === slug) && !event.hidden);
-  if (!events.length) notFound();
-  const participant = events.map((event) => event.home.slug === slug ? event.home : event.away)[0];
+  const allEvents = data.events.filter((event) => (event.home.slug === slug || event.away.slug === slug) && !event.hidden);
+  if (!allEvents.length) notFound();
+  const events = allEvents.filter((event) => event.status !== "finished");
+  const participant = allEvents.map((event) => event.home.slug === slug ? event.home : event.away)[0];
   return (
     <>
       <section className="page-hero"><div className="container">
         <div className="breadcrumbs">Inicio / Equipos / {participant.name}</div>
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <TeamLogo name={participant.name} src={participant.logo} size={76} />
-          <div><h1>{participant.name}</h1><p>Próximos partidos y resultados recientes.</p></div>
+          <div><h1>{participant.name}</h1><p>Próximos partidos y horarios.</p></div>
         </div>
       </div></section>
       <section className="container content-section">
-        <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div>
+        {events.length ? <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div> : <div className="empty-state">No hay próximos partidos disponibles.</div>}
       </section>
     </>
   );

@@ -20,9 +20,8 @@ export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q")?.trim() || "";
   if (query.length < 2) return NextResponse.json({ results: [] });
   const data = await readStore();
-  const events = data.events.filter((event) => !event.hidden);
-  // Prefer live and upcoming matches; finished ones are labeled and rank lower.
-  const statusLabel = (status: string) => (status === "live" ? "En vivo" : status === "finished" ? "Finalizado" : "Próximo");
+  const events = data.events.filter((event) => !event.hidden && event.status !== "finished");
+  const statusLabel = (status: string) => (status === "live" ? "En vivo" : "Próximo");
   const candidates = [
     ...events.map((event) => ({
       id: event.id,
@@ -33,7 +32,7 @@ export async function GET(request: NextRequest) {
       type: "Partido" as const,
       score:
         score(`${event.home.name} ${event.away.name} ${event.league}`, query) +
-        (event.status === "live" ? 12 : event.status === "upcoming" ? 8 : -25),
+        (event.status === "live" ? 12 : 8),
     })),
     ...Array.from(new Map(events.flatMap((event) => [event.home, event.away]).map((team) => [team.slug, team])).values()).map((team) => ({
       id: team.slug, title: team.name, subtitle: "Equipo o selección", href: `/equipo/${team.slug}`,

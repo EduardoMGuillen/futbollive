@@ -28,9 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function SportPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data = await readStore();
-  const events = data.events.filter((event) => event.sportSlug === slug && !event.hidden);
-  if (!events.length) notFound();
-  const sport = events[0].sport;
+  const allEvents = data.events.filter((event) => event.sportSlug === slug && !event.hidden);
+  if (!allEvents.length) notFound();
+  const events = allEvents.filter((event) => event.status !== "finished");
+  const sport = allEvents[0].sport;
   const leagues = Array.from(new Map(events.map((event) => [event.leagueSlug, event.league])).entries());
 
   return (
@@ -43,7 +44,7 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
       <div className="container content-section category-layout">
         <div>
           <div className="section-head"><div><h2>Agenda de {sport}</h2><p>{events.length} eventos disponibles</p></div></div>
-          <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div>
+          {events.length ? <div className="events-grid">{events.map((event) => <EventCard event={event} key={event.id} />)}</div> : <div className="empty-state">No hay próximos eventos disponibles.</div>}
         </div>
         <aside className="sidebar">
           <div className="league-list"><h3>Competiciones</h3>{leagues.map(([leagueSlug, name]) => <Link href={`/liga/${leagueSlug}`} key={leagueSlug}>{name}<span>›</span></Link>)}</div>

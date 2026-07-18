@@ -26,29 +26,32 @@ function AdContent({ banner, variant }: { banner: Banner; variant: "wide" | "box
     }
   }, [client, slot]);
 
-  if (client && slot) {
-    return (
-      <div className={`adsense-wrap ad-${variant}`} aria-label="Publicidad">
-        <span>PUBLICIDAD</span>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block", width: "100%", minHeight: variant === "box" ? 250 : 90 }}
-          data-ad-client={client}
-          data-ad-slot={slot}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </div>
-    );
-  }
-
-  const content = (
-    <div className={`ad-slot ad-${variant}`}>
+  const placeholder = (
+    <div className={`ad-slot ad-${variant} ad-fallback`}>
       <span>{banner.label}</span>
       <Megaphone size={22} />
       <strong>{banner.title}</strong>
       <small>Anúnciate en Dónde Juega</small>
     </div>
   );
-  return banner.url ? <a href={banner.url} target="_blank" rel="sponsored noopener">{content}</a> : content;
+
+  if (client && slot) {
+    // The placeholder stays visible until AdSense fills the unit (data-ad-status="filled").
+    return (
+      <div className={`adsense-wrap ad-${variant}`} aria-label="Publicidad">
+        <span>PUBLICIDAD</span>
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", width: "100%" }}
+          data-ad-client={client}
+          data-ad-slot={slot}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+        {placeholder}
+      </div>
+    );
+  }
+
+  return banner.url ? <a href={banner.url} target="_blank" rel="sponsored noopener">{placeholder}</a> : placeholder;
 }

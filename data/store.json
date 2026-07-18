@@ -27,7 +27,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "updatedAt": "2026-07-18T10:40:44.064Z"
     },
     {
       "id": "tsdb-2432557",
@@ -54,7 +54,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "updatedAt": "2026-07-18T10:40:44.064Z"
     },
     {
       "id": "tsdb-2432558",
@@ -81,7 +81,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "updatedAt": "2026-07-18T10:40:44.064Z"
     },
     {
       "id": "tsdb-2432559",
@@ -108,7 +108,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "updatedAt": "2026-07-18T10:40:44.064Z"
     },
     {
       "id": "tsdb-2475821",
@@ -135,7 +135,7 @@
       "importance": 55,
       "featured": false,
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "updatedAt": "2026-07-18T10:40:44.064Z"
     },
     {
       "id": "tsdb-2476144",
@@ -163,7 +163,7 @@
       "featured": false,
       "description": "GFL Süd",
       "source": "thesportsdb",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "updatedAt": "2026-07-18T10:40:44.064Z"
     },
     {
       "id": "tsdb-2388374",
@@ -275,7 +275,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877043",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877042",
@@ -303,7 +305,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877042",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877041",
@@ -331,7 +335,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877041",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877040",
@@ -359,7 +365,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877040",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877038",
@@ -387,7 +395,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877038",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877039",
@@ -415,7 +425,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877039",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877037",
@@ -443,7 +455,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877037",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877036",
@@ -471,7 +485,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877036",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-mex-1-401877035",
@@ -499,7 +515,9 @@
       "importance": 92,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "401877035",
+      "sourceLeaguePath": "soccer/mex.1",
+      "updatedAt": "2026-07-18T10:40:45.802Z"
     },
     {
       "id": "espn-soccer-usa-1-761663",
@@ -527,7 +545,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761663",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761664",
@@ -555,7 +575,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761664",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761668",
@@ -583,7 +605,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761668",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761669",
@@ -611,7 +635,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761669",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761667",
@@ -639,7 +665,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761667",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761666",
@@ -667,7 +695,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761666",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761665",
@@ -695,7 +725,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761665",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761670",
@@ -723,7 +755,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761670",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761674",
@@ -751,7 +785,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761674",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761671",
@@ -779,7 +815,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761671",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761673",
@@ -807,7 +845,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761673",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761672",
@@ -835,7 +875,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761672",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761675",
@@ -863,7 +905,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761675",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761678",
@@ -891,7 +935,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761678",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761679",
@@ -919,7 +965,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761679",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761677",
@@ -947,7 +995,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761677",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-usa-1-761676",
@@ -975,7 +1025,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:44.377Z"
+      "sourceEventId": "761676",
+      "sourceLeaguePath": "soccer/usa.1",
+      "updatedAt": "2026-07-18T10:40:45.925Z"
     },
     {
       "id": "espn-soccer-arg-1-401841435",
@@ -1003,7 +1055,9 @@
       "importance": 89,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841435",
+      "sourceLeaguePath": "soccer/arg.1",
+      "updatedAt": "2026-07-18T10:40:46.731Z"
     },
     {
       "id": "espn-soccer-arg-1-401841437",
@@ -1031,7 +1085,9 @@
       "importance": 89,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841437",
+      "sourceLeaguePath": "soccer/arg.1",
+      "updatedAt": "2026-07-18T10:40:46.731Z"
     },
     {
       "id": "espn-soccer-arg-1-401841448",
@@ -1059,7 +1115,9 @@
       "importance": 89,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841448",
+      "sourceLeaguePath": "soccer/arg.1",
+      "updatedAt": "2026-07-18T10:40:46.731Z"
     },
     {
       "id": "espn-soccer-bra-1-401879459",
@@ -1087,7 +1145,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401879459",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841153",
@@ -1115,7 +1175,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841153",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841155",
@@ -1143,7 +1205,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841155",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841148",
@@ -1171,7 +1235,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841148",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841152",
@@ -1199,7 +1265,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841152",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841150",
@@ -1227,7 +1295,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841150",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841154",
@@ -1255,7 +1325,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841154",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841156",
@@ -1283,7 +1355,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841156",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401879458",
@@ -1311,7 +1385,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401879458",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-soccer-bra-1-401841151",
@@ -1339,7 +1415,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.075Z"
+      "sourceEventId": "401841151",
+      "sourceLeaguePath": "soccer/bra.1",
+      "updatedAt": "2026-07-18T10:40:46.800Z"
     },
     {
       "id": "espn-basketball-wnba-401857073",
@@ -1367,7 +1445,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857073",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857074",
@@ -1395,7 +1475,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857074",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857075",
@@ -1423,7 +1505,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857075",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857076",
@@ -1451,7 +1535,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857076",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857077",
@@ -1479,7 +1565,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857077",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857078",
@@ -1507,7 +1595,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857078",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857079",
@@ -1535,7 +1625,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857079",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857080",
@@ -1563,7 +1655,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857080",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857081",
@@ -1591,7 +1685,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857081",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857082",
@@ -1619,7 +1715,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857082",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857083",
@@ -1647,7 +1745,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857083",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401892393",
@@ -1675,7 +1775,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401892393",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.774Z"
     },
     {
       "id": "espn-basketball-wnba-401857084",
@@ -1703,7 +1805,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857084",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857085",
@@ -1731,7 +1835,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857085",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857086",
@@ -1759,7 +1865,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857086",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857087",
@@ -1787,7 +1895,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857087",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857088",
@@ -1815,7 +1925,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857088",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857089",
@@ -1843,7 +1955,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857089",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857090",
@@ -1871,7 +1985,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857090",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-basketball-wnba-401857091",
@@ -1899,7 +2015,9 @@
       "importance": 80,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401857091",
+      "sourceLeaguePath": "basketball/wnba",
+      "updatedAt": "2026-07-18T10:40:47.775Z"
     },
     {
       "id": "espn-baseball-mlb-401872178",
@@ -1927,7 +2045,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401872178",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816142",
@@ -1955,7 +2075,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816142",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816144",
@@ -1983,7 +2105,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816144",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816145",
@@ -2011,7 +2135,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816145",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816141",
@@ -2039,7 +2165,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816141",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816146",
@@ -2067,7 +2195,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816146",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816148",
@@ -2095,7 +2225,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816148",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816149",
@@ -2123,7 +2255,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816149",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816147",
@@ -2151,7 +2285,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816147",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816150",
@@ -2179,7 +2315,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816150",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816151",
@@ -2207,7 +2345,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816151",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816152",
@@ -2235,7 +2375,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816152",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816154",
@@ -2263,7 +2405,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816154",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816155",
@@ -2291,7 +2435,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816155",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816153",
@@ -2319,7 +2465,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816153",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401896568",
@@ -2347,7 +2495,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401896568",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816164",
@@ -2375,7 +2525,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816164",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816156",
@@ -2403,7 +2555,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816156",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816166",
@@ -2431,7 +2585,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816166",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816158",
@@ -2459,7 +2615,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816158",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816160",
@@ -2487,7 +2645,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816160",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816161",
@@ -2515,7 +2675,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816161",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816162",
@@ -2543,7 +2705,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816162",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816163",
@@ -2571,7 +2735,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816163",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816165",
@@ -2599,7 +2765,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816165",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816169",
@@ -2627,7 +2795,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816169",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816159",
@@ -2655,7 +2825,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816159",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816157",
@@ -2683,7 +2855,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816157",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816168",
@@ -2711,7 +2885,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816168",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816170",
@@ -2739,7 +2915,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816170",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816167",
@@ -2767,7 +2945,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816167",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816171",
@@ -2795,7 +2975,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816171",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816173",
@@ -2823,7 +3005,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816173",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816175",
@@ -2851,7 +3035,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816175",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816176",
@@ -2879,7 +3065,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816176",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816174",
@@ -2907,7 +3095,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816174",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816177",
@@ -2935,7 +3125,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816177",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816178",
@@ -2963,7 +3155,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816178",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816180",
@@ -2991,7 +3185,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816180",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816179",
@@ -3019,7 +3215,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816179",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816181",
@@ -3047,7 +3245,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816181",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.299Z"
     },
     {
       "id": "espn-baseball-mlb-401816185",
@@ -3075,7 +3275,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816185",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816182",
@@ -3103,7 +3305,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816182",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816183",
@@ -3131,7 +3335,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816183",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816184",
@@ -3159,7 +3365,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816184",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816172",
@@ -3187,7 +3395,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816172",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816188",
@@ -3215,7 +3425,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816188",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816187",
@@ -3243,7 +3455,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816187",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816189",
@@ -3271,7 +3485,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816189",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816191",
@@ -3299,7 +3515,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816191",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816186",
@@ -3327,7 +3545,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816186",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816190",
@@ -3355,7 +3575,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816190",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816195",
@@ -3383,7 +3605,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816195",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816196",
@@ -3411,7 +3635,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816196",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816192",
@@ -3439,7 +3665,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816192",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816193",
@@ -3467,7 +3695,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816193",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816194",
@@ -3495,7 +3725,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816194",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816197",
@@ -3523,7 +3755,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816197",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816198",
@@ -3551,7 +3785,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816198",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816199",
@@ -3579,7 +3815,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816199",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816200",
@@ -3607,7 +3845,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816200",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816202",
@@ -3635,7 +3875,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816202",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816203",
@@ -3663,7 +3905,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816203",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816204",
@@ -3691,7 +3935,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816204",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816206",
@@ -3719,7 +3965,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816206",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816201",
@@ -3747,7 +3995,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816201",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816205",
@@ -3775,7 +4025,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816205",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816210",
@@ -3803,7 +4055,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816210",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816211",
@@ -3831,7 +4085,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816211",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816207",
@@ -3859,7 +4115,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816207",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816208",
@@ -3887,7 +4145,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816208",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816209",
@@ -3915,7 +4175,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816209",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816212",
@@ -3943,7 +4205,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816212",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816215",
@@ -3971,7 +4235,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816215",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816213",
@@ -3999,7 +4265,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.334Z"
+      "sourceEventId": "401816213",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816214",
@@ -4027,7 +4295,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816214",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816219",
@@ -4055,7 +4325,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816219",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816225",
@@ -4083,7 +4355,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816225",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816226",
@@ -4111,7 +4385,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816226",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.300Z"
     },
     {
       "id": "espn-baseball-mlb-401816227",
@@ -4139,7 +4415,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816227",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816228",
@@ -4167,7 +4445,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816228",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816229",
@@ -4195,7 +4475,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816229",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816230",
@@ -4223,7 +4505,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816230",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816217",
@@ -4251,7 +4535,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816217",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816218",
@@ -4279,7 +4565,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816218",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816221",
@@ -4307,7 +4595,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816221",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816216",
@@ -4335,7 +4625,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816216",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816220",
@@ -4363,7 +4655,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816220",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816223",
@@ -4391,7 +4685,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816223",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816222",
@@ -4419,7 +4715,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816222",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816224",
@@ -4447,7 +4745,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816224",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816233",
@@ -4475,7 +4775,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816233",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816232",
@@ -4503,7 +4805,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816232",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816234",
@@ -4531,7 +4835,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816234",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401881162",
@@ -4559,7 +4865,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401881162",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-baseball-mlb-401816231",
@@ -4587,7 +4895,9 @@
       "importance": 88,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.335Z"
+      "sourceEventId": "401816231",
+      "sourceLeaguePath": "baseball/mlb",
+      "updatedAt": "2026-07-18T10:40:48.301Z"
     },
     {
       "id": "espn-soccer-fifa-world-760510",
@@ -4615,7 +4925,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760510",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.898Z"
     },
     {
       "id": "espn-soccer-fifa-world-760511",
@@ -4643,7 +4955,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760511",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-fifa-world-760512",
@@ -4671,7 +4985,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760512",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-fifa-world-760513",
@@ -4699,7 +5015,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760513",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-fifa-world-760514",
@@ -4727,7 +5045,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760514",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-fifa-world-760515",
@@ -4755,7 +5075,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760515",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-fifa-world-760516",
@@ -4783,7 +5105,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760516",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-fifa-world-760517",
@@ -4811,7 +5135,9 @@
       "importance": 100,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:42.636Z"
+      "sourceEventId": "760517",
+      "sourceLeaguePath": "soccer/fifa.world",
+      "updatedAt": "2026-07-18T10:40:43.899Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874150",
@@ -4839,7 +5165,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874150",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874072",
@@ -4867,7 +5195,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874072",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874157",
@@ -4895,7 +5225,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874157",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874166",
@@ -4923,7 +5255,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874166",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874148",
@@ -4951,7 +5285,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874148",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874144",
@@ -4979,7 +5315,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874144",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874154",
@@ -5007,7 +5345,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874154",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-conmebol-sudamericana-401874165",
@@ -5035,7 +5375,9 @@
       "importance": 90,
       "featured": true,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.219Z"
+      "sourceEventId": "401874165",
+      "sourceLeaguePath": "soccer/conmebol.sudamericana",
+      "updatedAt": "2026-07-18T10:40:46.874Z"
     },
     {
       "id": "espn-soccer-arg-copa-401873912",
@@ -5063,7 +5405,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.223Z"
+      "sourceEventId": "401873912",
+      "sourceLeaguePath": "soccer/arg.copa",
+      "updatedAt": "2026-07-18T10:40:46.751Z"
     },
     {
       "id": "espn-soccer-arg-copa-401861869",
@@ -5091,7 +5435,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.223Z"
+      "sourceEventId": "401861869",
+      "sourceLeaguePath": "soccer/arg.copa",
+      "updatedAt": "2026-07-18T10:40:46.751Z"
     },
     {
       "id": "espn-soccer-per-1-401874354",
@@ -5119,7 +5465,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874354",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874340",
@@ -5147,7 +5495,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874340",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874341",
@@ -5175,7 +5525,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874341",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874337",
@@ -5203,7 +5555,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874337",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874338",
@@ -5231,7 +5585,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874338",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874356",
@@ -5257,7 +5613,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874356",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874339",
@@ -5285,7 +5643,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874339",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874355",
@@ -5313,7 +5673,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874355",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-per-1-401874357",
@@ -5341,7 +5703,9 @@
       "importance": 82,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:46.018Z"
+      "sourceEventId": "401874357",
+      "sourceLeaguePath": "soccer/per.1",
+      "updatedAt": "2026-07-18T10:40:47.013Z"
     },
     {
       "id": "espn-soccer-uru-1-401872721",
@@ -5369,7 +5733,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872721",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872725",
@@ -5397,7 +5763,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872725",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872723",
@@ -5425,7 +5793,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872723",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872724",
@@ -5453,7 +5823,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872724",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872720",
@@ -5479,7 +5851,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872720",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872719",
@@ -5507,7 +5881,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872719",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872726",
@@ -5535,7 +5911,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872726",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-uru-1-401872722",
@@ -5563,7 +5941,9 @@
       "importance": 83,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.917Z"
+      "sourceEventId": "401872722",
+      "sourceLeaguePath": "soccer/uru.1",
+      "updatedAt": "2026-07-18T10:40:47.163Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859620",
@@ -5591,7 +5971,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859620",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859619",
@@ -5619,7 +6001,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859619",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859715",
@@ -5647,7 +6031,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859715",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859621",
@@ -5675,7 +6061,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859621",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859625",
@@ -5703,7 +6091,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859625",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859622",
@@ -5731,7 +6121,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859622",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859623",
@@ -5759,7 +6151,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859623",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859624",
@@ -5787,7 +6181,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859624",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859628",
@@ -5815,7 +6211,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859628",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859629",
@@ -5843,7 +6241,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859629",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859632",
@@ -5871,7 +6271,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859632",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859626",
@@ -5899,7 +6301,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859626",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859631",
@@ -5927,7 +6331,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859631",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859716",
@@ -5955,7 +6361,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859716",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859630",
@@ -5983,7 +6391,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859630",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-ecu-1-401859627",
@@ -6011,7 +6421,9 @@
       "importance": 81,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.771Z"
+      "sourceEventId": "401859627",
+      "sourceLeaguePath": "soccer/ecu.1",
+      "updatedAt": "2026-07-18T10:40:47.135Z"
     },
     {
       "id": "espn-soccer-bol-1-401867185",
@@ -6039,7 +6451,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867185",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867181",
@@ -6067,7 +6481,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867181",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867186",
@@ -6095,7 +6511,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867186",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867180",
@@ -6123,7 +6541,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867180",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867183",
@@ -6151,7 +6571,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867183",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867179",
@@ -6179,7 +6601,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867179",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867184",
@@ -6207,7 +6631,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867184",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     },
     {
       "id": "espn-soccer-bol-1-401867182",
@@ -6235,7 +6661,9 @@
       "importance": 76,
       "featured": false,
       "source": "espn",
-      "updatedAt": "2026-07-18T10:08:45.901Z"
+      "sourceEventId": "401867182",
+      "sourceLeaguePath": "soccer/bol.1",
+      "updatedAt": "2026-07-18T10:40:47.064Z"
     }
   ],
   "banners": [
@@ -6279,6 +6707,6 @@
     "liveThreshold": 85,
     "maxFeaturedLive": 6,
     "ctaEnabled": false,
-    "lastSync": "2026-07-18T10:08:46.339Z"
+    "lastSync": "2026-07-18T10:40:48.335Z"
   }
 }

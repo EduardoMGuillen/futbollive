@@ -223,6 +223,12 @@ button { color: inherit; }
 .adsense-wrap > span { position: absolute; top: 4px; right: 8px; z-index: 1; color: var(--muted); font-size: 8px; letter-spacing: .12em; }
 .adsense-wrap.ad-wide { min-height: 108px; margin: 22px auto; padding-top: 12px; }
 .adsense-wrap.ad-box { min-height: 280px; padding-top: 12px; }
+/* Placeholder visible mientras AdSense no llena la unidad; se oculta al servirse el anuncio. */
+.adsense-wrap .ad-fallback { border: 0; border-radius: 0; position: absolute; inset: 0; }
+.adsense-wrap:has(ins.adsbygoogle[data-ad-status="filled"]) .ad-fallback { display: none; }
+.adsense-wrap ins.adsbygoogle[data-ad-status="filled"] { position: relative; z-index: 1; }
+.ad-slot.ad-wide { min-height: 108px; }
+.ad-slot.ad-box { min-height: 280px; }
 .global-ad { margin-top: 38px; margin-bottom: 8px; }
 .category-layout { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 24px; }
 .sidebar { display: grid; gap: 16px; align-content: start; }

@@ -50,7 +50,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const event = await getEvent(slug);
   if (!event) notFound();
   const data = await readStore();
-  const related = data.events.filter((item) => item.id !== event.id && (item.sportSlug === event.sportSlug || item.leagueSlug === event.leagueSlug) && !item.hidden).slice(0, 2);
+  const related = data.events.filter((item) => item.id !== event.id && item.status !== "finished" && (item.sportSlug === event.sportSlug || item.leagueSlug === event.leagueSlug) && !item.hidden).slice(0, 2);
   const isLive = event.status === "live";
   const eventUrl = `${siteUrl()}/partido/${event.slug}`;
   const whereToWatch = `Las opciones legales para ver ${event.home.name} vs ${event.away.name} se publicarán aquí cuando estén verificadas para tu región.`;

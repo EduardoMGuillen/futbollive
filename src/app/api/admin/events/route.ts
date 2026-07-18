@@ -30,7 +30,7 @@ async function unauthorized() {
 
 export async function GET() {
   if (!(await isAuthenticated())) return unauthorized();
-  return NextResponse.json({ events: await listEvents({ includeHidden: true }) });
+  return NextResponse.json({ events: await listEvents({ includeHidden: true, includeFinished: true }) });
 }
 
 export async function POST(request: Request) {
