@@ -76,7 +76,7 @@ export default function RootLayout({
     ],
   };
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="es" data-theme="dark" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body>
         {publisher && (
           <Script

@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Moon, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Brand } from "./Brand";
@@ -16,10 +16,11 @@ const nav = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    const current = localStorage.getItem("theme") === "dark";
+    // Dark is the default; only an explicit "light" choice overrides it.
+    const current = localStorage.getItem("theme") !== "light";
     queueMicrotask(() => setDark(current));
     document.documentElement.dataset.theme = current ? "dark" : "light";
   }, []);
@@ -37,7 +38,7 @@ export function Header() {
         <Brand compact />
         <SearchBox />
         <div className="header-actions">
-          <button className="icon-btn" onClick={toggleTheme} aria-label="Cambiar tema"><Moon size={19} /></button>
+          <button className="icon-btn" onClick={toggleTheme} aria-label="Cambiar tema">{dark ? <Sun size={19} /> : <Moon size={19} />}</button>
           <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú">
             {menuOpen ? <X /> : <Menu />}
           </button>
