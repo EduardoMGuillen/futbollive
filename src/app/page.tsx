@@ -7,7 +7,7 @@ import { EventCard } from "@/components/EventCard";
 import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
-import { ensureFreshEvents } from "@/lib/sync";
+import { ensureFreshEvents, ensureLiveScores } from "@/lib/sync";
 import { compareHomepageEvents, eventTitle, isPubliclyVisible } from "@/lib/utils";
 import { sportIcon } from "@/lib/sports";
 
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   await ensureFreshEvents();
+  await ensureLiveScores();
   const data = await readStore();
   const visible = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const importantLive = visible

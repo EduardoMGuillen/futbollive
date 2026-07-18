@@ -25,10 +25,25 @@ export async function runSync() {
 
   const data = await readStore();
   const existing = new Map(data.events.map((event) => [event.id, event]));
+  const nowMs = Date.now();
   for (const event of incoming) {
     const current = existing.get(event.id);
+    // El scoreboard puede venir de caché (hasta 15 min); si el actualizador en
+    // vivo tocó el evento hace poco, su marcador es más fresco y debe ganar.
+    const keepLiveFields =
+      current &&
+      (current.status === "live" || current.status === "finished") &&
+      event.status !== "finished" &&
+      nowMs - new Date(current.updatedAt).getTime() < 5 * 60 * 1000;
     existing.set(event.id, current ? {
       ...event,
+      ...(keepLiveFields ? {
+        status: current.status,
+        minute: current.minute,
+        home: { ...event.home, score: current.home.score ?? event.home.score },
+        away: { ...event.away, score: current.away.score ?? event.away.score },
+        updatedAt: current.updatedAt,
+      } : {}),
       featured: current.featured ?? event.featured,
       hidden: current.hidden,
       excludedFromLive: current.excludedFromLive,
@@ -69,14 +84,17 @@ export async function ensureFreshEvents(maxAgeMinutes = 10) {
   await inflight;
 }
 
-export async function updateLiveEvents() {
-  const data = await readStore();
-  const now = Date.now();
-  const candidates = data.events.filter((event) => {
+function liveCandidates(events: SportsEvent[], now = Date.now()) {
+  return events.filter((event) => {
     if (event.source !== "espn" || event.status === "finished") return false;
     const start = new Date(event.startsAt).getTime();
     return event.status === "live" || (start >= now - eventDurationMs(event) && start <= now + 30 * 60 * 1000);
   });
+}
+
+export async function updateLiveEvents() {
+  const data = await readStore();
+  const candidates = liveCandidates(data.events);
   const updates = (await Promise.all(candidates.map(fetchEspnLiveUpdate))).filter(
     (update): update is NonNullable<typeof update> => Boolean(update),
   );
@@ -110,4 +128,23 @@ export function updateLiveEventsOnce() {
     });
   }
   return liveInflight;
+}
+
+let lastLiveCheck = 0;
+
+/**
+ * Refresca marcadores en vivo durante el render del servidor cuando los datos
+ * del store están viejos. Necesario en serverless sin base de datos compartida:
+ * las actualizaciones hechas por /api/live en otra instancia no llegan aquí.
+ */
+export async function ensureLiveScores(maxAgeSeconds = 60) {
+  const now = Date.now();
+  if (now - lastLiveCheck < maxAgeSeconds * 1000) return;
+  const data = await readStore();
+  const candidates = liveCandidates(data.events, now);
+  if (!candidates.length) return;
+  const stalest = Math.min(...candidates.map((event) => new Date(event.updatedAt).getTime()));
+  if (now - stalest < maxAgeSeconds * 1000) return;
+  lastLiveCheck = now;
+  await updateLiveEventsOnce().catch(() => null);
 }

@@ -7,6 +7,10 @@ import { eventDurationMs, isPubliclyVisible } from "./utils";
 
 const dataPath = path.join(process.cwd(), "data", "store.json");
 let memoryStore: StoreData | null = null;
+// On serverless the bundled store.json is frozen at build time and the
+// filesystem is read-only, so in-memory writes can be newer than the file.
+let memoryWriteStamp = 0;
+let fileWriteStamp = 0;
 
 function refreshTemporalStatuses(data: StoreData) {
   const now = Date.now();
@@ -52,6 +56,11 @@ export async function readStore(): Promise<StoreData> {
       return structuredClone(memoryStore);
     }
   }
+  // If the last write couldn't reach disk (read-only serverless filesystem),
+  // memory is newer than the bundled store.json: never let the stale file win.
+  if (memoryStore && memoryWriteStamp > fileWriteStamp) {
+    return structuredClone(refreshTemporalStatuses(memoryStore));
+  }
   try {
     const raw = await fs.readFile(dataPath, "utf8");
     const parsed = JSON.parse(raw) as StoreData;
@@ -65,6 +74,7 @@ export async function readStore(): Promise<StoreData> {
 
 export async function writeStore(data: StoreData): Promise<StoreData> {
   memoryStore = structuredClone(data);
+  memoryWriteStamp = Date.now();
   const db = database();
   if (db) {
     const { error } = await db.from("site_state").upsert({
@@ -79,6 +89,7 @@ export async function writeStore(data: StoreData): Promise<StoreData> {
     const temporary = `${dataPath}.tmp`;
     await fs.writeFile(temporary, JSON.stringify(data, null, 2), "utf8");
     await fs.rename(temporary, dataPath);
+    fileWriteStamp = memoryWriteStamp;
   } catch {
     // Serverless filesystems can be read-only; memory keeps the current instance functional.
   }

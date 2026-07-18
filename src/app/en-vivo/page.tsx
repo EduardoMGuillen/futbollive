@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AdSlot } from "@/components/AdSlot";
 import { EventCard } from "@/components/EventCard";
 import { readStore } from "@/lib/store";
-import { ensureFreshEvents } from "@/lib/sync";
+import { ensureFreshEvents, ensureLiveScores } from "@/lib/sync";
 import { isPubliclyVisible } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default async function LivePage({
 }) {
   const filters = await searchParams;
   await ensureFreshEvents();
+  await ensureLiveScores();
   const data = await readStore();
   const visible = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
