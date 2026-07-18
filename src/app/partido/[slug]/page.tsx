@@ -38,13 +38,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const event = await getEvent(slug);
   if (!event) return { title: "Evento no encontrado" };
   const name = eventTitle(event);
-  const title = `Dónde ver ${name} gratis`;
+  const title = `Ver ${name} gratis`;
   const description = `¿Dónde ver gratis ${name}? Consulta horario, fecha, estadísticas y opciones para seguir el evento de ${event.league}.`;
   return {
     title,
     description,
     keywords: [
       `ver ${name}`,
+      `ver ${name} gratis`,
       `dónde ver ${name} gratis`,
       `${name} gratis`,
       `${name} dónde ver`,
@@ -165,7 +166,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
       <section className="page-hero"><div className="container">
         <BackLink href={`/liga/${event.leagueSlug}`} label={`Volver a ${event.league}`} />
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${event.sportSlug}`}>{event.sport}</Link> / <Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link></div>
-        <h1>Dónde ver {name} gratis</h1>
+        <h1>Ver {name}</h1>
         <p>Horario, sede, estadísticas y opciones para seguir el evento de {event.league}.</p>
       </div></section>
       <div className="container detail-wrap">
