@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
 import { EventCard } from "@/components/EventCard";
 import { readStore } from "@/lib/store";
+import { isPubliclyVisible } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const data = await readStore();
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const event = data.events.find((item) => item.sportSlug === slug);
   if (!event) return { title: "Deporte" };
   const title = `${event.sport} hoy: partidos, horarios y dónde ver`;
-  const description = `Consulta todos los eventos de ${event.sport.toLocaleLowerCase("es")} de hoy, horarios locales, competiciones y dónde ver cada partido legalmente.`;
+  const description = `Consulta todos los eventos de ${event.sport.toLocaleLowerCase("es")} de hoy, horarios locales, competiciones y dónde ver cada evento.`;
   return {
     title,
     description,
@@ -31,11 +32,13 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
   const allEvents = data.events.filter((event) => event.sportSlug === slug && !event.hidden);
   if (!allEvents.length) notFound();
   const events = allEvents
-    .filter((event) => event.status !== "finished")
+    .filter((event) => isPubliclyVisible(event))
     .sort((a, b) => {
       if (a.status === "live" && b.status !== "live") return -1;
       if (b.status === "live" && a.status !== "live") return 1;
-      return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+      const timeA = new Date(a.startsAt).getTime();
+      const timeB = new Date(b.startsAt).getTime();
+      return a.status === "finished" ? timeB - timeA : timeA - timeB;
     });
   const sport = allEvents[0].sport;
   const leagues = Array.from(new Map(events.map((event) => [event.leagueSlug, event.league])).entries());

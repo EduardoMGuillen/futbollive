@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Footer } from "@/components/Footer";
+import { FavoriteReminders } from "@/components/FavoriteReminders";
 import { GlobalAd } from "@/components/GlobalAd";
 import { Header } from "@/components/Header";
 import { LiveRefresh } from "@/components/LiveRefresh";
@@ -95,6 +96,7 @@ export default function RootLayout({
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisher}`}
           />
         )}
+        <FavoriteReminders />
         <LiveRefresh />
         <Header />
         <main className="site-main">{children}</main>

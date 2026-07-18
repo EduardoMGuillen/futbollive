@@ -7,12 +7,12 @@ import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
-import { formatEventSchedule } from "@/lib/utils";
+import { eventTitle, formatEventSchedule, isPubliclyVisible } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Partidos de hoy: horarios, en vivo y dónde ver",
-  description: "Consulta los partidos de hoy y próximos eventos de fútbol, NBA, MLB, tenis y más. Horarios locales, sedes, alineaciones y dónde ver legalmente.",
+  description: "Consulta los partidos de hoy y próximos eventos de fútbol, NBA, MLB, tenis y más. Horarios locales, sedes, participantes y dónde ver.",
   alternates: { canonical: "/" },
   openGraph: { url: "/", title: "Partidos de hoy y dónde verlos | Dónde Juega" },
 };
@@ -26,7 +26,7 @@ const sportIcons: Record<string, string> = {
 export default async function Home() {
   await ensureFreshEvents();
   const data = await readStore();
-  const visible = data.events.filter((event) => !event.hidden);
+  const visible = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const importantLive = visible
     .filter((event) => event.status === "live" && !event.excludedFromLive && event.importance >= data.settings.liveThreshold)
     .sort((a, b) => b.importance - a.importance)
@@ -35,6 +35,10 @@ export default async function Home() {
     .filter((event) => event.status === "upcoming")
     .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.importance - a.importance)
     .slice(0, 6);
+  const recentResults = visible
+    .filter((event) => event.status === "finished")
+    .sort((a, b) => new Date(b.startsAt).getTime() - new Date(a.startsAt).getTime())
+    .slice(0, 4);
   const heroEvent = importantLive[0] || upcoming[0];
   const heroSchedule = heroEvent ? formatEventSchedule(heroEvent.startsAt) : null;
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
@@ -60,11 +64,14 @@ export default async function Home() {
                   <span>{heroEvent.status === "live" ? "En vivo" : "Próximo"}</span>
                 </div>
                 <span className="live-badge"><i /> {heroEvent.status === "live" ? heroEvent.minute || "EN VIVO" : "PRÓXIMO"}</span>
-                <div className="hero-match">
+                {heroEvent.format === "multi" ? <div className="hero-multi">
+                  <h2>{eventTitle(heroEvent)}</h2>
+                  <span>{heroEvent.participants?.slice(0, 3).map((participant) => participant.name).join(" · ") || "Participantes por confirmar"}</span>
+                </div> : <div className="hero-match">
                   <div><TeamLogo name={heroEvent.home.name} src={heroEvent.home.logo} size={64} /><span>{heroEvent.home.name}</span></div>
                   <b>{heroEvent.status === "live" ? `${heroEvent.home.score ?? 0} – ${heroEvent.away.score ?? 0}` : "VS"}</b>
                   <div><TeamLogo name={heroEvent.away.name} src={heroEvent.away.logo} size={64} /><span>{heroEvent.away.name}</span></div>
-                </div>
+                </div>}
                 <div className="hero-schedule">
                   <strong>{heroSchedule.day}</strong>
                   <span>{heroSchedule.time}</span>
@@ -91,6 +98,15 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      {recentResults.length > 0 && <section className="content-section">
+        <div className="container">
+          <div className="section-head">
+            <div><span className="eyebrow"><i /> Marcadores</span><h2>Finalizados recientemente</h2></div>
+            <Link className="section-link" href="/resultados">Todos los resultados <ChevronRight size={17} /></Link>
+          </div>
+          <div className="events-grid">{recentResults.map((event) => <EventCard event={event} key={event.id} />)}</div>
+        </div>
+      </section>}
 
       <section className="content-section">
         <div className="container">

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readStore } from "@/lib/store";
-import { formatEventSchedule } from "@/lib/utils";
+import { eventTitle, formatEventSchedule, isPubliclyVisible } from "@/lib/utils";
 
 function normalize(value: string) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -20,21 +20,21 @@ export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q")?.trim() || "";
   if (query.length < 2) return NextResponse.json({ results: [] });
   const data = await readStore();
-  const events = data.events.filter((event) => !event.hidden && event.status !== "finished");
-  const statusLabel = (status: string) => (status === "live" ? "En vivo" : "Próximo");
+  const events = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
+  const statusLabel = (status: string) => status === "live" ? "En vivo" : status === "finished" ? "Finalizado" : "Próximo";
   const candidates = [
     ...events.map((event) => ({
       id: event.id,
-      title: `${event.home.name} vs ${event.away.name}`,
+      title: eventTitle(event),
       subtitle: `${event.league} · ${statusLabel(event.status)} · ${formatEventSchedule(event.startsAt).label}`,
       href: `/partido/${event.slug}`,
       image: event.home.logo,
       type: "Partido" as const,
       score:
-        score(`${event.home.name} ${event.away.name} ${event.league}`, query) +
-        (event.status === "live" ? 12 : 8),
+        score(`${eventTitle(event)} ${event.home.name} ${event.away.name} ${event.league}`, query) +
+        (event.status === "live" ? 12 : event.status === "upcoming" ? 8 : 2),
     })),
-    ...Array.from(new Map(events.flatMap((event) => [event.home, event.away]).map((team) => [team.slug, team])).values()).map((team) => ({
+    ...Array.from(new Map(events.flatMap((event) => event.participants?.length ? event.participants : [event.home, event.away]).map((team) => [team.slug, team])).values()).map((team) => ({
       id: team.slug, title: team.name, subtitle: "Equipo o selección", href: `/equipo/${team.slug}`,
       image: team.logo, type: "Equipo" as const, score: score(team.name, query),
     })),

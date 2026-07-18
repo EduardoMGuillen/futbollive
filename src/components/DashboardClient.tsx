@@ -3,7 +3,7 @@
 import { Download, Eye, EyeOff, LogOut, Pencil, Plus, RefreshCw, Save, Star, Trash2 } from "lucide-react";
 import { useState } from "react";
 import type { Banner, SiteSettings, SportsEvent } from "@/lib/types";
-import { slugify } from "@/lib/utils";
+import { eventTitle, slugify } from "@/lib/utils";
 
 export function DashboardClient({
   initialEvents,
@@ -146,7 +146,7 @@ export function DashboardClient({
             <thead><tr><th>Partido</th><th>Deporte</th><th>Estado</th><th>Importancia</th><th>Acciones</th></tr></thead>
             <tbody>{events.map((event) => (
               <tr key={event.id}>
-                <td><strong>{event.home.name} vs {event.away.name}</strong><br /><small>{event.league}</small></td>
+                <td><strong>{eventTitle(event)}</strong><br /><small>{event.league}</small></td>
                 <td>{event.sport}</td>
                 <td><span className={`status-pill ${event.status}`}>{event.status}</span></td>
                 <td>{event.importance}/100</td>

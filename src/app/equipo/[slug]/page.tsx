@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
 import { readStore } from "@/lib/store";
+import { isPubliclyVisible } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const data = await readStore();
@@ -31,11 +32,13 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
   const allEvents = data.events.filter((event) => (event.home.slug === slug || event.away.slug === slug) && !event.hidden);
   if (!allEvents.length) notFound();
   const events = allEvents
-    .filter((event) => event.status !== "finished")
+    .filter((event) => isPubliclyVisible(event))
     .sort((a, b) => {
       if (a.status === "live" && b.status !== "live") return -1;
       if (b.status === "live" && a.status !== "live") return 1;
-      return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+      const timeA = new Date(a.startsAt).getTime();
+      const timeB = new Date(b.startsAt).getTime();
+      return a.status === "finished" ? timeB - timeA : timeA - timeB;
     });
   const participant = allEvents.map((event) => event.home.slug === slug ? event.home : event.away)[0];
   return (

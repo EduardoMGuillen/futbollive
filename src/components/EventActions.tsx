@@ -2,18 +2,19 @@
 
 import { CalendarPlus, Share2 } from "lucide-react";
 import type { SportsEvent } from "@/lib/types";
+import { eventDurationMs, eventTitle } from "@/lib/utils";
 
 export function EventActions({ event }: { event: SportsEvent }) {
   const share = async () => {
-    const data = { title: `${event.home.name} vs ${event.away.name}`, url: window.location.href };
+    const data = { title: eventTitle(event), url: window.location.href };
     if (navigator.share) await navigator.share(data);
     else await navigator.clipboard.writeText(window.location.href);
   };
   const calendarUrl = () => {
     const start = new Date(event.startsAt);
-    const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
+    const end = new Date(start.getTime() + eventDurationMs(event));
     const clean = (date: Date) => date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`${event.home.name} vs ${event.away.name}`)}&dates=${clean(start)}/${clean(end)}&details=${encodeURIComponent(`Evento de ${event.league} en Dónde Juega`)}&location=${encodeURIComponent(event.venue || "")}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle(event))}&dates=${clean(start)}/${clean(end)}&details=${encodeURIComponent(`Evento de ${event.league} en Dónde Juega`)}&location=${encodeURIComponent(event.venue || "")}`;
   };
   return (
     <div className="hero-actions">

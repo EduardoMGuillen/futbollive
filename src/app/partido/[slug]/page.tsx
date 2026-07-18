@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
+import { BroadcastGuide } from "@/components/BroadcastGuide";
 import { Countdown } from "@/components/Countdown";
 import { EventActions } from "@/components/EventActions";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
+import { fetchEspnBroadcasts } from "@/lib/espn";
 import { getEvent, readStore } from "@/lib/store";
-import { formatEventDate, formatEventTime, siteUrl } from "@/lib/utils";
+import { eventTitle, formatEventDate, formatEventTime, isPubliclyVisible, siteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -21,19 +23,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const event = await getEvent(slug);
   if (!event) return { title: "Partido no encontrado" };
-  const title = `Dónde ver ${event.home.name} vs ${event.away.name} gratis`;
-  const description = `¿Dónde ver gratis ${event.home.name} vs ${event.away.name}? Consulta horario, fecha y opciones para ver el partido de ${event.league}.`;
+  const name = eventTitle(event);
+  const title = `Dónde ver ${name} gratis`;
+  const description = `¿Dónde ver gratis ${name}? Consulta horario, fecha y opciones para seguir el evento de ${event.league}.`;
   return {
     title,
     description,
     keywords: [
-      `ver ${event.home.name} vs ${event.away.name}`,
-      `dónde ver ${event.home.name} vs ${event.away.name} gratis`,
-      `ver partido ${event.home.name} ${event.away.name} gratis`,
-      `${event.home.name} vs ${event.away.name} gratis`,
-      `${event.home.name} vs ${event.away.name} dónde ver`,
-      `${event.home.name} vs ${event.away.name} horario`,
-      `partido ${event.home.name} ${event.away.name}`,
+      `ver ${name}`,
+      `dónde ver ${name} gratis`,
+      `${name} gratis`,
+      `${name} dónde ver`,
+      `${name} horario`,
       event.league,
     ],
     alternates: { canonical: `/partido/${event.slug}` },
@@ -53,28 +54,33 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const { slug } = await params;
   const event = await getEvent(slug);
   if (!event) notFound();
+  const broadcasts = await fetchEspnBroadcasts(event);
   const data = await readStore();
-  const related = data.events.filter((item) => item.id !== event.id && item.status !== "finished" && (item.sportSlug === event.sportSlug || item.leagueSlug === event.leagueSlug) && !item.hidden).slice(0, 2);
+  const related = data.events.filter((item) => item.id !== event.id && isPubliclyVisible(item) && (item.sportSlug === event.sportSlug || item.leagueSlug === event.leagueSlug) && !item.hidden).slice(0, 2);
   const isLive = event.status === "live";
+  const name = eventTitle(event);
   const baseUrl = siteUrl();
   const eventUrl = `${baseUrl}/partido/${event.slug}`;
-  const whereToWatch = `Las opciones para ver ${event.home.name} vs ${event.away.name} se publicarán aquí cuando estén disponibles para tu región.`;
-  const freeViewing = `Si existe una señal gratuita para ${event.home.name} vs ${event.away.name} en tu país, la publicaremos aquí. La disponibilidad depende de los derechos de transmisión de cada región.`;
+  const broadcasterNames = broadcasts.map((item) => item.name).join(", ");
+  const whereToWatch = broadcasterNames
+    ? `${name} se transmite por ${broadcasterNames}. La disponibilidad puede variar según tu país.`
+    : `Los canales para ver ${name} aún están por confirmar. Esta página se actualizará automáticamente cuando la transmisión esté disponible para tu región.`;
+  const freeViewing = `Si existe una señal gratuita para ${name} en tu país, la publicaremos aquí. La disponibilidad depende de los derechos de transmisión de cada región.`;
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "SportsEvent",
         "@id": `${eventUrl}#event`,
-        name: `${event.home.name} vs ${event.away.name}`,
-        description: `${event.home.name} se enfrenta a ${event.away.name} por ${event.league}. Consulta horario, sede, alineaciones y dónde verlo.`,
+        name,
+        description: `${name} por ${event.league}. Consulta horario, sede, participantes y dónde verlo.`,
         url: eventUrl,
         image: [event.home.logo, event.away.logo].filter(Boolean),
         startDate: event.startsAt,
         eventStatus: isLive ? "https://schema.org/EventInProgress" : event.status === "finished" ? "https://schema.org/EventCompleted" : "https://schema.org/EventScheduled",
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         location: event.venue ? { "@type": "Place", name: event.venue, address: { "@type": "PostalAddress", addressCountry: event.country } } : undefined,
-        competitor: [event.home, event.away].map((team) => ({ "@type": "SportsTeam", name: team.name, image: team.logo })),
+        competitor: (event.participants?.length ? event.participants : [event.home, event.away]).map((participant) => ({ "@type": event.format === "multi" ? "Person" : "SportsTeam", name: participant.name, image: participant.logo })),
         organizer: { "@type": "SportsOrganization", name: event.league },
       },
       {
@@ -83,7 +89,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
           { "@type": "ListItem", position: 1, name: "Inicio", item: baseUrl },
           { "@type": "ListItem", position: 2, name: event.sport, item: `${baseUrl}/deporte/${event.sportSlug}` },
           { "@type": "ListItem", position: 3, name: event.league, item: `${baseUrl}/liga/${event.leagueSlug}` },
-          { "@type": "ListItem", position: 4, name: `${event.home.name} vs ${event.away.name}`, item: eventUrl },
+          { "@type": "ListItem", position: 4, name, item: eventUrl },
         ],
       },
       {
@@ -91,22 +97,22 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
         mainEntity: [
           {
             "@type": "Question",
-            name: `¿Cuándo juegan ${event.home.name} vs ${event.away.name}?`,
-            acceptedAnswer: { "@type": "Answer", text: `El partido está programado para ${formatEventDate(event.startsAt)} a las ${formatEventTime(event.startsAt)}.` },
+            name: `¿Cuándo es ${name}?`,
+            acceptedAnswer: { "@type": "Answer", text: `El evento está programado para ${formatEventDate(event.startsAt)} a las ${formatEventTime(event.startsAt)}.` },
           },
           {
             "@type": "Question",
-            name: `¿Dónde se juega ${event.home.name} vs ${event.away.name}?`,
+            name: `¿Dónde se realiza ${name}?`,
             acceptedAnswer: { "@type": "Answer", text: event.venue ? `Se juega en ${event.venue}${event.country ? `, ${event.country}` : ""}.` : "La sede aún está por confirmar." },
           },
           {
             "@type": "Question",
-            name: `¿Dónde ver ${event.home.name} vs ${event.away.name}?`,
+            name: `¿Dónde ver ${name}?`,
             acceptedAnswer: { "@type": "Answer", text: whereToWatch },
           },
           {
             "@type": "Question",
-            name: `¿Dónde ver gratis ${event.home.name} vs ${event.away.name}?`,
+            name: `¿Dónde ver gratis ${name}?`,
             acceptedAnswer: { "@type": "Answer", text: freeViewing },
           },
         ],
@@ -118,26 +124,43 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
     <>
       <section className="page-hero"><div className="container">
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${event.sportSlug}`}>{event.sport}</Link> / {event.league}</div>
-        <h1>Dónde ver {event.home.name} vs {event.away.name} gratis</h1>
-        <p>Horario, fecha, sede, alineaciones y opciones para seguir el partido de {event.league}.</p>
+        <h1>Dónde ver {name} gratis</h1>
+        <p>Horario, fecha, sede, participantes y opciones para seguir el evento de {event.league}.</p>
       </div></section>
       <div className="container detail-wrap">
         <div className="match-detail">
-          <div className="detail-top"><Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link><span>{event.status === "live" ? "En vivo" : formatEventDate(event.startsAt)}</span></div>
-          <div className="detail-scoreboard">
+          <div className="detail-top"><Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link><span>{event.status === "live" ? "En vivo" : event.status === "finished" ? "FINALIZADO" : formatEventDate(event.startsAt)}</span></div>
+          {event.format === "multi" ? (
+            <div className="detail-multi">
+              <h2>{name}</h2>
+              {event.status === "finished" && <span className="versus">FINALIZADO</span>}
+              <ol className="detail-leaderboard">
+                {(event.participants || []).map((participant, index) => (
+                  <li key={`${participant.slug}-${index}`}>
+                    <span>{participant.position || index + 1}</span>
+                    <TeamLogo name={participant.name} src={participant.logo} size={42} />
+                    <strong>{participant.name}</strong>
+                    {participant.score !== undefined && <b>{participant.score}</b>}
+                  </li>
+                ))}
+              </ol>
+              {event.status === "upcoming" && <Countdown startsAt={event.startsAt} />}
+              <a className="disabled-watch transmission-link" href="#donde-se-transmite">Dónde se transmite</a>
+            </div>
+          ) : <div className="detail-scoreboard">
             <Link className="detail-team" href={`/equipo/${event.home.slug}`}><TeamLogo name={event.home.name} src={event.home.logo} size={84} /><h2>{event.home.name}</h2></Link>
             <div className="detail-center">
               {isLive ? (
                 <><span className="live-badge"><i /> {event.minute}</span><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b></>
               ) : event.status === "finished" ? (
-                <><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b><span className="versus">FINAL</span></>
+                <><b className="score">{event.home.score ?? 0} – {event.away.score ?? 0}</b><span className="versus">FINALIZADO</span></>
               ) : (
                 <><time>{formatEventTime(event.startsAt)}</time><span className="versus">VS</span><Countdown startsAt={event.startsAt} /></>
               )}
-              <button className="disabled-watch" disabled>{event.status === "finished" ? "Partido finalizado" : "Ver partido · Próximamente"}</button>
+              <a className="disabled-watch transmission-link" href="#donde-se-transmite">Dónde se transmite</a>
             </div>
             <Link className="detail-team" href={`/equipo/${event.away.slug}`}><TeamLogo name={event.away.name} src={event.away.logo} size={84} /><h2>{event.away.name}</h2></Link>
-          </div>
+          </div>}
           <div className="detail-info-grid">
             <div><small>Fecha y hora local</small><strong>{formatEventDate(event.startsAt)} · {formatEventTime(event.startsAt)}</strong></div>
             <div><small>Sede</small><strong>{event.venue || "Por confirmar"}</strong></div>
@@ -146,10 +169,11 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
         </div>
         <EventActions event={event} />
         <AdSlot banner={data.banners.find((banner) => banner.position === "detail") || data.banners.find((banner) => banner.position === "feed")} />
-        <section className="answer-panel">
+        <section className="answer-panel" id="donde-se-transmite">
           <span className="eyebrow"><i /> Respuesta rápida</span>
-          <h2>¿Dónde ver {event.home.name} vs {event.away.name}?</h2>
+          <h2>¿Dónde se transmite {name}?</h2>
           <p>{whereToWatch}</p>
+          <BroadcastGuide broadcasts={broadcasts} />
           <h3>¿Se puede ver gratis?</h3>
           <p>{freeViewing}</p>
           <div className="quick-facts">
@@ -160,10 +184,10 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
           <p className="editorial-note">Dónde Juega revisa la agenda y ordena los eventos según su relevancia para Latinoamérica. Esta página se actualiza automáticamente cuando cambian el horario, el estado, la sede o las alineaciones disponibles. No alojamos transmisiones ni enlazamos señales no autorizadas.</p>
           <p className="data-trust">Última actualización: {new Intl.DateTimeFormat("es-419", { dateStyle: "medium", timeStyle: "short" }).format(new Date(event.updatedAt))} · Fuente: {event.source === "thesportsdb" ? "TheSportsDB y revisión editorial" : "Equipo editorial de Dónde Juega"}.</p>
         </section>
-        <div className="lineups">
+        {event.format !== "multi" && <div className="lineups">
           <div className="panel"><h2>Alineación de {event.home.name}</h2>{event.homeLineup?.length ? <ul className="lineup-list">{event.homeLineup.map((player) => <li key={player.name}><span>{player.number} {player.name}</span><small>{player.position}</small></li>)}</ul> : <p>La alineación aún no está disponible.</p>}</div>
           <div className="panel"><h2>Alineación de {event.away.name}</h2>{event.awayLineup?.length ? <ul className="lineup-list">{event.awayLineup.map((player) => <li key={player.name}><span>{player.number} {player.name}</span><small>{player.position}</small></li>)}</ul> : <p>La alineación aún no está disponible.</p>}</div>
-        </div>
+        </div>}
         {related.length > 0 && <section className="content-section"><div className="section-head"><div><h2>También puede interesarte</h2></div></div><div className="events-grid">{related.map((item) => <EventCard event={item} key={item.id} />)}</div></section>}
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} />

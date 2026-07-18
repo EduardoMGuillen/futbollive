@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl();
   const data = await readStore();
   const events = data.events.filter((event) => !event.hidden);
-  const staticRoutes = ["", "/en-vivo", "/contacto", "/privacidad", "/terminos"];
+  const staticRoutes = ["", "/en-vivo", "/resultados", "/contacto", "/privacidad", "/terminos"];
   const collectionRoutes = [...new Set(events.flatMap((event) => [
     `/deporte/${event.sportSlug}`,
     `/liga/${event.leagueSlug}`,

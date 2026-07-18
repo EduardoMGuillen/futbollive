@@ -2,19 +2,25 @@
 
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FAVORITES_CHANGED, readFavoriteIds, writeFavoriteIds } from "@/lib/favorites";
 
 export function FavoriteButton({ eventId }: { eventId: string }) {
   const [active, setActive] = useState(false);
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("dj_favorites") || "[]") as string[];
-    queueMicrotask(() => setActive(saved.includes(eventId)));
+    const sync = () => setActive(readFavoriteIds().includes(eventId));
+    queueMicrotask(sync);
+    window.addEventListener(FAVORITES_CHANGED, sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener(FAVORITES_CHANGED, sync);
+      window.removeEventListener("storage", sync);
+    };
   }, [eventId]);
 
   const toggle = () => {
-    const saved = JSON.parse(localStorage.getItem("dj_favorites") || "[]") as string[];
+    const saved = readFavoriteIds();
     const next = active ? saved.filter((id) => id !== eventId) : [...new Set([...saved, eventId])];
-    localStorage.setItem("dj_favorites", JSON.stringify(next));
-    setActive(!active);
+    writeFavoriteIds(next);
   };
 
   return (

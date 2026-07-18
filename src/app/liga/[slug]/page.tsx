@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
 import { readStore } from "@/lib/store";
+import { isPubliclyVisible } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const data = await readStore();
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const event = data.events.find((item) => item.leagueSlug === slug && !item.hidden);
   if (!event) return { title: "Competición" };
   const title = `${event.league}: partidos, horarios y dónde ver`;
-  const description = `Calendario actualizado de ${event.league}: partidos de hoy, próximos eventos, horarios y opciones legales para verlos.`;
+  const description = `Calendario actualizado de ${event.league}: partidos de hoy, próximos eventos, horarios y opciones para verlos.`;
   return { title, description, alternates: { canonical: `/liga/${slug}` }, openGraph: { title, description, url: `/liga/${slug}` } };
 }
 
@@ -25,11 +26,13 @@ export default async function LeaguePage({ params }: { params: Promise<{ slug: s
   const allEvents = data.events.filter((event) => event.leagueSlug === slug && !event.hidden);
   if (!allEvents.length) notFound();
   const events = allEvents
-    .filter((event) => event.status !== "finished")
+    .filter((event) => isPubliclyVisible(event))
     .sort((a, b) => {
       if (a.status === "live" && b.status !== "live") return -1;
       if (b.status === "live" && a.status !== "live") return 1;
-      return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+      const timeA = new Date(a.startsAt).getTime();
+      const timeB = new Date(b.startsAt).getTime();
+      return a.status === "finished" ? timeB - timeA : timeA - timeB;
     });
   const league = allEvents[0].league;
   return (

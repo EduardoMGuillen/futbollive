@@ -2,6 +2,7 @@ import { fetchEspnEvents, fetchEspnLiveUpdate } from "./espn";
 import { readStore, writeStore } from "./store";
 import { fetchSportsDbEvents } from "./thesportsdb";
 import type { SportsEvent } from "./types";
+import { eventDurationMs } from "./utils";
 
 export async function runSync() {
   const [espnResult, sportsDbResult] = await Promise.allSettled([fetchEspnEvents(), fetchSportsDbEvents()]);
@@ -33,6 +34,7 @@ export async function runSync() {
       excludedFromLive: current.excludedFromLive,
       homeLineup: event.homeLineup?.length ? event.homeLineup : current.homeLineup,
       awayLineup: event.awayLineup?.length ? event.awayLineup : current.awayLineup,
+      broadcasts: event.broadcasts?.length ? event.broadcasts : current.broadcasts,
     } : event);
   }
   const merged = Array.from(existing.values());
@@ -73,7 +75,7 @@ export async function updateLiveEvents() {
   const candidates = data.events.filter((event) => {
     if (event.source !== "espn" || event.status === "finished") return false;
     const start = new Date(event.startsAt).getTime();
-    return event.status === "live" || (start >= now - 8 * 60 * 60 * 1000 && start <= now + 30 * 60 * 1000);
+    return event.status === "live" || (start >= now - eventDurationMs(event) && start <= now + 30 * 60 * 1000);
   });
   const updates = (await Promise.all(candidates.map(fetchEspnLiveUpdate))).filter(
     (update): update is NonNullable<typeof update> => Boolean(update),
@@ -90,6 +92,8 @@ export async function updateLiveEvents() {
       minute: update.minute,
       home: { ...event.home, score: update.homeScore },
       away: { ...event.away, score: update.awayScore },
+      participants: update.participants?.length ? update.participants : event.participants,
+      broadcasts: update.broadcasts?.length ? update.broadcasts : event.broadcasts,
       updatedAt: update.updatedAt,
     };
   });

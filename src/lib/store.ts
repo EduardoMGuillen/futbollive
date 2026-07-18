@@ -3,6 +3,7 @@ import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { getSeedData } from "./seed";
 import type { SportsEvent, StoreData } from "./types";
+import { eventDurationMs, isPubliclyVisible } from "./utils";
 
 const dataPath = path.join(process.cwd(), "data", "store.json");
 let memoryStore: StoreData | null = null;
@@ -29,7 +30,7 @@ function refreshTemporalStatuses(data: StoreData) {
       const sourceAge = now - new Date(event.updatedAt).getTime();
       if (event.source === "espn" && sourceAge < 2 * 60 * 1000) return event;
       const elapsed = now - new Date(event.startsAt).getTime();
-      if (elapsed >= 6 * 60 * 60 * 1000) return { ...event, status: "finished" as const, minute: undefined };
+      if (elapsed >= eventDurationMs(event)) return { ...event, status: "finished" as const, minute: undefined };
       if (elapsed >= 0) return { ...event, status: "live" as const, minute: event.minute || "EN VIVO" };
       return { ...event, status: "upcoming" as const, minute: undefined };
     }),
@@ -95,18 +96,20 @@ export async function listEvents(options?: {
   const query = options?.query?.trim().toLocaleLowerCase("es");
   return events
     .filter((event) => options?.includeHidden || !event.hidden)
-    .filter((event) => options?.includeFinished || event.status !== "finished")
+    .filter((event) => options?.includeFinished || isPubliclyVisible(event))
     .filter((event) => !options?.sport || event.sportSlug === options.sport)
     .filter((event) => !options?.status || event.status === options.status)
     .filter(
       (event) =>
         !query ||
-        [event.home.name, event.away.name, event.league, event.sport].some((value) =>
+        [event.eventName, event.home.name, event.away.name, event.league, event.sport].some((value) =>
+          value &&
           value.toLocaleLowerCase("es").includes(query),
         ),
     )
     .sort((a, b) => {
-      if (a.featured !== b.featured) return a.featured ? -1 : 1;
+      const statusOrder = { live: 0, upcoming: 1, finished: 2 };
+      if (statusOrder[a.status] !== statusOrder[b.status]) return statusOrder[a.status] - statusOrder[b.status];
       return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
     });
 }

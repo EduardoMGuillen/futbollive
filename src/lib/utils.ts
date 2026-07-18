@@ -1,3 +1,5 @@
+import type { SportsEvent } from "./types";
+
 const DEFAULT_SITE_URL = "https://dondejuega.com";
 const DEFAULT_ADSENSE_CLIENT = "ca-pub-5358801062744911";
 const DEFAULT_ADSENSE_SLOTS = {
@@ -43,6 +45,26 @@ export function slugify(value: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
+}
+
+export function eventTitle(event: SportsEvent) {
+  return event.format === "multi" && event.eventName
+    ? event.eventName
+    : `${event.home.name} vs ${event.away.name}`;
+}
+
+export function eventDurationMs(event: SportsEvent) {
+  if (event.format === "multi") return 5 * 24 * 60 * 60 * 1000;
+  if (event.sportSlug === "cricket") return 12 * 60 * 60 * 1000;
+  if (event.sportSlug === "beisbol") return 8 * 60 * 60 * 1000;
+  if (event.sportSlug === "mma") return 5 * 60 * 60 * 1000;
+  return 3 * 60 * 60 * 1000;
+}
+
+export function isPubliclyVisible(event: SportsEvent, now = Date.now()) {
+  if (event.status !== "finished") return true;
+  const estimatedEnd = new Date(event.startsAt).getTime() + eventDurationMs(event);
+  return now - estimatedEnd < 6 * 60 * 60 * 1000;
 }
 
 export function formatEventTime(iso: string, withDate = false) {

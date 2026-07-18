@@ -4,6 +4,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { EventCard } from "@/components/EventCard";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
+import { isPubliclyVisible } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Partidos en vivo hoy y agenda deportiva completa",
@@ -21,17 +22,19 @@ export default async function LivePage({
   const filters = await searchParams;
   await ensureFreshEvents();
   const data = await readStore();
-  const visible = data.events.filter((event) => !event.hidden && event.status !== "finished");
+  const visible = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
   const selectedSport = filters.deporte;
-  const selectedStatus = filters.estado === "live" || filters.estado === "upcoming" ? filters.estado : "all";
+  const selectedStatus = filters.estado === "live" || filters.estado === "upcoming" || filters.estado === "finished" ? filters.estado : "all";
   const events = visible
     .filter((event) => !selectedSport || event.sportSlug === selectedSport)
     .filter((event) => selectedStatus === "all" || event.status === selectedStatus)
     .sort((a, b) => {
       if (a.status === "live" && b.status !== "live") return -1;
       if (b.status === "live" && a.status !== "live") return 1;
-      return new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime();
+      const timeA = new Date(a.startsAt).getTime();
+      const timeB = new Date(b.startsAt).getTime();
+      return a.status === "finished" ? timeB - timeA : timeA - timeB;
     });
 
   return (
@@ -47,7 +50,7 @@ export default async function LivePage({
           {sports.map(([slug, name]) => <Link className={selectedSport === slug ? "is-active" : ""} key={slug} href={`/en-vivo?deporte=${slug}&estado=${selectedStatus}`}>{name}</Link>)}
         </div>
         <div className="filter-bar">
-          {[["all", "Todos"], ["live", "En vivo"], ["upcoming", "Próximos"]].map(([value, label]) => (
+          {[["all", "Todos"], ["live", "En vivo"], ["upcoming", "Próximos"], ["finished", "Finalizados recientes"]].map(([value, label]) => (
             <Link className={selectedStatus === value ? "active" : ""} key={value} href={`/en-vivo?${selectedSport ? `deporte=${selectedSport}&` : ""}estado=${value}`}>{label}</Link>
           ))}
         </div>
