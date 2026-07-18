@@ -1,0 +1,17 @@
+{
+  "name": "Dónde Juega",
+  "short_name": "Dónde Juega",
+  "description": "Agenda deportiva y guía de partidos para Latinoamérica.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f7",
+  "theme_color": "#08a76a",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

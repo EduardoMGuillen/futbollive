@@ -1,0 +1,604 @@
+{
+  "events": [
+    {
+      "id": "demo-1",
+      "slug": "real-madrid-vs-manchester-city-1",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "UEFA Champions League",
+      "leagueSlug": "uefa-champions-league",
+      "home": {
+        "name": "Real Madrid",
+        "slug": "real-madrid",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/vwvwrw1473502969.png",
+        "score": 2
+      },
+      "away": {
+        "name": "Manchester City",
+        "slug": "manchester-city",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png",
+        "score": 1
+      },
+      "startsAt": "2026-07-18T08:43:45.182Z",
+      "status": "live",
+      "minute": "67′",
+      "venue": "Santiago Bernabéu",
+      "country": "España",
+      "importance": 98,
+      "featured": true,
+      "description": "Real Madrid y Manchester City se enfrentan en UEFA Champions League. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-2",
+      "slug": "los-angeles-lakers-vs-boston-celtics-2",
+      "sport": "Baloncesto",
+      "sportSlug": "baloncesto",
+      "league": "NBA",
+      "leagueSlug": "nba",
+      "home": {
+        "name": "Los Angeles Lakers",
+        "slug": "los-angeles-lakers",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/d8uoxw1714254511.png",
+        "score": 87
+      },
+      "away": {
+        "name": "Boston Celtics",
+        "slug": "boston-celtics",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/4j85bn1667936589.png",
+        "score": 84
+      },
+      "startsAt": "2026-07-18T09:01:45.183Z",
+      "status": "live",
+      "minute": "EN VIVO",
+      "venue": "Crypto.com Arena",
+      "country": "Estados Unidos",
+      "importance": 96,
+      "featured": true,
+      "description": "Los Angeles Lakers y Boston Celtics se enfrentan en NBA. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-3",
+      "slug": "barcelona-vs-real-madrid-3",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "LaLiga",
+      "leagueSlug": "laliga",
+      "home": {
+        "name": "Barcelona",
+        "slug": "barcelona",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/k4zo0k1641767927.png"
+      },
+      "away": {
+        "name": "Real Madrid",
+        "slug": "real-madrid",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/vwvwrw1473502969.png"
+      },
+      "startsAt": "2026-07-18T11:55:45.183Z",
+      "status": "upcoming",
+      "venue": "Estadi Olímpic",
+      "country": "España",
+      "importance": 99,
+      "featured": true,
+      "description": "Barcelona y Real Madrid se enfrentan en LaLiga. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-4",
+      "slug": "new-york-yankees-vs-boston-red-sox-4",
+      "sport": "Béisbol",
+      "sportSlug": "beisbol",
+      "league": "MLB",
+      "leagueSlug": "mlb",
+      "home": {
+        "name": "New York Yankees",
+        "slug": "new-york-yankees",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/wqwwxx1423478766.png"
+      },
+      "away": {
+        "name": "Boston Red Sox",
+        "slug": "boston-red-sox",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/stpsus1425120215.png"
+      },
+      "startsAt": "2026-07-18T13:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Yankee Stadium",
+      "country": "Estados Unidos",
+      "importance": 94,
+      "featured": true,
+      "description": "New York Yankees y Boston Red Sox se enfrentan en MLB. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-5",
+      "slug": "inter-miami-vs-la-galaxy-5",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "MLS",
+      "leagueSlug": "mls",
+      "home": {
+        "name": "Inter Miami",
+        "slug": "inter-miami",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/m4it3e1602103647.png"
+      },
+      "away": {
+        "name": "LA Galaxy",
+        "slug": "la-galaxy"
+      },
+      "startsAt": "2026-07-18T14:55:45.183Z",
+      "status": "upcoming",
+      "venue": "Chase Stadium",
+      "country": "Estados Unidos",
+      "importance": 90,
+      "description": "Inter Miami y LA Galaxy se enfrentan en MLS. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-6",
+      "slug": "carlos-alcaraz-vs-jannik-sinner-6",
+      "sport": "Tenis",
+      "sportSlug": "tenis",
+      "league": "ATP Masters 1000",
+      "leagueSlug": "atp-masters-1000",
+      "home": {
+        "name": "Carlos Alcaraz",
+        "slug": "carlos-alcaraz"
+      },
+      "away": {
+        "name": "Jannik Sinner",
+        "slug": "jannik-sinner"
+      },
+      "startsAt": "2026-07-18T16:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Cancha Central",
+      "country": "Estados Unidos",
+      "importance": 95,
+      "featured": true,
+      "description": "Carlos Alcaraz y Jannik Sinner se enfrentan en ATP Masters 1000. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-7",
+      "slug": "gran-premio-de-mexico-vs-carrera-7",
+      "sport": "Automovilismo",
+      "sportSlug": "automovilismo",
+      "league": "Fórmula 1",
+      "leagueSlug": "formula-1",
+      "home": {
+        "name": "Gran Premio de México",
+        "slug": "gran-premio-de-mexico"
+      },
+      "away": {
+        "name": "Carrera",
+        "slug": "carrera"
+      },
+      "startsAt": "2026-07-19T07:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Autódromo Hermanos Rodríguez",
+      "country": "México",
+      "importance": 93,
+      "featured": true,
+      "description": "Gran Premio de México y Carrera se enfrentan en Fórmula 1. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-8",
+      "slug": "liverpool-vs-manchester-city-8",
+      "sport": "Fútbol",
+      "sportSlug": "futbol",
+      "league": "Premier League",
+      "leagueSlug": "premier-league",
+      "home": {
+        "name": "Liverpool",
+        "slug": "liverpool",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/kfaher1737969724.png"
+      },
+      "away": {
+        "name": "Manchester City",
+        "slug": "manchester-city",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png"
+      },
+      "startsAt": "2026-07-19T10:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Anfield",
+      "country": "Inglaterra",
+      "importance": 94,
+      "description": "Liverpool y Manchester City se enfrentan en Premier League. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-9",
+      "slug": "florida-panthers-vs-edmonton-oilers-9",
+      "sport": "Hockey",
+      "sportSlug": "hockey",
+      "league": "NHL",
+      "leagueSlug": "nhl",
+      "home": {
+        "name": "Florida Panthers",
+        "slug": "florida-panthers"
+      },
+      "away": {
+        "name": "Edmonton Oilers",
+        "slug": "edmonton-oilers"
+      },
+      "startsAt": "2026-07-19T12:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Amerant Bank Arena",
+      "country": "Estados Unidos",
+      "importance": 87,
+      "description": "Florida Panthers y Edmonton Oilers se enfrentan en NHL. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-10",
+      "slug": "kansas-city-chiefs-vs-philadelphia-eagles-10",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "NFL",
+      "leagueSlug": "nfl",
+      "home": {
+        "name": "Kansas City Chiefs",
+        "slug": "kansas-city-chiefs"
+      },
+      "away": {
+        "name": "Philadelphia Eagles",
+        "slug": "philadelphia-eagles"
+      },
+      "startsAt": "2026-07-19T15:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Arrowhead Stadium",
+      "country": "Estados Unidos",
+      "importance": 96,
+      "featured": true,
+      "description": "Kansas City Chiefs y Philadelphia Eagles se enfrentan en NFL. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-11",
+      "slug": "pelea-estelar-vs-evento-principal-11",
+      "sport": "MMA",
+      "sportSlug": "mma",
+      "league": "UFC",
+      "leagueSlug": "ufc",
+      "home": {
+        "name": "Pelea estelar",
+        "slug": "pelea-estelar"
+      },
+      "away": {
+        "name": "Evento principal",
+        "slug": "evento-principal"
+      },
+      "startsAt": "2026-07-19T16:25:45.183Z",
+      "status": "upcoming",
+      "venue": "T-Mobile Arena",
+      "country": "Estados Unidos",
+      "importance": 89,
+      "description": "Pelea estelar y Evento principal se enfrentan en UFC. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "demo-12",
+      "slug": "brasil-vs-argentina-12",
+      "sport": "Voleibol",
+      "sportSlug": "voleibol",
+      "league": "Liga de Naciones",
+      "leagueSlug": "liga-de-naciones",
+      "home": {
+        "name": "Brasil",
+        "slug": "brasil"
+      },
+      "away": {
+        "name": "Argentina",
+        "slug": "argentina"
+      },
+      "startsAt": "2026-07-19T18:25:45.183Z",
+      "status": "upcoming",
+      "venue": "Maracanãzinho",
+      "country": "Brasil",
+      "importance": 81,
+      "description": "Brasil y Argentina se enfrentan en Liga de Naciones. Consulta el horario en tu zona local y la información disponible del evento.",
+      "source": "demo",
+      "updatedAt": "2026-07-18T09:25:45.182Z"
+    },
+    {
+      "id": "tsdb-2432556",
+      "slug": "edmonton-elks-vs-bc-lions-2432556",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "CFL",
+      "leagueSlug": "cfl",
+      "home": {
+        "name": "Edmonton Elks",
+        "slug": "edmonton-elks",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/5icq721630952022.png",
+        "score": 19
+      },
+      "away": {
+        "name": "BC Lions",
+        "slug": "bc-lions",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/ysxssy1424732039.png",
+        "score": 17
+      },
+      "startsAt": "2026-07-18T07:00:00.000Z",
+      "status": "finished",
+      "minute": "FT",
+      "venue": "Commonwealth Stadium",
+      "country": "Canada",
+      "importance": 55,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z"
+    },
+    {
+      "id": "tsdb-2432557",
+      "slug": "calgary-stampeders-vs-montreal-alouettes-2432557",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "CFL",
+      "leagueSlug": "cfl",
+      "home": {
+        "name": "Calgary Stampeders",
+        "slug": "calgary-stampeders",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/lksemj1565196917.png"
+      },
+      "away": {
+        "name": "Montreal Alouettes",
+        "slug": "montreal-alouettes",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/a6pbbp1628555426.png"
+      },
+      "startsAt": "2026-07-19T02:00:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "McMahon Stadium",
+      "country": "Canada",
+      "importance": 55,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z"
+    },
+    {
+      "id": "tsdb-2432558",
+      "slug": "hamilton-tiger-cats-vs-toronto-argonauts-2432558",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "CFL",
+      "leagueSlug": "cfl",
+      "home": {
+        "name": "Hamilton Tiger-Cats",
+        "slug": "hamilton-tiger-cats",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/qtwsuq1424727420.png"
+      },
+      "away": {
+        "name": "Toronto Argonauts",
+        "slug": "toronto-argonauts",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/5a57ou1628555372.png"
+      },
+      "startsAt": "2026-07-19T05:00:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "Hamilton Stadium",
+      "country": "Canada",
+      "importance": 55,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z"
+    },
+    {
+      "id": "tsdb-2432559",
+      "slug": "ottawa-redblacks-vs-winnipeg-blue-bombers-2432559",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "CFL",
+      "leagueSlug": "cfl",
+      "home": {
+        "name": "Ottawa Redblacks",
+        "slug": "ottawa-redblacks",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/k8wjz71546002654.png"
+      },
+      "away": {
+        "name": "Winnipeg Blue Bombers",
+        "slug": "winnipeg-blue-bombers",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/4bo4wj1561667273.png"
+      },
+      "startsAt": "2026-07-20T05:00:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "TD Place Stadium",
+      "country": "Canada",
+      "importance": 55,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z"
+    },
+    {
+      "id": "tsdb-2475821",
+      "slug": "wroc-aw-panthers-vs-firenze-red-lions-2475821",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "American Football League Europe",
+      "leagueSlug": "american-football-league-europe",
+      "home": {
+        "name": "Wrocław Panthers",
+        "slug": "wroc-aw-panthers",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/bwhywq1625363220.png"
+      },
+      "away": {
+        "name": "Firenze Red Lions",
+        "slug": "firenze-red-lions",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/lngctt1777882669.png"
+      },
+      "startsAt": "2026-07-19T19:00:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "Stadion Olimpijski",
+      "country": "Poland",
+      "importance": 55,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z"
+    },
+    {
+      "id": "tsdb-2476144",
+      "slug": "ravensburg-razorbacks-vs-straubing-spiders-2476144",
+      "sport": "Fútbol americano",
+      "sportSlug": "futbol-americano",
+      "league": "GFL",
+      "leagueSlug": "gfl",
+      "home": {
+        "name": "Ravensburg Razorbacks",
+        "slug": "ravensburg-razorbacks",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/5rrued1660752102.png"
+      },
+      "away": {
+        "name": "Straubing Spiders",
+        "slug": "straubing-spiders",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/psm0vn1660752116.png"
+      },
+      "startsAt": "2026-07-19T19:00:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "TeleData-Stadion",
+      "country": "Germany",
+      "importance": 55,
+      "featured": false,
+      "description": "GFL Süd",
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z"
+    },
+    {
+      "id": "tsdb-2388374",
+      "slug": "toronto-blue-jays-vs-tampa-bay-rays-2388374",
+      "sport": "Béisbol",
+      "sportSlug": "beisbol",
+      "league": "MLB",
+      "leagueSlug": "mlb",
+      "home": {
+        "name": "Toronto Blue Jays",
+        "slug": "toronto-blue-jays",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/f9zk3l1617527686.png"
+      },
+      "away": {
+        "name": "Tampa Bay Rays",
+        "slug": "tampa-bay-rays",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/littyt1554031623.png"
+      },
+      "startsAt": "2026-07-21T05:07:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "Rogers Centre",
+      "country": "United States",
+      "importance": 85,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z",
+      "homeLineup": [],
+      "awayLineup": []
+    },
+    {
+      "id": "tsdb-2388377",
+      "slug": "philadelphia-phillies-vs-los-angeles-dodgers-2388377",
+      "sport": "Béisbol",
+      "sportSlug": "beisbol",
+      "league": "MLB",
+      "leagueSlug": "mlb",
+      "home": {
+        "name": "Philadelphia Phillies",
+        "slug": "philadelphia-phillies",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/3xrldf1617528682.png"
+      },
+      "away": {
+        "name": "Los Angeles Dodgers",
+        "slug": "los-angeles-dodgers",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/32uxn21778269451.png"
+      },
+      "startsAt": "2026-07-21T05:10:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "Citizens Bank Park",
+      "country": "United States",
+      "importance": 85,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z",
+      "homeLineup": [],
+      "awayLineup": []
+    },
+    {
+      "id": "tsdb-2388378",
+      "slug": "new-york-yankees-vs-pittsburgh-pirates-2388378",
+      "sport": "Béisbol",
+      "sportSlug": "beisbol",
+      "league": "MLB",
+      "leagueSlug": "mlb",
+      "home": {
+        "name": "New York Yankees",
+        "slug": "new-york-yankees",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/wqwwxx1423478766.png"
+      },
+      "away": {
+        "name": "Pittsburgh Pirates",
+        "slug": "pittsburgh-pirates",
+        "logo": "https://r2.thesportsdb.com/images/media/team/badge/kw6uqr1617527138.png"
+      },
+      "startsAt": "2026-07-21T05:05:00.000Z",
+      "status": "upcoming",
+      "minute": "NS",
+      "venue": "Yankee Stadium",
+      "country": "United States",
+      "importance": 85,
+      "featured": false,
+      "source": "thesportsdb",
+      "updatedAt": "2026-07-18T09:32:51.556Z",
+      "homeLineup": [],
+      "awayLineup": []
+    }
+  ],
+  "banners": [
+    {
+      "id": "top-1",
+      "title": "Tu marca puede estar aquí",
+      "label": "PUBLICIDAD",
+      "position": "top",
+      "active": true
+    },
+    {
+      "id": "feed-1",
+      "title": "Espacio premium disponible",
+      "label": "PATROCINADO",
+      "position": "feed",
+      "active": true
+    },
+    {
+      "id": "sidebar-1",
+      "title": "Conecta con fans del deporte",
+      "label": "PUBLICIDAD",
+      "position": "sidebar",
+      "active": true
+    },
+    {
+      "id": "detail-1",
+      "title": "Patrocina este encuentro",
+      "label": "PATROCINADO",
+      "position": "detail",
+      "active": true
+    }
+  ],
+  "settings": {
+    "liveThreshold": 85,
+    "maxFeaturedLive": 6,
+    "ctaEnabled": false,
+    "lastSync": "2026-07-18T09:32:51.973Z"
+  }
+}
