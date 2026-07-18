@@ -4,8 +4,8 @@ const DEFAULT_ADSENSE_SLOTS = {
   top: "9527712632",
   feed: "3904685010",
   sidebar: "7109552999",
-  detail: "",
-  footer: "1258460518",
+  detail: "1258460518",
+  footer: "4287948530",
 } as const;
 
 /** Normaliza el ID de AdSense: acepta "pub-123" o "ca-pub-123" y devuelve "ca-pub-123". */
