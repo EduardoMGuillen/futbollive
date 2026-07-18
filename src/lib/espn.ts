@@ -389,7 +389,7 @@ function mapCombatEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
 function mapMultiEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
   const competition = event.competitions?.[0];
   const raw = [...(competition?.competitors || [])].sort((a, b) => (a.order || 999) - (b.order || 999));
-  const ranked = raw.slice(0, 12).map((competitor, index) => ({
+  const ranked = raw.slice(0, 30).map((competitor, index) => ({
     ...participantFrom(competitor),
     position: competitor.order || index + 1,
     isWinner: competitor.winner,

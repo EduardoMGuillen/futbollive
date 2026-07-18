@@ -25,6 +25,123 @@ export interface BroadcastOption {
   url?: string;
 }
 
+export interface StatisticValue {
+  key: string;
+  label: string;
+  displayValue: string;
+  value?: number | string;
+  participantId?: string;
+  unit?: string;
+  rank?: number;
+}
+
+export interface DetailParticipant {
+  id: string;
+  name: string;
+  shortName?: string;
+  slug: string;
+  side?: "home" | "away";
+  logo?: string;
+  score?: number | string;
+  winner?: boolean;
+  kind?: "team" | "athlete";
+  statistics?: StatisticValue[];
+}
+
+export interface EventSegment {
+  key: string;
+  label: string;
+  status?: string;
+  scores: Array<{
+    participantId: string;
+    value: number | string;
+    tiebreak?: number | string;
+  }>;
+}
+
+export interface StatisticGroup {
+  key: string;
+  label: string;
+  participantId?: string;
+  participantName?: string;
+  statistics: StatisticValue[];
+}
+
+export interface EventContest {
+  id: string;
+  label?: string;
+  order?: number;
+  weightClass?: string;
+  status?: string;
+  participants: DetailParticipant[];
+  result?: {
+    winnerId?: string;
+    method?: string;
+    round?: number | string;
+    time?: string;
+    displayValue?: string;
+  };
+}
+
+export interface StandingEntry {
+  position?: number;
+  participant: DetailParticipant;
+  status?: string;
+  score?: number | string;
+  metrics?: StatisticValue[];
+}
+
+export interface EventPredictor {
+  homePct?: number;
+  awayPct?: number;
+  tiePct?: number;
+  label?: string;
+}
+
+export interface EventDetails {
+  eventId: string;
+  family: "team" | "tennis" | "combat" | "racing" | "golf" | "generic";
+  status: {
+    state: EventStatus;
+    label?: string;
+    clock?: string;
+    period?: number;
+    periodLabel?: string;
+  };
+  roundLabel?: string;
+  participants: DetailParticipant[];
+  segments?: EventSegment[];
+  statisticGroups?: StatisticGroup[];
+  leaders?: StatisticGroup[];
+  contests?: EventContest[];
+  standings?: StandingEntry[];
+  lineups?: Array<{
+    participantId: string;
+    participantName: string;
+    players: LineupPlayer[];
+  }>;
+  plays?: Array<{
+    id: string;
+    text: string;
+    clock?: string;
+    period?: number;
+  }>;
+  predictor?: EventPredictor;
+  labels: {
+    participantHref: "equipo" | "atleta";
+    rosterTitle: string;
+    segmentTitle?: string;
+    statsTitle?: string;
+    leadersTitle?: string;
+    standingsTitle?: string;
+    contestsTitle?: string;
+    whenLabel: string;
+    whereLabel: string;
+  };
+  broadcasts?: BroadcastOption[];
+  updatedAt: string;
+}
+
 export interface SportsEvent {
   id: string;
   slug: string;

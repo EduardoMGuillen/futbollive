@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getEspnSportsCatalog } from "@/lib/espn";
+import { isIndividualSport } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { siteUrl } from "@/lib/utils";
 
@@ -13,12 +14,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const catalogSports = getEspnSportsCatalog().map((sport) => `/deporte/${sport.slug}`);
   const collectionRoutes = [...new Set([
     ...catalogSports,
-    ...events.flatMap((event) => [
-      `/deporte/${event.sportSlug}`,
-      `/liga/${event.leagueSlug}`,
-      `/equipo/${event.home.slug}`,
-      `/equipo/${event.away.slug}`,
-    ]),
+    ...events.flatMap((event) => {
+      const prefix = isIndividualSport(event) ? "atleta" : "equipo";
+      const people = event.participants?.length ? event.participants : [event.home, event.away];
+      return [
+        `/deporte/${event.sportSlug}`,
+        `/liga/${event.leagueSlug}`,
+        ...people.map((person) => `/${prefix}/${person.slug}`),
+      ];
+    }),
   ])];
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${base}${route}`,

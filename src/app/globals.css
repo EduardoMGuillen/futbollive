@@ -325,6 +325,38 @@ button { color: inherit; }
 .detail-leaderboard li { display: grid; grid-template-columns: 32px 42px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
 .detail-leaderboard li > span { color: var(--muted); font-weight: 900; text-align: center; }
 .detail-leaderboard li > b { color: var(--green); }
+.event-round { color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.detail-section { margin-top: 22px; }
+.detail-section h2 { margin-top: 0; }
+.segment-table-wrap { overflow-x: auto; }
+.segment-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.segment-table th, .segment-table td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: center; }
+.segment-table th:first-child, .segment-table td:first-child { text-align: left; }
+.inline-participant { display: inline-flex; align-items: center; gap: 8px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.stats-card { background: var(--background); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+.stats-card h3 { margin: 0 0 10px; font-size: 14px; }
+.stat-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.stat-list li { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
+.stat-list strong { color: var(--foreground); }
+.standing-meta { display: grid; gap: 2px; min-width: 0; }
+.standing-meta small { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.contests-list { display: grid; gap: 12px; }
+.contest-card { border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: var(--background); }
+.contest-card header { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+.contest-fighters { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contest-fighters > div { display: grid; justify-items: center; gap: 8px; text-align: center; }
+.contest-fighters .is-winner strong { color: var(--green); }
+.contest-card p { margin: 12px 0 0; color: var(--muted); font-size: 13px; }
+.plays-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.plays-list li { display: grid; gap: 3px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.plays-list small { color: var(--muted); font-weight: 800; }
+.predictor-panel .predictor-note { color: var(--muted); margin-top: -4px; font-size: 13px; }
+.predictor-bars { display: grid; gap: 12px; margin-top: 16px; }
+.predictor-label { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 6px; }
+.predictor-track { height: 10px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.predictor-track i { display: block; height: 100%; background: var(--green); }
+.predictor-event { color: var(--muted); }
 .disabled-watch { border: 0; background: var(--green); color: #fff; padding: 14px 22px; border-radius: 12px; font-weight: 900; cursor: not-allowed; opacity: .75; }
 .transmission-link { display: inline-flex; justify-content: center; cursor: pointer; opacity: 1; }
 .answer-panel { margin-top: 24px; padding: clamp(22px, 4vw, 34px); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; }

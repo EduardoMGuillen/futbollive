@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isIndividualSport } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { eventTitle, isPubliclyVisible } from "@/lib/utils";
 
@@ -22,6 +23,21 @@ export async function GET(request: NextRequest) {
   const data = await readStore();
   const events = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const statusLabel = (status: string) => status === "live" ? "En vivo" : status === "finished" ? "Finalizado" : "Próximo";
+  const people = new Map<string, { slug: string; name: string; logo?: string; individual: boolean }>();
+  for (const event of events) {
+    const individual = isIndividualSport(event);
+    const list = event.participants?.length ? event.participants : [event.home, event.away];
+    for (const person of list) {
+      if (!people.has(person.slug)) {
+        people.set(person.slug, {
+          slug: person.slug,
+          name: person.name,
+          logo: person.logo,
+          individual,
+        });
+      }
+    }
+  }
   const candidates = [
     ...events.map((event) => ({
       id: event.id,
@@ -30,14 +46,19 @@ export async function GET(request: NextRequest) {
       startsAt: event.startsAt,
       href: `/partido/${event.slug}`,
       image: event.home.logo,
-      type: "Partido" as const,
+      type: "Evento" as const,
       score:
         score(`${eventTitle(event)} ${event.home.name} ${event.away.name} ${event.league}`, query) +
         (event.status === "live" ? 12 : event.status === "upcoming" ? 8 : 2),
     })),
-    ...Array.from(new Map(events.flatMap((event) => event.participants?.length ? event.participants : [event.home, event.away]).map((team) => [team.slug, team])).values()).map((team) => ({
-      id: team.slug, title: team.name, subtitle: "Equipo o selección", href: `/equipo/${team.slug}`,
-      image: team.logo, type: "Equipo" as const, score: score(team.name, query),
+    ...Array.from(people.values()).map((person) => ({
+      id: person.slug,
+      title: person.name,
+      subtitle: person.individual ? "Atleta o piloto" : "Equipo o selección",
+      href: person.individual ? `/atleta/${person.slug}` : `/equipo/${person.slug}`,
+      image: person.logo,
+      type: (person.individual ? "Atleta" : "Equipo") as "Atleta" | "Equipo",
+      score: score(person.name, query),
     })),
     ...Array.from(new Map(events.map((event) => [event.leagueSlug, { slug: event.leagueSlug, name: event.league, sport: event.sport }])).values()).map((league) => ({
       id: league.slug, title: league.name, subtitle: league.sport, href: `/liga/${league.slug}`,

@@ -13,7 +13,7 @@ type SearchResult = {
   startsAt?: string;
   href: string;
   image?: string;
-  type: "Partido" | "Equipo" | "Competición";
+  type: "Evento" | "Equipo" | "Atleta" | "Competición";
 };
 
 export function SearchBox() {

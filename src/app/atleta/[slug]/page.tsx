@@ -6,15 +6,15 @@ import {
 } from "@/lib/participant-page";
 
 export async function generateStaticParams() {
-  return generateParticipantStaticParams("equipo");
+  return generateParticipantStaticParams("atleta");
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  return generateParticipantMetadata(slug, "equipo");
+  return generateParticipantMetadata(slug, "atleta");
 }
 
-export default async function TeamPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function AthletePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return <ParticipantPage slug={slug} kind="equipo" />;
+  return <ParticipantPage slug={slug} kind="atleta" />;
 }
