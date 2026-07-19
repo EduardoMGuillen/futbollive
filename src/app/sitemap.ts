@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl();
   const data = await readStore();
   const events = data.events.filter((event) => !event.hidden);
-  const staticRoutes = ["", "/en-vivo", "/deportes", "/esports", "/resultados", "/contacto", "/privacidad", "/terminos"];
+  const staticRoutes = ["", "/en-vivo", "/deportes", "/esports", "/resultados", "/acerca-de", "/contacto", "/privacidad", "/terminos"];
   const catalogSports = getEspnSportsCatalog().map((sport) => `/deporte/${sport.slug}`);
   const esportsRoutes = ESPORTS_GAMES.map((game) => `/esports/${game.slug}`);
   const collectionRoutes = [...new Set([

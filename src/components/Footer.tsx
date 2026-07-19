@@ -13,16 +13,17 @@ export function Footer() {
           <strong>Explorar</strong>
           <Link href="/en-vivo">En vivo</Link>
           <Link href="/deportes">Todos los deportes</Link>
+          <Link href="/esports">Esports</Link>
           <Link href="/resultados">Resultados</Link>
           <Link href="/deporte/futbol">Fútbol</Link>
           <Link href="/deporte/baloncesto">Baloncesto</Link>
-          <Link href="/esports">Esports</Link>
         </div>
         <div>
           <strong>Información</strong>
+          <Link href="/acerca-de">Acerca de</Link>
           <Link href="/contacto">Contacto</Link>
-          <Link href="/privacidad">Privacidad</Link>
-          <Link href="/terminos">Términos</Link>
+          <Link href="/privacidad">Política de privacidad</Link>
+          <Link href="/terminos">Términos de uso</Link>
         </div>
       </div>
       <div className="container footer-bottom">

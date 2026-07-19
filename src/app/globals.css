@@ -415,6 +415,9 @@ button { color: inherit; }
 .legal-page h1 { font-size: 46px; letter-spacing: -.04em; }
 .legal-page h2 { margin-top: 34px; }
 .legal-page p { color: var(--muted); line-height: 1.8; }
+.legal-page a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.legal-list { margin: 12px 0 0; padding-left: 1.2em; color: var(--muted); line-height: 1.75; display: grid; gap: 8px; }
+.legal-list li::marker { color: var(--green); }
 
 .site-footer { background: var(--black); color: #fff; margin-top: 60px; padding-top: 50px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding-bottom: 38px; }
