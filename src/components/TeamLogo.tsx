@@ -17,7 +17,14 @@ export function TeamLogo({
   return (
     <span className="team-logo" style={{ width: size, height: size }}>
       {src && !failed ? (
-        <Image src={src} alt="" width={size} height={size} onError={() => setFailed(true)} unoptimized={src.includes("espncdn.com")} />
+        <Image
+          src={src}
+          alt=""
+          width={size}
+          height={size}
+          onError={() => setFailed(true)}
+          unoptimized={src.includes("espncdn.com") || src.includes("pandascore.co")}
+        />
       ) : (
         <span>{initials(name)}</span>
       )}

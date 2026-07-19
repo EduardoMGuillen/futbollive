@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "www.thesportsdb.com" },
       { protocol: "https", hostname: "a.espncdn.com" },
       { protocol: "https", hostname: "cdn.pandascore.co" },
+      { protocol: "https", hostname: "cdn-api.pandascore.co" },
     ],
   },
   experimental: {
