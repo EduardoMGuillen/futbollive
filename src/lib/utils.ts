@@ -55,6 +55,10 @@ export function eventTitle(event: SportsEvent) {
 
 export function eventDurationMs(event: SportsEvent) {
   if (event.format === "multi") return 5 * 24 * 60 * 60 * 1000;
+  if (event.source === "pandascore") {
+    // Series de esports: ~70 min por mapa más margen entre mapas.
+    return (event.bestOf || 3) * 70 * 60 * 1000 + 60 * 60 * 1000;
+  }
   if (event.sportSlug === "cricket") return 12 * 60 * 60 * 1000;
   if (event.sportSlug === "beisbol") return 8 * 60 * 60 * 1000;
   if (event.sportSlug === "mma") return 5 * 60 * 60 * 1000;
@@ -98,6 +102,8 @@ export function homepageScore(event: SportsEvent) {
   if (event.sportSlug === "lacrosse" || event.sportSlug === "cricket") score -= 18;
   if (event.sportSlug === "mma") score -= 8;
   if (event.sportSlug === "automovilismo") score -= 6;
+  // Los esports viven en su propio hub; en la portada solo destacan los tier S.
+  if (event.source === "pandascore" && !event.featured) score -= 14;
   return score;
 }
 

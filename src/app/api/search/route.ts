@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isIndividualSport } from "@/lib/sports";
+import { isEsport, isIndividualSport, participantHref } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { eventTitle, isPubliclyVisible } from "@/lib/utils";
 
@@ -23,9 +23,10 @@ export async function GET(request: NextRequest) {
   const data = await readStore();
   const events = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const statusLabel = (status: string) => status === "live" ? "En vivo" : status === "finished" ? "Finalizado" : "Próximo";
-  const people = new Map<string, { slug: string; name: string; logo?: string; individual: boolean }>();
+  const people = new Map<string, { slug: string; name: string; logo?: string; individual: boolean; href: string; subtitle: string }>();
   for (const event of events) {
     const individual = isIndividualSport(event);
+    const esport = isEsport(event);
     const list = event.participants?.length ? event.participants : [event.home, event.away];
     for (const person of list) {
       if (!people.has(person.slug)) {
@@ -34,6 +35,8 @@ export async function GET(request: NextRequest) {
           name: person.name,
           logo: person.logo,
           individual,
+          href: participantHref(event, person.slug),
+          subtitle: esport ? `Equipo de ${event.sport}` : individual ? "Atleta o piloto" : "Equipo o selección",
         });
       }
     }
@@ -48,14 +51,14 @@ export async function GET(request: NextRequest) {
       image: event.home.logo,
       type: "Evento" as const,
       score:
-        score(`${eventTitle(event)} ${event.home.name} ${event.away.name} ${event.league}`, query) +
+        score(`${eventTitle(event)} ${event.home.name} ${event.away.name} ${event.league} ${event.sport}`, query) +
         (event.status === "live" ? 12 : event.status === "upcoming" ? 8 : 2),
     })),
     ...Array.from(people.values()).map((person) => ({
       id: person.slug,
       title: person.name,
-      subtitle: person.individual ? "Atleta o piloto" : "Equipo o selección",
-      href: person.individual ? `/atleta/${person.slug}` : `/equipo/${person.slug}`,
+      subtitle: person.subtitle,
+      href: person.href,
       image: person.logo,
       type: (person.individual ? "Atleta" : "Equipo") as "Atleta" | "Equipo",
       score: score(person.name, query),

@@ -3,10 +3,11 @@ import Link from "next/link";
 import { EventCard } from "@/components/EventCard";
 import { ResultsFilters } from "@/components/ResultsFilters";
 import { fetchEspnResults, getEspnLeagueCatalog } from "@/lib/espn";
+import { fetchPandaScoreResults, getPandaScoreCatalog } from "@/lib/pandascore";
 
 export const metadata: Metadata = {
   title: "Resultados deportivos por torneo y año",
-  description: "Consulta resultados anteriores de fútbol, baloncesto, béisbol, tenis, Fórmula 1, UFC y más deportes.",
+  description: "Consulta resultados anteriores de fútbol, baloncesto, béisbol, tenis, Fórmula 1, UFC, Valorant, LoL, CS2 y más deportes.",
   alternates: { canonical: "/resultados" },
 };
 export const dynamic = "force-dynamic";
@@ -17,7 +18,7 @@ export default async function ResultsPage({
   searchParams: Promise<{ deporte?: string; torneo?: string; anio?: string; pagina?: string }>;
 }) {
   const filters = await searchParams;
-  const catalog = getEspnLeagueCatalog();
+  const catalog = [...getEspnLeagueCatalog(), ...getPandaScoreCatalog()];
   const sportNames = Array.from(new Map(catalog.map((item) => [item.sportSlug, item.sport])).entries());
   const selectedSport = sportNames.some(([slug]) => slug === filters.deporte) ? filters.deporte! : "futbol";
   const tournaments = catalog.filter((item) => item.sportSlug === selectedSport);
@@ -33,7 +34,11 @@ export default async function ResultsPage({
   const selectedYear = Number.isInteger(parsedYear) && parsedYear >= 1990 && parsedYear <= currentYear
     ? parsedYear
     : currentYear;
-  const allEvents = selectedTournament ? await fetchEspnResults(selectedTournament, selectedYear) : [];
+  const allEvents = selectedTournament
+    ? selectedTournament.startsWith("pandascore:")
+      ? await fetchPandaScoreResults(selectedTournament.slice("pandascore:".length), selectedYear)
+      : await fetchEspnResults(selectedTournament, selectedYear)
+    : [];
   const pageSize = 48;
   const totalPages = Math.max(1, Math.ceil(allEvents.length / pageSize));
   const parsedPage = Number(filters.pagina);
@@ -46,7 +51,7 @@ export default async function ResultsPage({
       <section className="page-hero"><div className="container">
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / Resultados</div>
         <h1>Resultados deportivos</h1>
-        <p>Consulta marcadores y clasificaciones anteriores directamente desde ESPN, por deporte, torneo y año.</p>
+        <p>Consulta marcadores y clasificaciones anteriores por deporte, torneo y año, incluidos los esports.</p>
       </div></section>
       <main className="container content-section">
         <ResultsFilters
@@ -58,7 +63,7 @@ export default async function ResultsPage({
         />
         <div className="section-head">
           <div>
-            <span className="eyebrow">ARCHIVO ESPN</span>
+            <span className="eyebrow">{selectedTournament.startsWith("pandascore:") ? "ARCHIVO PANDASCORE" : "ARCHIVO ESPN"}</span>
             <h2>{tournaments.find((item) => item.path === selectedTournament)?.league} · {selectedYear}</h2>
           </div>
           <p>{allEvents.length} eventos finalizados</p>

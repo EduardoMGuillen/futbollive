@@ -16,6 +16,9 @@ export interface LineupPlayer {
   name: string;
   position?: string;
   number?: string;
+  nationality?: string;
+  photo?: string;
+  slug?: string;
 }
 
 export interface BroadcastOption {
@@ -98,6 +101,20 @@ export interface EventPredictor {
   label?: string;
 }
 
+/** Incidencia estructurada (gol, tarjeta, anotación) con minuto y protagonista. */
+export interface TimelineEntry {
+  id: string;
+  label: string;
+  minute?: string;
+  period?: number;
+  text?: string;
+  player?: string;
+  assist?: string;
+  participantId?: string;
+  teamName?: string;
+  scoring?: boolean;
+}
+
 export interface EventDetails {
   eventId: string;
   family: "team" | "tennis" | "combat" | "racing" | "golf" | "generic";
@@ -126,6 +143,7 @@ export interface EventDetails {
     clock?: string;
     period?: number;
   }>;
+  timeline?: TimelineEntry[];
   predictor?: EventPredictor;
   labels: {
     participantHref: "equipo" | "atleta";
@@ -167,7 +185,9 @@ export interface SportsEvent {
   homeLineup?: LineupPlayer[];
   awayLineup?: LineupPlayer[];
   broadcasts?: BroadcastOption[];
-  source: "demo" | "thesportsdb" | "espn" | "manual";
+  /** Formato de serie en esports (BO1, BO3, BO5). */
+  bestOf?: number;
+  source: "demo" | "thesportsdb" | "espn" | "manual" | "pandascore";
   sourceEventId?: string;
   sourceCompetitionId?: string;
   sourceLeaguePath?: string;

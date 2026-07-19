@@ -15,10 +15,36 @@ export const sportIcons: Record<string, string> = {
   cricket: "🏏",
   lacrosse: "🥍",
   "futbol-australiano": "🦵",
+  valorant: "🎯",
+  "league-of-legends": "⚔️",
+  cs2: "💣",
 };
 
 export function sportIcon(slug: string) {
   return sportIcons[slug] || "🏆";
+}
+
+/** Juegos de esports cubiertos vía PandaScore. */
+export const ESPORTS_GAMES = [
+  { slug: "valorant", name: "Valorant", tagline: "VCT, Masters y Champions con los mejores equipos táctico-shooter." },
+  { slug: "league-of-legends", name: "League of Legends", tagline: "LEC, LCK, LPL, LTA y Worlds: toda la escena competitiva de LoL." },
+  { slug: "cs2", name: "Counter-Strike 2", tagline: "Majors, ESL Pro League y BLAST con las mejores organizaciones de CS." },
+] as const;
+
+const ESPORTS_SLUGS = new Set<string>(ESPORTS_GAMES.map((game) => game.slug));
+
+export function isEsportSlug(sportSlug: string) {
+  return ESPORTS_SLUGS.has(sportSlug);
+}
+
+export function isEsport(event: Pick<SportsEvent, "sportSlug">) {
+  return ESPORTS_SLUGS.has(event.sportSlug);
+}
+
+/** Ruta completa a la página de un participante, consciente de esports. */
+export function participantHref(event: Pick<SportsEvent, "sportSlug" | "format">, slug: string) {
+  if (isEsport(event)) return `/esports/${event.sportSlug}/equipo/${slug}`;
+  return `/${participantEntityPath(event)}/${slug}`;
 }
 
 const INDIVIDUAL_SPORTS = new Set([
@@ -47,6 +73,16 @@ export function sportFamily(event: Pick<SportsEvent, "sportSlug" | "format" | "s
 
 export function sportLabels(event: Pick<SportsEvent, "sportSlug" | "format">): EventDetails["labels"] {
   const individual = isIndividualSport(event);
+  if (isEsport(event)) {
+    return {
+      participantHref: "equipo",
+      rosterTitle: "Roster",
+      segmentTitle: "Mapas",
+      statsTitle: "Estadísticas de la serie",
+      whenLabel: "¿Cuándo juegan?",
+      whereLabel: "¿Dónde se juega?",
+    };
+  }
   switch (event.sportSlug) {
     case "tenis":
       return {

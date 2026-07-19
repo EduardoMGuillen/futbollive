@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getEspnSportsCatalog } from "@/lib/espn";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
-import { sportIcon } from "@/lib/sports";
+import { ESPORTS_GAMES, sportIcon } from "@/lib/sports";
 import { isPubliclyVisible } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -39,6 +39,22 @@ export default async function SportsIndexPage() {
                 <span className="sport-tile-icon" aria-hidden>{sportIcon(sport.slug)}</span>
                 <strong>{sport.name}</strong>
                 <small>{count > 0 ? `${count} evento${count === 1 ? "" : "s"}` : "Sin eventos ahora"}</small>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="section-head" style={{ marginTop: 36 }}>
+          <div><span className="eyebrow">ESPORTS</span><h2>Deportes electrónicos</h2></div>
+          <p><Link href="/esports">Ver hub de esports →</Link></p>
+        </div>
+        <div className="sports-directory">
+          {ESPORTS_GAMES.map((game) => {
+            const count = counts.get(game.slug) || 0;
+            return (
+              <Link key={game.slug} href={`/esports/${game.slug}`} className={`sport-tile game-tile game-${game.slug}`}>
+                <span className="sport-tile-icon" aria-hidden>{sportIcon(game.slug)}</span>
+                <strong>{game.name}</strong>
+                <small>{count > 0 ? `${count} serie${count === 1 ? "" : "s"}` : "Sin series ahora"}</small>
               </Link>
             );
           })}

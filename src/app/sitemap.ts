@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getEspnSportsCatalog } from "@/lib/espn";
-import { isIndividualSport } from "@/lib/sports";
+import { ESPORTS_GAMES, isEsport, participantHref } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { siteUrl } from "@/lib/utils";
 
@@ -10,17 +10,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl();
   const data = await readStore();
   const events = data.events.filter((event) => !event.hidden);
-  const staticRoutes = ["", "/en-vivo", "/deportes", "/resultados", "/contacto", "/privacidad", "/terminos"];
+  const staticRoutes = ["", "/en-vivo", "/deportes", "/esports", "/resultados", "/contacto", "/privacidad", "/terminos"];
   const catalogSports = getEspnSportsCatalog().map((sport) => `/deporte/${sport.slug}`);
+  const esportsRoutes = ESPORTS_GAMES.map((game) => `/esports/${game.slug}`);
   const collectionRoutes = [...new Set([
     ...catalogSports,
+    ...esportsRoutes,
     ...events.flatMap((event) => {
-      const prefix = isIndividualSport(event) ? "atleta" : "equipo";
       const people = event.participants?.length ? event.participants : [event.home, event.away];
       return [
-        `/deporte/${event.sportSlug}`,
+        isEsport(event) ? `/esports/${event.sportSlug}` : `/deporte/${event.sportSlug}`,
         `/liga/${event.leagueSlug}`,
-        ...people.map((person) => `/${prefix}/${person.slug}`),
+        ...people.map((person) => participantHref(event, person.slug)),
       ];
     }),
   ])];

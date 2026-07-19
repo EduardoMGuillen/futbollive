@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
 import { BackLink } from "@/components/BackLink";
 import { EventCard } from "@/components/EventCard";
 import { getEspnSportsCatalog } from "@/lib/espn";
+import { isEsportSlug } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { isPubliclyVisible } from "@/lib/utils";
 
@@ -37,6 +38,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function SportPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  // Los esports tienen su propio hub con hero y rosters.
+  if (isEsportSlug(slug)) redirect(`/esports/${slug}`);
   const catalogSport = getEspnSportsCatalog().find((item) => item.slug === slug);
   const data = await readStore();
   const allEvents = data.events.filter((event) => event.sportSlug === slug && !event.hidden);

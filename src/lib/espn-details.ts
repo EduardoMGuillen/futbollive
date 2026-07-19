@@ -10,6 +10,7 @@ import type {
   StandingEntry,
   StatisticGroup,
   StatisticValue,
+  TimelineEntry,
 } from "./types";
 import { sportFamily, sportLabels } from "./sports";
 import { slugify } from "./utils";
@@ -131,6 +132,27 @@ type EspnSummary = {
     shortText?: string;
     clock?: { displayValue?: string };
     period?: { number?: number };
+  }>;
+  keyEvents?: Array<{
+    id?: string;
+    type?: { id?: string; text?: string };
+    text?: string;
+    shortText?: string;
+    clock?: { displayValue?: string };
+    period?: { number?: number; displayValue?: string };
+    team?: { id?: string; displayName?: string };
+    participants?: Array<{ athlete?: EspnAthlete }>;
+    scoringPlay?: boolean;
+  }>;
+  scoringPlays?: Array<{
+    id?: string;
+    type?: { text?: string; abbreviation?: string };
+    text?: string;
+    clock?: { displayValue?: string };
+    period?: { number?: number };
+    team?: { id?: string; displayName?: string };
+    homeScore?: number;
+    awayScore?: number;
   }>;
   predictor?: {
     homeTeam?: { gameProjection?: string | number; teamChanceToWin?: string | number };
@@ -425,6 +447,72 @@ function buildLineups(raw?: EspnSummary["rosters"], event?: SportsEvent): EventD
   }).filter((item) => item.players.length > 0);
 }
 
+/** Traducción de tipos de incidencia de ESPN al español. */
+function timelineLabel(typeText?: string): { label: string; scoring: boolean } | null {
+  if (!typeText) return null;
+  if (/own goal/i.test(typeText)) return { label: "Autogol", scoring: true };
+  if (/penalty.*(scored|goal)/i.test(typeText)) return { label: "Gol de penal", scoring: true };
+  if (/penalty.*(missed|saved)/i.test(typeText)) return { label: "Penal fallado", scoring: false };
+  if (/shootout/i.test(typeText)) return { label: "Penal (definición)", scoring: true };
+  if (/goal|score/i.test(typeText)) return { label: "Gol", scoring: true };
+  if (/yellow card/i.test(typeText)) return { label: "Tarjeta amarilla", scoring: false };
+  if (/red card/i.test(typeText)) return { label: "Tarjeta roja", scoring: false };
+  if (/substitution/i.test(typeText)) return { label: "Cambio", scoring: false };
+  if (/touchdown/i.test(typeText)) return { label: "Touchdown", scoring: true };
+  if (/field goal/i.test(typeText)) return { label: "Gol de campo", scoring: true };
+  if (/safety/i.test(typeText)) return { label: "Safety", scoring: true };
+  return null;
+}
+
+/**
+ * Cronología estructurada: goles con minuto, autor y asistencia, tarjetas y
+ * anotaciones equivalentes en otros deportes. Solo incluye lo que ESPN reporta.
+ */
+function buildTimeline(summary: EspnSummary, competition?: EspnCompetition): TimelineEntry[] {
+  const teamNames = new Map<string, string>();
+  for (const competitor of competition?.competitors || []) {
+    if (competitor.team?.id) teamNames.set(String(competitor.team.id), competitor.team.displayName || "");
+  }
+  const entries: TimelineEntry[] = [];
+
+  for (const item of summary.keyEvents || []) {
+    const mapped = timelineLabel(item.type?.text);
+    if (!mapped) continue;
+    const players = (item.participants || [])
+      .map((participant) => participant.athlete?.displayName)
+      .filter((name): name is string => Boolean(name));
+    const teamId = item.team?.id ? String(item.team.id) : undefined;
+    entries.push({
+      id: item.id || `${item.type?.text}-${item.clock?.displayValue || entries.length}`,
+      label: mapped.label,
+      minute: item.clock?.displayValue,
+      period: item.period?.number,
+      text: item.text || item.shortText,
+      player: players[0],
+      assist: mapped.scoring && mapped.label !== "Autogol" ? players[1] : undefined,
+      participantId: teamId,
+      teamName: item.team?.displayName || (teamId ? teamNames.get(teamId) : undefined),
+      scoring: mapped.scoring,
+    });
+  }
+
+  if (!entries.length) {
+    for (const play of summary.scoringPlays || []) {
+      entries.push({
+        id: play.id || `scoring-${entries.length}`,
+        label: timelineLabel(play.type?.text)?.label || play.type?.text || "Anotación",
+        minute: play.clock?.displayValue,
+        period: play.period?.number,
+        text: play.text,
+        participantId: play.team?.id ? String(play.team.id) : undefined,
+        teamName: play.team?.displayName || (play.team?.id ? teamNames.get(String(play.team.id)) : undefined),
+        scoring: true,
+      });
+    }
+  }
+  return entries.slice(-40);
+}
+
 function buildPredictor(summary?: EspnSummary) {
   const homePct = pct(summary?.predictor?.homeTeam?.gameProjection ?? summary?.predictor?.homeTeam?.teamChanceToWin);
   const awayPct = pct(summary?.predictor?.awayTeam?.gameProjection ?? summary?.predictor?.awayTeam?.teamChanceToWin);
@@ -601,6 +689,7 @@ function detailsFromSummary(event: SportsEvent, summary: EspnSummary): EventDeta
         clock: play.clock?.displayValue,
         period: play.period?.number,
       })),
+    timeline: buildTimeline(summary, competition),
     predictor: buildPredictor(summary),
     labels: sportLabels(event),
     broadcasts: normalizeBroadcasts(

@@ -30,11 +30,13 @@ function refreshTemporalStatuses(data: StoreData) {
     banners,
     events: data.events.map((event) => {
       if (event.status === "finished") return event;
-      // A fresh ESPN status is authoritative (important for delayed starts).
+      // A fresh source status is authoritative (important for delayed starts).
       const sourceAge = now - new Date(event.updatedAt).getTime();
-      if (event.source === "espn" && sourceAge < 2 * 60 * 1000) return event;
+      if ((event.source === "espn" || event.source === "pandascore") && sourceAge < 2 * 60 * 1000) return event;
       const elapsed = now - new Date(event.startsAt).getTime();
       if (elapsed >= eventDurationMs(event)) return { ...event, status: "finished" as const, minute: undefined };
+      // Esports series get delayed often; only the source flips them to live.
+      if (event.source === "pandascore") return event;
       if (elapsed >= 0) return { ...event, status: "live" as const, minute: event.minute || "EN VIVO" };
       return { ...event, status: "upcoming" as const, minute: undefined };
     }),

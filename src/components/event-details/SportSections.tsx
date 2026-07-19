@@ -1,5 +1,5 @@
 import type { EventDetails, SportsEvent } from "@/lib/types";
-import { participantEntityPath } from "@/lib/sports";
+import { participantHref } from "@/lib/sports";
 import { TeamLogo } from "@/components/TeamLogo";
 import Link from "next/link";
 
@@ -155,8 +155,11 @@ export function RosterPanels({ details }: { details: EventDetails; event?: Sport
               <ul className="lineup-list">
                 {roster.players.map((player) => (
                   <li key={`${roster.participantId}-${player.name}`}>
-                    <span>{player.number ? `${player.number} ` : ""}{player.name}</span>
-                    <small>{player.position}</small>
+                    <span className="lineup-player">
+                      {player.photo && <TeamLogo name={player.name} src={player.photo} size={26} />}
+                      {player.number ? `${player.number} ` : ""}{player.name}
+                    </span>
+                    <small>{[player.position, player.nationality].filter(Boolean).join(" · ")}</small>
                   </li>
                 ))}
               </ul>
@@ -164,6 +167,48 @@ export function RosterPanels({ details }: { details: EventDetails; event?: Sport
           </div>
         ))}
       </div>
+    </section>
+  );
+}
+
+const timelineIcons: Array<[RegExp, string]> = [
+  [/autogol/i, "⚽"],
+  [/gol|touchdown|safety/i, "⚽"],
+  [/campo/i, "🏈"],
+  [/amarilla/i, "🟨"],
+  [/roja/i, "🟥"],
+  [/cambio/i, "🔁"],
+  [/penal/i, "🎯"],
+];
+
+export function TimelinePanel({ details }: { details: EventDetails }) {
+  if (!details.timeline?.length) return null;
+  return (
+    <section className="panel detail-section">
+      <h2>Cronología del partido</h2>
+      <ul className="timeline-list">
+        {details.timeline.map((entry) => {
+          const icon = timelineIcons.find(([pattern]) => pattern.test(entry.label))?.[1] || "•";
+          return (
+            <li key={entry.id} className={entry.scoring ? "is-scoring" : ""}>
+              <span className="timeline-minute">{entry.minute || (entry.period ? `P${entry.period}` : "–")}</span>
+              <span className="timeline-icon" aria-hidden>{icon}</span>
+              <div className="timeline-body">
+                <strong>
+                  {entry.label}
+                  {entry.player ? ` · ${entry.player}` : ""}
+                </strong>
+                <small>
+                  {[
+                    entry.teamName,
+                    entry.assist ? `Asistencia: ${entry.assist}` : null,
+                  ].filter(Boolean).join(" · ") || entry.text}
+                </small>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
@@ -231,9 +276,8 @@ export function ParticipantLink({
   logo?: string;
   size?: number;
 }) {
-  const path = participantEntityPath(event);
   return (
-    <Link className="detail-team" href={`/${path}/${slug}`}>
+    <Link className="detail-team" href={participantHref(event, slug)}>
       <TeamLogo name={name} src={logo} size={size} />
       <h2>{name}</h2>
     </Link>

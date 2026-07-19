@@ -17,11 +17,12 @@ import {
   SegmentScoreboard,
   StandingsPanel,
   StatsPanels,
+  TimelinePanel,
 } from "@/components/event-details/SportSections";
 import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
-import { fetchEspnEventDetails } from "@/lib/espn-details";
-import { isIndividualSport } from "@/lib/sports";
+import { fetchEventDetails } from "@/lib/event-details";
+import { isEsport, isIndividualSport } from "@/lib/sports";
 import { getEvent, readStore } from "@/lib/store";
 import { eventTitle, formatEventDate, formatEventTime, isPubliclyVisible, siteUrl } from "@/lib/utils";
 
@@ -50,6 +51,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       `${name} gratis`,
       `${name} dónde ver`,
       `${name} horario`,
+      `${name} ${event.sport}`,
+      `${event.home.name} vs ${event.away.name} ${event.sport}`,
       event.league,
     ],
     alternates: { canonical: `/partido/${event.slug}` },
@@ -69,7 +72,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const { slug } = await params;
   const event = await getEvent(slug);
   if (!event) notFound();
-  const details = await fetchEspnEventDetails(event);
+  const details = await fetchEventDetails(event);
   const broadcasts = details.broadcasts?.length ? details.broadcasts : event.broadcasts || [];
   const data = await readStore();
   const related = data.events
@@ -79,6 +82,9 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const isFinished = details.status.state === "finished" || event.status === "finished";
   const name = eventTitle(event);
   const individual = isIndividualSport(event);
+  const esport = isEsport(event);
+  const sportHref = esport ? `/esports/${event.sportSlug}` : `/deporte/${event.sportSlug}`;
+  const sourceName = event.source === "pandascore" ? "PandaScore" : "ESPN";
   const competitorType = individual ? "Person" : "SportsTeam";
   const baseUrl = siteUrl();
   const eventUrl = `${baseUrl}/partido/${event.slug}`;
@@ -128,7 +134,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Inicio", item: baseUrl },
-          { "@type": "ListItem", position: 2, name: event.sport, item: `${baseUrl}/deporte/${event.sportSlug}` },
+          { "@type": "ListItem", position: 2, name: event.sport, item: `${baseUrl}${sportHref}` },
           { "@type": "ListItem", position: 3, name: event.league, item: `${baseUrl}/liga/${event.leagueSlug}` },
           { "@type": "ListItem", position: 4, name, item: eventUrl },
         ],
@@ -165,7 +171,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
     <>
       <section className="page-hero"><div className="container">
         <BackLink href={`/liga/${event.leagueSlug}`} label={`Volver a ${event.league}`} />
-        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${event.sportSlug}`}>{event.sport}</Link> / <Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link></div>
+        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={sportHref}>{event.sport}</Link> / <Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link></div>
         <h1>Ver {name}</h1>
         <p>Horario, sede, estadísticas y opciones para seguir el evento de {event.league}.</p>
       </div></section>
@@ -236,6 +242,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
         <StandingsPanel details={details} />
         <StatsPanels details={details} />
         <LeadersPanel details={details} />
+        <TimelinePanel details={details} />
         <PlaysPanel details={details} />
         <RosterPanels details={details} event={event} />
         <section className="answer-panel" id="donde-se-transmite">
@@ -251,7 +258,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
             <div><small>{details.labels.whereLabel}</small><strong>{event.venue || "Sede por confirmar"}{event.country ? `, ${event.country}` : ""}</strong></div>
           </div>
           <p className="editorial-note">Dónde Juega revisa la agenda y ordena los eventos según su relevancia para Latinoamérica. Esta página se actualiza automáticamente cuando cambian el horario, el estado, la sede o las estadísticas disponibles. No alojamos transmisiones ni enlazamos señales no autorizadas.</p>
-          <p className="data-trust">Última actualización: <LocalTime iso={details.updatedAt || event.updatedAt} mode="datetime" as="span" /> · Fuente: ESPN / revisión editorial de Dónde Juega.</p>
+          <p className="data-trust">Última actualización: <LocalTime iso={details.updatedAt || event.updatedAt} mode="datetime" as="span" /> · Fuente: {sourceName} / revisión editorial de Dónde Juega.</p>
         </section>
         {related.length > 0 && (
           <section className="content-section">

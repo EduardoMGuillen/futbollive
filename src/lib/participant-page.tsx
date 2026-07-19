@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BackLink } from "@/components/BackLink";
 import { EventCard } from "@/components/EventCard";
 import { TeamLogo } from "@/components/TeamLogo";
-import { isIndividualSport } from "@/lib/sports";
+import { isEsport, isIndividualSport } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { isPubliclyVisible } from "@/lib/utils";
 import type { SportsEvent } from "@/lib/types";
@@ -23,7 +23,8 @@ function participantFromEvent(event: SportsEvent, slug: string) {
 export async function generateParticipantStaticParams(kind: "equipo" | "atleta") {
   const data = await readStore();
   const slugs = new Set<string>();
-  for (const event of data.events.filter((event) => !event.hidden)) {
+  // Los equipos de esports viven en /esports/[game]/equipo/[slug].
+  for (const event of data.events.filter((event) => !event.hidden && !isEsport(event))) {
     const individual = isIndividualSport(event);
     if (kind === "atleta" && !individual) continue;
     if (kind === "equipo" && individual) continue;
@@ -36,7 +37,7 @@ export async function generateParticipantStaticParams(kind: "equipo" | "atleta")
 
 export async function generateParticipantMetadata(slug: string, kind: "equipo" | "atleta"): Promise<Metadata> {
   const data = await readStore();
-  const event = data.events.find((item) => matchesParticipant(item, slug) && !item.hidden && (kind === "atleta" ? isIndividualSport(item) : !isIndividualSport(item)));
+  const event = data.events.find((item) => matchesParticipant(item, slug) && !item.hidden && !isEsport(item) && (kind === "atleta" ? isIndividualSport(item) : !isIndividualSport(item)));
   if (!event) return { title: kind === "atleta" ? "Atleta" : "Equipo" };
   const participant = participantFromEvent(event, slug);
   const noun = kind === "atleta" ? "próximos eventos" : "próximos partidos";
@@ -63,6 +64,7 @@ export async function ParticipantPage({
   const allEvents = data.events.filter((event) =>
     matchesParticipant(event, slug) &&
     !event.hidden &&
+    !isEsport(event) &&
     (kind === "atleta" ? isIndividualSport(event) : !isIndividualSport(event)),
   );
   if (!allEvents.length) notFound();
