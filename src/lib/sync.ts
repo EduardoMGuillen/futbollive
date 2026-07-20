@@ -1,6 +1,11 @@
 import { fetchEspnEvents, fetchEspnLiveUpdate } from "./espn";
-import { fetchPandaScoreEvents, updatePandaScoreLiveEvents } from "./pandascore";
-import { readStore, writeStore } from "./store";
+import {
+  fetchPandaScoreEvents,
+  fetchPandaScoreMatchById,
+  pandaScoreIdFromSlug,
+  updatePandaScoreLiveEvents,
+} from "./pandascore";
+import { getEvent, readStore, upsertEvent, writeStore } from "./store";
 import { fetchSportsDbEvents } from "./thesportsdb";
 import type { SportsEvent } from "./types";
 import { eventDurationMs } from "./utils";
@@ -163,4 +168,28 @@ export async function ensureLiveScores(maxAgeSeconds = 60) {
   if (now - stalest < maxAgeSeconds * 1000) return;
   lastLiveCheck = now;
   await updateLiveEventsOnce().catch(() => null);
+}
+
+/**
+ * Resuelve un evento por slug para páginas de detalle.
+ * En serverless sin store compartido, los partidos de PandaScore (LoL, Valorant, CS2)
+ * pueden aparecer en /esports pero faltar en la instancia que sirve /partido/[slug].
+ */
+export async function resolveEvent(slug: string) {
+  const existing = await getEvent(slug);
+  if (existing) return existing;
+
+  const matchId = pandaScoreIdFromSlug(slug);
+  if (matchId) {
+    const fetched = await fetchPandaScoreMatchById(matchId);
+    if (fetched) {
+      // Conserva el slug de la URL para que los enlaces del listado sigan funcionando.
+      const event = { ...fetched, slug };
+      await upsertEvent(event);
+      return event;
+    }
+  }
+
+  await ensureFreshEvents();
+  return getEvent(slug);
 }

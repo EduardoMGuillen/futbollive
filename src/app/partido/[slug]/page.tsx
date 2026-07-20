@@ -23,7 +23,8 @@ import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
 import { fetchEventDetails } from "@/lib/event-details";
 import { isEsport, isIndividualSport } from "@/lib/sports";
-import { getEvent, readStore } from "@/lib/store";
+import { readStore } from "@/lib/store";
+import { ensureLiveScores, resolveEvent } from "@/lib/sync";
 import { eventTitle, formatEventDate, formatEventTime, isPubliclyVisible, siteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -36,7 +37,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const event = await getEvent(slug);
+  const event = await resolveEvent(slug);
   if (!event) return { title: "Evento no encontrado" };
   const name = eventTitle(event);
   const title = `Ver ${name} gratis`;
@@ -70,8 +71,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function MatchPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const event = await getEvent(slug);
+  const event = await resolveEvent(slug);
   if (!event) notFound();
+  await ensureLiveScores();
   const details = await fetchEventDetails(event);
   const broadcasts = details.broadcasts?.length ? details.broadcasts : event.broadcasts || [];
   const data = await readStore();

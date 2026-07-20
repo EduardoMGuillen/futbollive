@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackLink } from "@/components/BackLink";
 import { EventCard } from "@/components/EventCard";
+import { isEsport } from "@/lib/sports";
 import { readStore } from "@/lib/store";
+import { ensureFreshEvents } from "@/lib/sync";
 import { isPubliclyVisible } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -13,6 +15,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  await ensureFreshEvents();
   const data = await readStore();
   const event = data.events.find((item) => item.leagueSlug === slug && !item.hidden);
   if (!event) return { title: "Competición" };
@@ -23,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function LeaguePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  await ensureFreshEvents();
   const data = await readStore();
   const allEvents = data.events.filter((event) => event.leagueSlug === slug && !event.hidden);
   if (!allEvents.length) notFound();
@@ -36,11 +40,13 @@ export default async function LeaguePage({ params }: { params: Promise<{ slug: s
       return a.status === "finished" ? timeB - timeA : timeA - timeB;
     });
   const league = allEvents[0].league;
+  const sample = allEvents[0];
+  const sportHref = isEsport(sample) ? `/esports/${sample.sportSlug}` : `/deporte/${sample.sportSlug}`;
   return (
     <>
       <section className="page-hero"><div className="container">
-        <BackLink href={`/deporte/${allEvents[0].sportSlug}`} label={`Volver a ${allEvents[0].sport}`} />
-        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={`/deporte/${allEvents[0].sportSlug}`}>{allEvents[0].sport}</Link> / {league}</div>
+        <BackLink href={sportHref} label={`Volver a ${sample.sport}`} />
+        <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={sportHref}>{sample.sport}</Link> / {league}</div>
         <h1>{league}</h1>
         <p>Calendario, horarios y eventos disponibles de {league}.</p>
       </div></section>

@@ -254,6 +254,36 @@ export async function fetchPandaScoreEvents(): Promise<SportsEvent[]> {
   return batches.flat();
 }
 
+/** Extrae el id de PandaScore desde un slug `equipo-vs-equipo-ps123456`. */
+export function pandaScoreIdFromSlug(slug: string) {
+  return slug.match(/-ps(\d+)$/)?.[1] || null;
+}
+
+function gameFromMatch(match: PsMatch): PandaScoreGame | undefined {
+  const slug = (match.videogame?.slug || "").toLowerCase();
+  const name = (match.videogame?.name || "").toLowerCase();
+  if (slug === "lol" || slug.includes("league-of-legends") || name.includes("league of legends")) {
+    return PANDASCORE_GAMES.find((game) => game.path === "lol");
+  }
+  if (slug.includes("valorant") || name.includes("valorant")) {
+    return PANDASCORE_GAMES.find((game) => game.path === "valorant");
+  }
+  if (slug.includes("cs") || name.includes("counter-strike")) {
+    return PANDASCORE_GAMES.find((game) => game.path === "csgo");
+  }
+  return undefined;
+}
+
+/** Carga un partido concreto de PandaScore (útil en instancias serverless sin el evento en el store). */
+export async function fetchPandaScoreMatchById(matchId: string): Promise<SportsEvent | null> {
+  if (!isPandaScoreConfigured()) return null;
+  const match = await psFetch<PsMatch>(`/matches/${matchId}`, { fresh: true });
+  if (!match) return null;
+  const game = gameFromMatch(match);
+  if (!game) return null;
+  return mapPandaScoreMatch(match, game);
+}
+
 export type PandaScoreLiveUpdate = {
   id: string;
   status: SportsEvent["status"];
