@@ -660,6 +660,12 @@ button { color: inherit; }
 
 @media (max-width: 900px) {
   .sport-landing-grid { grid-template-columns: 1fr; }
+  .sport-landing-copy { text-align: center; }
+  .sport-landing-copy > p { margin-inline: auto; }
+  .sport-landing-copy .hero-actions,
+  .sport-stat-pills,
+  .esports-hoy-links { justify-content: center; }
+  .landing-hero-card { margin-inline: auto; }
 }
 
 .event-phase-chip {
@@ -746,7 +752,8 @@ button { color: inherit; }
 @media (max-width: 720px) {
   .container { width: min(100% - 24px, 1180px); }
   .game-hero-teams { grid-template-columns: 1fr; }
-  .game-hero-card { max-width: none; }
+  .game-hero-card { max-width: none; text-align: center; }
+  .game-hero-center .score { font-size: 22px; }
   .roster-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
   .header-main { height: 64px; gap: 10px; }
   .brand img { width: 34px; height: 34px; }
@@ -762,33 +769,228 @@ button { color: inherit; }
   .main-nav.is-open { display: block; }
   .main-nav .container { display: grid; gap: 0; padding: 10px 0; }
   .main-nav a { padding: 12px; }
-  .hero { padding-top: 46px; }
-  .hero h1 { font-size: 45px; }
+
+  /* Home hero — centered + proportional type */
+  .hero { padding: 36px 0 28px; text-align: center; }
+  .hero-grid { gap: 28px; justify-items: center; }
+  .hero .eyebrow { justify-content: center; }
+  .hero h1 { font-size: clamp(32px, 9vw, 42px); margin: 14px auto 12px; max-width: 20ch; }
+  .hero p { font-size: 15px; line-height: 1.55; margin-inline: auto; max-width: 34ch; }
+  .hero-actions { justify-content: center; margin-top: 20px; }
+  .hero-card { max-width: 100%; width: 100%; margin-inline: auto; padding: 20px 16px; }
+  .hero-match { gap: 8px; }
+  .hero-match > div { gap: 8px; font-size: 13px; }
+  .hero-match b { font-size: 22px; }
+  .hero-multi h2 { font-size: 20px; }
+  .hero-schedule { justify-content: center; }
+
+  /* Page / sport / league heroes */
+  .page-hero,
+  .sport-landing-hero,
+  .league-landing-hero,
+  .deportes-hero,
+  .esports-hero,
+  .team-landing-hero { text-align: center; padding: 36px 0; }
+  .page-hero .breadcrumbs,
+  .sport-landing-hero .breadcrumbs,
+  .league-landing-hero .breadcrumbs,
+  .team-landing-hero .breadcrumbs { justify-content: center; display: flex; flex-wrap: wrap; }
+  .page-hero .back-link,
+  .sport-landing-hero .back-link,
+  .league-landing-hero .back-link,
+  .team-landing-hero .back-link { justify-content: center; }
+  .page-hero .eyebrow,
+  .sport-landing-copy .eyebrow { justify-content: center; }
+  .page-hero h1,
+  .sport-landing-copy h1 { font-size: clamp(28px, 8vw, 40px); margin-inline: auto; }
+  .page-hero p,
+  .sport-landing-copy > p { font-size: 15px; margin-inline: auto; max-width: 36ch; }
+  .hero-actions { justify-content: center; }
+  .sport-stat-pills { justify-content: center; }
+  .team-landing-head { flex-direction: column; align-items: center; text-align: center; }
+  .team-league-chips { justify-content: center; }
+  .matchup-hero { grid-template-columns: 1fr; gap: 18px; text-align: center; }
+  .matchup-side { justify-content: center; justify-items: center; }
+  .matchup-center h1 { font-size: clamp(24px, 7vw, 34px); }
+
+  /* Section heads */
+  .content-section { padding: 28px 0; }
+  .section-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .section-head p { display: block; font-size: 14px; margin-inline: auto; max-width: 36ch; }
+  .section-link { justify-content: center; }
+  .expandable-head { align-items: center; text-align: center; }
+  .team-filter { justify-items: center; width: 100%; }
+  .team-filter select { width: min(100%, 280px); }
+
   .stats-strip { grid-template-columns: 1fr; }
-  .stats-strip div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .stats-strip div {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    justify-content: center;
+    text-align: center;
+  }
   .events-grid { grid-template-columns: 1fr; }
-  .section-head { align-items: start; }
-  .section-head p { display: none; }
-  .event-card-body { grid-template-columns: 1fr 62px 1fr; }
-  .event-multi-body { grid-template-columns: 1fr; }
+  .sports-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sport-tile { text-align: center; justify-items: center; padding: 18px 14px; }
+  .sport-tile .live-badge { justify-self: center; }
+
+  /* Event cards — proportional + centered footer */
+  .event-card-top {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    min-height: auto;
+    padding: 12px 12px 10px;
+  }
+  .league-label { max-width: 100%; font-size: 11px; }
+  .event-meta-actions { justify-content: center; flex-wrap: wrap; }
+  .event-card-body {
+    grid-template-columns: minmax(0, 1fr) minmax(70px, 0.85fr) minmax(0, 1fr);
+    gap: 6px;
+    padding: 16px 10px;
+  }
+  .event-team { gap: 7px; }
+  .event-team .team-logo {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .event-team strong {
+    font-size: 12px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  .event-center { gap: 5px; }
+  .event-center time,
+  .event-when-time { font-size: 13px; }
+  .event-when-day { font-size: 10px; }
+  .score { font-size: 18px; }
+  .versus { font-size: 10px; }
+  .live-badge { font-size: 9px; padding: 4px 7px; }
+  .event-phase-badge { font-size: 9px; padding: 3px 8px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  .countdown-badge { font-size: 10px; padding: 3px 7px; }
+  .event-when-mini { font-size: 9px !important; }
+  .event-card-footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 12px;
+  }
+  .event-card-footer > span {
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+    font-size: 11px;
+  }
+  .watch-btn { justify-content: center; font-size: 12px; }
+  .event-multi-body { grid-template-columns: 1fr; text-align: center; }
+  .multi-event-heading { align-items: center; text-align: center; }
+  .multi-event-heading h3 { font-size: 15px; }
+  .mini-leaderboard { justify-items: stretch; }
+
+  /* Match detail scoreboard */
+  .detail-wrap { padding: 28px 0 50px; }
+  .detail-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .detail-scoreboard {
+    grid-template-columns: minmax(0, 1fr) minmax(76px, 0.9fr) minmax(0, 1fr);
+    gap: 8px;
+    padding: 24px 12px;
+  }
+  .detail-team { gap: 10px; min-width: 0; }
+  .detail-team .team-logo {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  .detail-team h2 {
+    font-size: clamp(13px, 3.6vw, 16px);
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    max-width: 100%;
+  }
+  .detail-center { gap: 8px; }
+  .detail-center .score { font-size: clamp(22px, 7vw, 28px); }
+  .detail-center time { font-size: 16px; }
+  .detail-info-grid { grid-template-columns: 1fr; text-align: center; }
+  .detail-info-grid div { border-right: 0; border-bottom: 1px solid var(--line); align-items: center; }
+  .quick-facts { grid-template-columns: 1fr; text-align: center; }
+  .answer-panel { text-align: center; }
+  .answer-panel .eyebrow { justify-content: center; }
+  .transmission-link { justify-self: center; }
+
   .sidebar { grid-template-columns: 1fr; }
-  .detail-scoreboard { grid-template-columns: 1fr 90px 1fr; padding: 30px 12px; }
-  .detail-info-grid { grid-template-columns: 1fr; }
-  .quick-facts { grid-template-columns: 1fr; }
+  .category-layout { grid-template-columns: 1fr; }
   .favorites-toolbar { align-items: stretch; flex-direction: column; }
   .favorites-toolbar .secondary-btn { width: 100%; justify-content: center; }
-  .detail-info-grid div { border-right: 0; border-bottom: 1px solid var(--line); }
   .lineups, .footer-grid { grid-template-columns: 1fr; }
-  .footer-grid { gap: 28px; }
-  .footer-bottom { flex-direction: column; justify-content: center; text-align: center; padding: 15px 0; }
-  .dashboard-head { align-items: flex-start; flex-direction: column; }
+
+  /* Site footer — fully centered */
+  .site-footer { padding-top: 36px; text-align: center; }
+  .footer-grid {
+    gap: 28px;
+    justify-items: center;
+  }
+  .footer-grid > div {
+    align-items: center;
+    text-align: center;
+  }
+  .footer-grid p { max-width: 32ch; margin-inline: auto; font-size: 14px; }
+  .footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 16px 0;
+    gap: 8px;
+  }
+
+  .legal-page { padding: 40px 0 60px; text-align: center; }
+  .legal-page h1 { font-size: clamp(28px, 8vw, 36px); }
+  .legal-page .eyebrow { justify-content: center; }
+  .legal-page .breadcrumbs { justify-content: center; display: flex; flex-wrap: wrap; }
+  .legal-page p,
+  .legal-page li { text-align: left; }
+  .legal-page .primary-btn { justify-content: center; margin-inline: auto; }
+
+  .dashboard-head { align-items: center; flex-direction: column; text-align: center; }
   .dashboard-stats { grid-template-columns: 1fr 1fr; }
   .results-filters { grid-template-columns: 1fr; }
-  .matchup-hero { grid-template-columns: 1fr; gap: 18px; }
-  .matchup-side { justify-content: center; }
   .timeline-stage { grid-template-columns: 28px 1fr; }
-  .team-landing-head { flex-direction: column; align-items: flex-start; }
-  .favorites-tabs { overflow-x: auto; }
+  .favorites-tabs { overflow-x: auto; justify-content: center; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-card { text-align: center; justify-items: center; }
+  .blog-cta,
+  .blog-match-banner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .empty-state { text-align: center; padding: 40px 18px; }
+  .faq-panel { text-align: left; }
 }
 
 .favorites-tabs { margin-bottom: 18px; }
