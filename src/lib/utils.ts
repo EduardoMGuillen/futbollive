@@ -55,16 +55,20 @@ export function eventTitle(event: SportsEvent) {
     : `${event.home.name} vs ${event.away.name}`;
 }
 
-export function eventDurationMs(event: SportsEvent) {
+/** Tiempo máximo razonable de juego antes de inferir "finalizado" sin respuesta fresca de la fuente. */
+export function heuristicFinishMs(event: SportsEvent) {
   if (event.format === "multi") return 5 * 24 * 60 * 60 * 1000;
   if (event.source === "pandascore") {
-    // Series de esports: ~70 min por mapa más margen entre mapas.
     return (event.bestOf || 3) * 70 * 60 * 1000 + 60 * 60 * 1000;
   }
   if (event.sportSlug === "cricket") return 12 * 60 * 60 * 1000;
-  if (event.sportSlug === "beisbol") return 8 * 60 * 60 * 1000;
+  if (event.sportSlug === "beisbol") return 4.5 * 60 * 60 * 1000;
   if (event.sportSlug === "mma") return 5 * 60 * 60 * 1000;
   return 3 * 60 * 60 * 1000;
+}
+
+export function eventDurationMs(event: SportsEvent) {
+  return heuristicFinishMs(event);
 }
 
 export function isPubliclyVisible(event: SportsEvent, now = Date.now()) {

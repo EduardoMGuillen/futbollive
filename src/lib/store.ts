@@ -3,7 +3,7 @@ import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { getSeedData } from "./seed";
 import type { SportsEvent, StoreData } from "./types";
-import { eventDurationMs, isPubliclyVisible } from "./utils";
+import { heuristicFinishMs, isPubliclyVisible } from "./utils";
 
 const dataPath = path.join(process.cwd(), "data", "store.json");
 let memoryStore: StoreData | null = null;
@@ -34,7 +34,22 @@ function refreshTemporalStatuses(data: StoreData) {
       const sourceAge = now - new Date(event.updatedAt).getTime();
       if ((event.source === "espn" || event.source === "pandascore") && sourceAge < 2 * 60 * 1000) return event;
       const elapsed = now - new Date(event.startsAt).getTime();
-      if (elapsed >= eventDurationMs(event)) return { ...event, status: "finished" as const, minute: undefined };
+      const finishMs = heuristicFinishMs(event);
+      if (elapsed >= finishMs) return { ...event, status: "finished" as const, minute: undefined };
+      // TheSportsDB no recibe live updates: no forzar "en vivo" 8h; confiar en sync + ventana corta.
+      if (event.source === "thesportsdb") {
+        if (elapsed < 0) return { ...event, status: "upcoming" as const, minute: undefined };
+        const staleLive =
+          event.status === "live" &&
+          event.home.score == null &&
+          event.away.score == null &&
+          elapsed > 3 * 60 * 60 * 1000;
+        if (staleLive) return { ...event, status: "finished" as const, minute: undefined };
+        if (event.status === "upcoming") {
+          return { ...event, status: "live" as const, minute: event.minute || "EN VIVO" };
+        }
+        return event;
+      }
       // Esports series get delayed often; only the source flips them to live.
       if (event.source === "pandascore") return event;
       if (elapsed >= 0) return { ...event, status: "live" as const, minute: event.minute || "EN VIVO" };

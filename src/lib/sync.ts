@@ -66,12 +66,20 @@ export async function runSync() {
     } : event);
   }
   const merged = Array.from(existing.values());
+  const primaryMatchups = new Set(
+    merged
+      .filter((event) => event.source === "espn" || event.source === "pandascore")
+      .map(matchupKey),
+  );
+  const deduped = merged.filter(
+    (event) => event.source !== "thesportsdb" || !primaryMatchups.has(matchupKey(event)),
+  );
   // Once real data exists, demo events disappear and old finished events are pruned.
-  const hasRealData = merged.some(
+  const hasRealData = deduped.some(
     (event) => event.source === "espn" || event.source === "thesportsdb" || event.source === "pandascore",
   );
   const now = Date.now();
-  data.events = merged.filter((event) => {
+  data.events = deduped.filter((event) => {
     if (hasRealData && event.source === "demo") return false;
     if (event.status === "finished" && event.source !== "manual") {
       // Keep major tournaments (Mundial, Euro, Copa América) longer for SEO pages.

@@ -60,11 +60,12 @@ function parseTimestamp(event: ApiEvent) {
 
 function parseStatus(event: ApiEvent, startsAt: string): SportsEvent["status"] {
   const status = event.strStatus?.toLowerCase() || "";
-  if (["match finished", "ft", "finished"].some((value) => status.includes(value))) return "finished";
-  if (["live", "1h", "2h", "halftime"].some((value) => status.includes(value))) return "live";
+  if (["match finished", "ft", "finished", "final"].some((value) => status.includes(value))) return "finished";
+  if (["live", "1h", "2h", "halftime", "in progress", "inning"].some((value) => status.includes(value))) return "live";
   const diff = Date.now() - new Date(startsAt).getTime();
-  if (diff >= 0 && diff < 3 * 60 * 60 * 1000) return "live";
-  if (diff >= 3 * 60 * 60 * 1000) return "finished";
+  const finishMs = event.strSport === "Baseball" ? 4.5 * 60 * 60 * 1000 : 3 * 60 * 60 * 1000;
+  if (diff >= finishMs) return "finished";
+  if (diff >= 0) return "live";
   return "upcoming";
 }
 
