@@ -22,13 +22,16 @@ export function SearchableSelect({
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(value);
+  const [prevValue, setPrevValue] = useState(value);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const selectedLabel = options.find((o) => o.value === selected)?.label || "";
-
-  useEffect(() => {
+  // Sync when the parent default changes (e.g. new URL search params) without an effect.
+  if (value !== prevValue) {
+    setPrevValue(value);
     setSelected(value);
-  }, [value]);
+  }
+
+  const selectedLabel = options.find((o) => o.value === selected)?.label || "";
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {

@@ -623,12 +623,6 @@ function mapStandingsEntry(entry: StandingsEntryRow, index: number): StandingEnt
   };
 }
 
-function flattenStandingsEntries(body: EspnStandingsBody): StandingEntry[] {
-  const direct = standingsEntries(body.standings);
-  const nested = (body.children || []).flatMap((child) => flattenStandingsEntries(child));
-  return [...direct.map((e, i) => mapStandingsEntry(e, i)), ...nested];
-}
-
 export type StandingsGroupResult = {
   name: string;
   entries: StandingEntry[];

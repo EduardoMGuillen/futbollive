@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Countdown } from "@/components/Countdown";
-import { EventCard } from "@/components/EventCard";
 import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
 import { getEspnSportsCatalog } from "@/lib/espn";
