@@ -21,11 +21,13 @@ import {
 } from "@/components/event-details/SportSections";
 import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
+import { resolveDisplayPhase } from "@/lib/event-phase";
 import { fetchEventDetails } from "@/lib/event-details";
 import { isEsport, isIndividualSport } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { ensureLiveScores, resolveEvent } from "@/lib/sync";
 import { eventTitle, formatEventDate, formatEventTime, isPubliclyVisible, siteUrl } from "@/lib/utils";
+import { matchupSlug } from "@/lib/vs";
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -40,8 +42,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const event = await resolveEvent(slug);
   if (!event) return { title: "Evento no encontrado" };
   const name = eventTitle(event);
-  const title = `Ver ${name} gratis`;
-  const description = `¿Dónde ver gratis ${name}? Consulta horario, fecha, estadísticas y opciones para seguir el evento de ${event.league}.`;
+  const phaseLabel = resolveDisplayPhase(event);
+  const title = phaseLabel ? `Ver ${name} gratis — ${phaseLabel}` : `Ver ${name} gratis`;
+  const description = phaseLabel
+    ? `¿Dónde ver gratis ${name} (${phaseLabel})? Horario, sede, estadísticas y canales para ${event.league}.`
+    : `¿Dónde ver gratis ${name}? Consulta horario, fecha, estadísticas y opciones para seguir el evento de ${event.league}.`;
   return {
     title,
     description,
@@ -55,7 +60,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       `${name} ${event.sport}`,
       `${event.home.name} vs ${event.away.name} ${event.sport}`,
       event.league,
-    ],
+      phaseLabel || "",
+    ].filter(Boolean),
     alternates: { canonical: `/partido/${event.slug}` },
     openGraph: {
       type: "article",
@@ -83,6 +89,7 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
   const isLive = details.status.state === "live" || event.status === "live";
   const isFinished = details.status.state === "finished" || event.status === "finished";
   const name = eventTitle(event);
+  const phaseLabel = resolveDisplayPhase(event) || details.roundLabel;
   const individual = isIndividualSport(event);
   const esport = isEsport(event);
   const sportHref = esport ? `/esports/${event.sportSlug}` : `/deporte/${event.sportSlug}`;
@@ -117,8 +124,8 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
       {
         "@type": "SportsEvent",
         "@id": `${eventUrl}#event`,
-        name,
-        description: `${name} por ${event.league}. Consulta horario, sede, estadísticas y dónde verlo.`,
+        name: phaseLabel ? `${name} — ${phaseLabel}` : name,
+        description: `${name}${phaseLabel ? ` (${phaseLabel})` : ""} por ${event.league}. Consulta horario, sede, estadísticas y dónde verlo.`,
         url: eventUrl,
         image: [home.logo, away.logo].filter(Boolean),
         startDate: event.startsAt,
@@ -144,6 +151,11 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
       {
         "@type": "FAQPage",
         mainEntity: [
+          ...(phaseLabel ? [{
+            "@type": "Question",
+            name: `¿Qué fase del torneo es ${name}?`,
+            acceptedAnswer: { "@type": "Answer", text: `${name} corresponde a ${phaseLabel} de ${event.league}.` },
+          }] : []),
           {
             "@type": "Question",
             name: `¿Cuándo es ${name}?`,
@@ -174,13 +186,20 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
       <section className="page-hero"><div className="container">
         <BackLink href={`/liga/${event.leagueSlug}`} label={`Volver a ${event.league}`} />
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / <Link href={sportHref}>{event.sport}</Link> / <Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link></div>
-        <h1>Ver {name}</h1>
-        <p>Horario, sede, estadísticas y opciones para seguir el evento de {event.league}.</p>
+        <h1>Ver {name}{phaseLabel ? ` — ${phaseLabel}` : ""}</h1>
+        <p>
+          Horario, sede, estadísticas y opciones para seguir el evento de {event.league}.
+          {!esport && event.format !== "multi" && (
+            <> {" "}
+              <Link href={`/vs/${matchupSlug(home.name, away.name)}`}>Ver historial {home.name} vs {away.name} →</Link>
+            </>
+          )}
+        </p>
       </div></section>
       <div className="container detail-wrap">
         <div className="match-detail">
           <div className="detail-top">
-            <Link href={`/liga/${event.leagueSlug}`}>{event.league}</Link>
+            <Link href={`/liga/${event.leagueSlug}`}>{event.league}{phaseLabel ? ` · ${phaseLabel}` : ""}</Link>
             <span>
               {isLive ? (details.status.clock || details.status.label || event.minute || "En vivo") : isFinished ? "FINALIZADO" : <LocalTime iso={event.startsAt} mode="date" as="span" />}
             </span>

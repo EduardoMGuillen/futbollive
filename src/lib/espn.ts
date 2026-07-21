@@ -1,4 +1,5 @@
-import type { BroadcastOption, SportsEvent } from "./types";
+import { normalizePhase, roundLabelFromEspn } from "./event-phase";
+import type { BroadcastOption, SportsEvent, StandingEntry } from "./types";
 import { slugify } from "./utils";
 
 type EspnLeague = {
@@ -139,6 +140,10 @@ function dateWindowDays(league: EspnLeague) {
   if (league.importance >= 97 || league.path.includes("fifa.world") || league.path.includes("fifa.wwc")) {
     return { past: 10, future: 14 };
   }
+  // Ligas top (MX, Premier, etc.): un poco más de agenda en el sync global.
+  if (!league.adapter && league.importance >= 88) {
+    return { past: 3, future: 21 };
+  }
   return { past: 1, future: 5 };
 }
 
@@ -182,6 +187,11 @@ type EspnEvent = {
     startDate?: string;
     endDate?: string;
     type?: { abbreviation?: string; text?: string; slug?: string };
+    round?: { displayName?: string; id?: string };
+    notes?: Array<{ text?: string; type?: string; headline?: string }>;
+    altGameNote?: string;
+    isFinal?: boolean;
+    isThirdPlace?: boolean;
     venue?: { fullName?: string; address?: { city?: string; country?: string } };
     competitors?: EspnCompetitor[];
     status?: EspnEvent["status"];
@@ -268,6 +278,20 @@ function withinRange(iso: string | undefined, range: string) {
   return value >= from && value <= to;
 }
 
+function phaseFields(competition?: NonNullable<EspnEvent["competitions"]>[number], eventName?: string) {
+  const altNote = competition?.altGameNote;
+  // ESPN soccer often puts the stage in altGameNote ("FIFA World Cup, Final") instead of round.
+  const roundDisplay =
+    competition?.round?.displayName ||
+    (competition?.isFinal ? "Final" : undefined) ||
+    (competition?.isThirdPlace ? "Third Place" : undefined);
+  const noteText = competition?.notes?.map((n) => n.headline || n.text).filter(Boolean).join(" ");
+  const typeText = competition?.type?.text || altNote || noteText;
+  const roundLabel = roundLabelFromEspn(roundDisplay, typeText, eventName || altNote);
+  const phase = normalizePhase(roundDisplay, typeText, eventName || altNote);
+  return { roundLabel, phase };
+}
+
 function mapTeamEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
   const competition = event.competitions?.[0];
   const competitors = competition?.competitors || [];
@@ -278,6 +302,7 @@ function mapTeamEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
   if (!home.name || !away.name) return [];
   const status = statusFromCompetition(event, competition);
   const venue = venueFrom(event, competition);
+  const { roundLabel, phase } = phaseFields(competition, event.name || event.shortName);
   return [{
     id: `espn-${slugify(league.path)}-${event.id}`,
     slug: `${home.slug}-vs-${away.slug}-${event.id}`,
@@ -285,6 +310,8 @@ function mapTeamEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
     sportSlug: slugify(league.sport),
     league: league.league,
     leagueSlug: slugify(league.league),
+    roundLabel,
+    phase,
     format: "versus",
     home,
     away,
@@ -359,6 +386,7 @@ function mapCombatEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
   if (!home.name || !away.name) return [];
   const status = statusFromCompetition(event, competition);
   const venue = venueFrom(event, competition);
+  const { roundLabel, phase } = phaseFields(competition, event.name || league.league);
   return [{
     id: `espn-${slugify(league.path)}-${event.id}-${competition.id || "main"}`,
     slug: `${home.slug}-vs-${away.slug}-${competition.id || event.id}`,
@@ -366,6 +394,8 @@ function mapCombatEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
     sportSlug: slugify(league.sport),
     league: league.league,
     leagueSlug: slugify(league.league),
+    roundLabel,
+    phase,
     format: "versus",
     eventName: event.name || league.league,
     home,
@@ -399,6 +429,7 @@ function mapMultiEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
   const away = ranked[1] || { name: "Campo", slug: "campo" };
   const status = statusFromCompetition(event, competition);
   const venue = venueFrom(event, competition);
+  const { roundLabel, phase } = phaseFields(competition, eventName);
   return [{
     id: `espn-${slugify(league.path)}-${event.id}`,
     slug: `${slugify(eventName)}-${event.id}`,
@@ -406,6 +437,8 @@ function mapMultiEvent(event: EspnEvent, league: EspnLeague): SportsEvent[] {
     sportSlug: slugify(league.sport),
     league: league.league,
     leagueSlug: slugify(league.league),
+    roundLabel,
+    phase,
     format: "multi",
     eventName,
     participants: ranked,
@@ -452,12 +485,25 @@ async function fetchLeagueRange(league: EspnLeague, range: string): Promise<Spor
   }
 }
 
+function formatEspnDate(offsetDays: number) {
+  const date = new Date();
+  date.setUTCDate(date.getUTCDate() + offsetDays);
+  return date.toISOString().slice(0, 10).replace(/-/g, "");
+}
+
+/** Calendario amplio bajo demanda (p. ej. perfil de equipo): temporada / varios meses. */
+export async function fetchEspnLeagueCalendar(
+  leaguePath: string,
+  opts: { pastDays?: number; futureDays?: number } = {},
+): Promise<SportsEvent[]> {
+  const league = leagues.find((item) => item.path === leaguePath);
+  if (!league) return [];
+  const past = opts.pastDays ?? 21;
+  const future = opts.futureDays ?? 150;
+  return fetchLeagueRange(league, `${formatEspnDate(-past)}-${formatEspnDate(future)}`);
+}
+
 export async function fetchEspnEvents(): Promise<SportsEvent[]> {
-  const format = (offset: number) => {
-    const date = new Date();
-    date.setUTCDate(date.getUTCDate() + offset);
-    return date.toISOString().slice(0, 10).replace(/-/g, "");
-  };
   const results: SportsEvent[] = [];
   // Small sequential groups keep us polite with the public API.
   const groupSize = 6;
@@ -466,7 +512,7 @@ export async function fetchEspnEvents(): Promise<SportsEvent[]> {
     const batches = await Promise.all(
       group.map((league) => {
         const window = dateWindowDays(league);
-        const range = `${format(-window.past)}-${format(window.future)}`;
+        const range = `${formatEspnDate(-window.past)}-${formatEspnDate(window.future)}`;
         return fetchLeagueRange(league, range);
       }),
     );
@@ -509,6 +555,128 @@ export async function fetchEspnResults(path: string, year: number) {
   return Array.from(unique.values()).sort(
     (a, b) => new Date(b.startsAt).getTime() - new Date(a.startsAt).getTime(),
   );
+}
+
+type EspnStandingsBody = {
+  name?: string;
+  abbreviation?: string;
+  standings?:
+    | Array<{
+        entries?: Array<{
+          team?: { displayName?: string; shortDisplayName?: string; logos?: Array<{ href?: string }> };
+          stats?: Array<{ name?: string; displayName?: string; displayValue?: string; value?: number }>;
+        }>;
+      }>
+    | {
+        entries?: Array<{
+          team?: { displayName?: string; shortDisplayName?: string; logos?: Array<{ href?: string }> };
+          stats?: Array<{ name?: string; displayName?: string; displayValue?: string; value?: number }>;
+        }>;
+      };
+  children?: EspnStandingsBody[];
+};
+
+type StandingsEntryRow = {
+  team?: { displayName?: string; shortDisplayName?: string; logos?: Array<{ href?: string }> };
+  stats?: Array<{ name?: string; displayName?: string; displayValue?: string; value?: number }>;
+};
+
+/** ESPN a veces manda `standings` como array de grupos y a veces como un solo objeto con `entries` (Liga MX, etc.). */
+function standingsEntries(standings: EspnStandingsBody["standings"]): StandingsEntryRow[] {
+  if (!standings) return [];
+  if (Array.isArray(standings)) {
+    return standings.flatMap((group) => group.entries || []).filter(Boolean);
+  }
+  return (standings.entries || []).filter(Boolean);
+}
+
+function mapStandingsEntry(entry: StandingsEntryRow, index: number): StandingEntry {
+  const name = entry.team?.displayName || entry.team?.shortDisplayName || "Equipo";
+  const stats = entry.stats || [];
+  const byExact = (key: string) => stats.find((s) => (s.name || "").toLowerCase() === key);
+  const byIncludes = (...keys: string[]) =>
+    stats.find((s) => keys.some((k) => (s.name || s.displayName || "").toLowerCase().includes(k)));
+  const points = byExact("points")?.displayValue ?? byExact("points")?.value ?? byIncludes("pts")?.displayValue;
+  const played = byExact("gamesplayed")?.displayValue ?? byIncludes("gamesplayed", "played")?.displayValue;
+  const preferredKeys = [
+    "gamesPlayed", "wins", "ties", "losses", "pointsFor", "pointsAgainst", "pointDifferential", "points", "overall",
+  ];
+  const preferred = preferredKeys
+    .map((key) => byExact(key.toLowerCase()) || stats.find((s) => (s.name || "") === key))
+    .filter(Boolean) as NonNullable<StandingsEntryRow["stats"]>;
+  const metricsSource = preferred.length ? preferred : stats.slice(0, 10);
+  return {
+    position: Number(byExact("rank")?.displayValue) || index + 1,
+    participant: {
+      id: slugify(name),
+      name,
+      slug: slugify(name),
+      logo: entry.team?.logos?.[0]?.href,
+      kind: "team" as const,
+    },
+    score: points ?? played,
+    metrics: metricsSource.map((s) => ({
+      key: s.name || s.displayName || "stat",
+      label: s.displayName || s.name || "",
+      displayValue: s.displayValue ?? String(s.value ?? ""),
+    })),
+  };
+}
+
+function flattenStandingsEntries(body: EspnStandingsBody): StandingEntry[] {
+  const direct = standingsEntries(body.standings);
+  const nested = (body.children || []).flatMap((child) => flattenStandingsEntries(child));
+  return [...direct.map((e, i) => mapStandingsEntry(e, i)), ...nested];
+}
+
+export type StandingsGroupResult = {
+  name: string;
+  entries: StandingEntry[];
+};
+
+/** Standings agrupados (p. ej. grupos del Mundial). */
+export async function fetchLeagueStandingsGrouped(leaguePath: string): Promise<StandingsGroupResult[] | null> {
+  const [sport, league] = leaguePath.split("/");
+  if (!sport || !league) return null;
+  try {
+    const response = await fetch(
+      `https://site.api.espn.com/apis/v2/sports/${sport}/${league}/standings`,
+      { next: { revalidate: 1800 }, headers: { accept: "application/json" } },
+    );
+    if (!response.ok) return null;
+    const body = (await response.json()) as EspnStandingsBody;
+    const children = body.children?.length ? body.children : [body];
+    const groups = children
+      .map((child) => {
+        const entries = standingsEntries(child.standings);
+        if (!entries.length) return null;
+        return {
+          name: child.name || child.abbreviation || "Clasificación",
+          entries: entries.map((entry, index) => mapStandingsEntry(entry, index)),
+        };
+      })
+      .filter((g): g is StandingsGroupResult => Boolean(g));
+    // Si no hubo grupos en children, intentar el cuerpo raíz (algunas ligas solo tienen standings ahí).
+    if (!groups.length) {
+      const rootEntries = standingsEntries(body.standings);
+      if (rootEntries.length) {
+        return [{
+          name: body.name || body.abbreviation || "Clasificación",
+          entries: rootEntries.map((entry, index) => mapStandingsEntry(entry, index)),
+        }];
+      }
+      return null;
+    }
+    return groups;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchLeagueStandings(leaguePath: string): Promise<StandingEntry[] | null> {
+  const grouped = await fetchLeagueStandingsGrouped(leaguePath);
+  if (!grouped?.length) return null;
+  return grouped.flatMap((g) => g.entries);
 }
 
 export type EspnLiveUpdate = {

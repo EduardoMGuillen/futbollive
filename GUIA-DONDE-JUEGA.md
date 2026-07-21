@@ -632,16 +632,20 @@ Comportamiento:
 | `/en-vivo` | Agenda completa |
 | `/deportes` | Directorio de deportes |
 | `/deporte/[slug]` | Landing de deporte |
-| `/liga/[slug]` | Landing de competición |
+| `/liga/[slug]` | Landing de competición (tabla, bracket, FAQ) |
 | `/partido/[slug]` | Detalle del evento |
-| `/equipo/[slug]` | Equipo o selección |
+| `/vs/[slug]` | Enfrentamiento evergreen (historial A vs B) |
+| `/equipo/[slug]` | Landing de equipo/selección (agenda por liga) |
 | `/atleta/[slug]` | Atleta, piloto o peleador |
+| `/futbol-hoy`, `/valorant-hoy`, etc. | Agenda del día por deporte/juego |
 | `/resultados` | Archivo por deporte, torneo y año |
 | `/buscar` | Resultados de búsqueda |
-| `/favoritos` | Favoritos locales |
+| `/favoritos` | Favoritos: partidos, ligas, equipos y “Mi agenda” |
+| `/blog` | Hub editorial (Mundial 2026) |
+| `/blog/[slug]` | Artículo con enlaces internos automáticos |
 | `/esports` | Hub de esports |
 | `/esports/[game]` | Landing del juego |
-| `/esports/[game]/equipo/[slug]` | Equipo de esports |
+| `/esports/[game]/equipo/[slug]` | Equipo de esports (roster + BO por liga) |
 | `/esports/[game]/jugador/[slug]` | Jugador de esports |
 | `/acerca-de` | Información del proyecto |
 | `/contacto` | Contacto y publicidad |
@@ -711,7 +715,22 @@ Se reduce el peso de:
 
 ---
 
-## 14. Página del evento
+## 14. Landings de liga, equipo y evento
+
+### Landing de liga `/liga/[slug]`
+
+Además del calendario expandable:
+
+- **Tablas** — `LeagueStandingsPanel` o `GroupStandingsPanel` (grupos + puntos en el Mundial).
+- **Cuadro eliminatorio** — `TournamentBracket` cuando hay knockout.
+- **FAQ** visible + schema `FAQPage`.
+- **Guardar liga** en favoritos.
+
+### Landing de equipo `/equipo/[slug]`
+
+Hero premium, chips de competiciones, en vivo, próximos **agrupados por liga**, resultados recientes, schema SportsTeam + FAQ.
+
+### Detalle del evento `/partido/[slug]`
 
 Archivo: `src/app/partido/[slug]/page.tsx`.
 
@@ -785,40 +804,42 @@ Los resultados históricos se obtienen bajo demanda y no llenan permanentemente 
 
 ## 16. Esports
 
+Fuente: PandaScore (`PANDASCORE_TOKEN`). Juegos: Valorant, League of Legends, CS2.
+
 ### Hub `/esports`
 
 - Tarjetas de Valorant, LoL y CS2.
-- Series en vivo.
-- Próximas series.
+- Atajos “hoy”: `/valorant-hoy`, `/lol-hoy`, `/cs2-hoy`.
+- Series en vivo y próximas.
 - Aviso si no existe token.
+
+### Agenda del día
+
+Definidas en `src/lib/sport-today.ts` junto a fútbol/NBA/etc. Filtran por `sportSlug` y fecha local.
 
 ### Juego `/esports/[game]`
 
 - Hero específico.
-- Serie en vivo o próxima.
-- Marcador o countdown.
-- Agenda.
+- Serie en vivo o próxima (con BO si aplica).
+- Agenda y resultados.
+- Torneos y equipos.
+
+### Equipo `/esports/[game]/equipo/[slug]`
+
+- Landing premium con botón “Guardar equipo”.
+- Roster PandaScore (rol, nacionalidad).
+- Próximas series **agrupadas por liga/torneo**.
+- Chip `BO{n}` en tarjetas (`EventCard` + `bestOf`).
 - Resultados recientes.
-- Torneos.
-- Equipos.
-
-### Equipo
-
-- Logo.
-- Nombre, siglas y país.
-- Roster.
-- Rol y nacionalidad de jugadores.
-- Agenda del equipo.
 
 ### Jugador
 
-- Nickname.
-- Nombre real si está disponible.
-- Foto.
-- Equipo.
-- Rol.
-- Nacionalidad.
+- Nickname, nombre real, foto, equipo, rol, nacionalidad.
 - Próximas series.
+
+### Tarjetas
+
+Las series de esports muestran el formato (BO1/BO3/BO5) cuando PandaScore envía `number_of_games`.
 
 ---
 
@@ -827,18 +848,33 @@ Los resultados históricos se obtienen bajo demanda y no llenan permanentemente 
 Archivos:
 
 - `src/lib/favorites.ts`
-- `src/components/FavoriteButton.tsx`
+- `src/components/FavoriteButton.tsx` (partidos)
+- `src/components/FavoriteEntityButtons.tsx` (ligas y equipos)
 - `src/components/FavoritesClient.tsx`
 - `src/components/FavoriteReminders.tsx`
+
+### Qué se puede guardar
+
+| Tipo | Clave localStorage | Dónde se activa |
+|---|---|---|
+| Partidos | `dj_favorites` | Estrella en `EventCard` |
+| Ligas | `dj_favorite_leagues` | Botón “Guardar liga” en `/liga/[slug]` |
+| Equipos | `dj_favorite_teams` | Botón “Guardar equipo” en `/equipo` y esports |
+
+### Pestañas en `/favoritos`
+
+1. **Mi agenda** — unión de partidos favoritos + eventos de ligas/equipos guardados.
+2. **Partidos** — solo IDs de eventos.
+3. **Ligas** — accesos a landings de competición.
+4. **Equipos** — accesos a landings de equipo.
 
 ### Funcionamiento
 
 - No requiere cuenta.
-- Guarda IDs en `localStorage`.
-- Sincroniza componentes mediante eventos del navegador.
+- Guarda datos en `localStorage`.
+- Sincroniza componentes mediante el evento `dj:favorites-changed`.
 - Consulta `/api/events`.
-- Puede solicitar permiso de notificaciones.
-- Notifica aproximadamente 15 minutos antes.
+- Puede solicitar permiso de notificaciones (recordatorios ~15 min antes).
 - Registra eventos ya notificados para no repetirlos.
 
 ### Limitaciones
@@ -1074,13 +1110,30 @@ Incluye:
 
 Se genera en:
 
-- Deportes.
-- Ligas.
-- Equipos.
-- Atletas.
-- Esports.
-- Equipos y jugadores de esports.
-- Eventos.
+- Deportes y páginas `*-hoy`.
+- Ligas (con FAQPage).
+- Equipos / atletas (SportsTeam/Person + FAQ).
+- Enfrentamientos evergreen `/vs/[slug]`.
+- Esports (hub, juego, equipo, jugador).
+- Eventos `/partido/[slug]`.
+- Blog.
+
+### Páginas evergreen `/vs/[slug]`
+
+Archivos: `src/lib/vs.ts`, `src/app/vs/[slug]/page.tsx`.
+
+- Slug estable ordenando alfabéticamente los equipos (`argentina-vs-espana`).
+- Historial reciente, próximos cruces y FAQ.
+- Enlazadas desde el detalle del partido.
+- Incluidas en el sitemap (hasta 400).
+
+### Landings de equipo
+
+`/equipo/[slug]` y esports usan hero + agenda agrupada por liga + JSON-LD + FAQ “¿cuándo juega?”.
+
+### FAQ por liga
+
+En `/liga/[slug]`: bloque FAQ visible + `FAQPage` en JSON-LD (próximos partidos, dónde ver, tabla).
 
 ### SEO del evento
 
@@ -1090,33 +1143,21 @@ Título:
 Ver Equipo A vs Equipo B gratis
 ```
 
-Contenido visible:
-
-```text
-Ver Equipo A vs Equipo B
-```
-
 Keywords:
 
-- Ver enfrentamiento.
-- Ver enfrentamiento gratis.
-- Dónde ver enfrentamiento gratis.
-- Horario.
-- Liga.
-- Deporte.
+- Ver enfrentamiento / gratis / dónde ver.
+- Horario, liga, deporte, fase.
 - Combinaciones específicas de esports.
 
 ### Datos estructurados
 
-- `Organization`.
-- `WebSite`.
-- `SearchAction`.
-- `SportsEvent`.
-- `SportsTeam`.
-- `Person`.
-- `CollectionPage`.
-- `BreadcrumbList`.
-- `FAQPage`.
+- `Organization`, `WebSite`, `SearchAction`.
+- `SportsEvent`, `SportsTeam`, `Person`, `SportsOrganization`.
+- `CollectionPage`, `BreadcrumbList`, `FAQPage`, `BlogPosting`.
+
+### Enlaces internos en blog
+
+`src/lib/blog-links.tsx` auto-enlaza menciones (Mundial, España, Argentina, etc.) en párrafos.
 
 ### Sitemap
 
@@ -1124,17 +1165,12 @@ Archivo: `src/app/sitemap.ts`.
 
 Incluye:
 
-- Rutas estáticas.
-- Deportes.
-- Ligas.
-- Equipos.
-- Atletas.
-- Esports.
-- Eventos no ocultos.
+- Rutas estáticas (prioridad alta: home, en-vivo, deportes, esports).
+- Deportes, ligas, `*-hoy`, blog.
+- `/vs/...`, equipos, atletas, esports.
+- Eventos no ocultos (prioridad extra si live/featured/importance alta).
 
-Revalidación:
-
-- 5 minutos.
+Revalidación: 5 minutos.
 
 ### Robots
 
@@ -1532,11 +1568,28 @@ Inicio
 ### Favoritos
 
 ```text
-estrella en tarjeta
-→ localStorage
+estrella en tarjeta / Guardar liga / Guardar equipo
+→ localStorage (partidos + ligas + equipos)
 → /favoritos
-→ permiso de notificación
-→ recordatorio
+→ pestañas: Mi agenda | Partidos | Ligas | Equipos
+→ permiso de notificación (opcional)
+```
+
+### Equipo
+
+```text
+tarjeta o búsqueda
+→ /equipo/[slug]  (o /esports/.../equipo/[slug])
+→ próximos partidos agrupados por liga
+→ /partido/[slug] o /liga/[slug]
+```
+
+### Enfrentamiento evergreen
+
+```text
+/partido/[slug]
+→ /vs/equipo-a-vs-equipo-b
+→ historial + próximos cruces
 ```
 
 ### Administración

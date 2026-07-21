@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { fetchEspnEvents, fetchEspnLiveUpdate } from "./espn";
 import {
   fetchPandaScoreEvents,
@@ -86,16 +87,39 @@ export async function runSync() {
 
 let inflight: Promise<unknown> | null = null;
 
-export async function ensureFreshEvents(maxAgeMinutes = 10) {
+/** Max time SSR waits on a background sync (AdSense/Google must get HTML quickly). */
+const SYNC_SSR_WAIT_MS = 2_500;
+
+function kickoffSyncIfNeeded() {
+  if (!inflight) {
+    inflight = runSync().catch(() => null).finally(() => { inflight = null; });
+  }
+  return inflight;
+}
+
+/** Google AdSense / Search crawlers must receive HTML quickly — never block on sync. */
+async function isSearchOrAdsCrawler() {
+  const ua = (await headers()).get("user-agent")?.toLowerCase() ?? "";
+  return /googlebot|mediapartners-google|adsbot-google|google-display-ads-bot|google-inspectiontool|bingbot|duckduckbot|slurp|yandexbot/i.test(
+    ua,
+  );
+}
+
+export async function ensureFreshEvents(maxAgeMinutes = 30) {
   const data = await readStore();
   const last = data.settings.lastSync ? new Date(data.settings.lastSync).getTime() : 0;
   const stale = Date.now() - last > maxAgeMinutes * 60 * 1000;
   const onlyDemo = data.events.every((event) => event.source === "demo" || event.source === "manual");
   if (!stale && !onlyDemo) return;
-  if (!inflight) {
-    inflight = runSync().catch(() => null).finally(() => { inflight = null; });
+  if (await isSearchOrAdsCrawler()) {
+    kickoffSyncIfNeeded();
+    return;
   }
-  await inflight;
+  const sync = kickoffSyncIfNeeded();
+  await Promise.race([
+    sync,
+    new Promise<void>((resolve) => setTimeout(resolve, SYNC_SSR_WAIT_MS)),
+  ]);
 }
 
 function liveCandidates(events: SportsEvent[], now = Date.now()) {
@@ -159,6 +183,7 @@ let lastLiveCheck = 0;
  * las actualizaciones hechas por /api/live en otra instancia no llegan aquí.
  */
 export async function ensureLiveScores(maxAgeSeconds = 60) {
+  if (await isSearchOrAdsCrawler()) return;
   const now = Date.now();
   if (now - lastLiveCheck < maxAgeSeconds * 1000) return;
   const data = await readStore();
@@ -167,7 +192,10 @@ export async function ensureLiveScores(maxAgeSeconds = 60) {
   const stalest = Math.min(...candidates.map((event) => new Date(event.updatedAt).getTime()));
   if (now - stalest < maxAgeSeconds * 1000) return;
   lastLiveCheck = now;
-  await updateLiveEventsOnce().catch(() => null);
+  await Promise.race([
+    updateLiveEventsOnce().catch(() => null),
+    new Promise<void>((resolve) => setTimeout(resolve, 1_500)),
+  ]);
 }
 
 /**

@@ -45,13 +45,13 @@ export async function GET(request: NextRequest) {
     ...events.map((event) => ({
       id: event.id,
       title: eventTitle(event),
-      subtitle: `${event.league} · ${statusLabel(event.status)}`,
+      subtitle: `${event.league}${event.roundLabel ? ` · ${event.roundLabel}` : ""} · ${statusLabel(event.status)}`,
       startsAt: event.startsAt,
       href: `/partido/${event.slug}`,
       image: event.home.logo,
       type: "Evento" as const,
       score:
-        score(`${eventTitle(event)} ${event.home.name} ${event.away.name} ${event.league} ${event.sport}`, query) +
+        score(`${eventTitle(event)} ${event.home.name} ${event.away.name} ${event.league} ${event.sport} ${event.roundLabel || ""}`, query) +
         (event.status === "live" ? 12 : event.status === "upcoming" ? 8 : 2),
     })),
     ...Array.from(people.values()).map((person) => ({

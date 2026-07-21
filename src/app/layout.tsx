@@ -61,6 +61,14 @@ export default function RootLayout({
         name: "Dónde Juega",
         url: site,
         logo: { "@type": "ImageObject", url: `${site}/icon.png` },
+        email: "hola@dondejuega.com",
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: "hola@dondejuega.com",
+          url: `${site}/contacto`,
+          availableLanguage: ["es"],
+        },
       },
       {
         "@type": "WebSite",

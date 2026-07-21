@@ -50,6 +50,11 @@ export default async function EsportsHubPage() {
         <div className="breadcrumbs"><Link href="/">Inicio</Link> / Esports</div>
         <h1>Esports en vivo</h1>
         <p>Valorant, League of Legends y Counter-Strike 2: series en vivo, horarios en tu hora local, rosters y dónde ver cada partido.</p>
+        <div className="esports-hoy-links">
+          <Link href="/valorant-hoy">Valorant hoy</Link>
+          <Link href="/lol-hoy">LoL hoy</Link>
+          <Link href="/cs2-hoy">CS2 hoy</Link>
+        </div>
       </div></section>
       <main className="container content-section">
         <div className="sports-directory esports-directory">

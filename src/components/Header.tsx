@@ -14,6 +14,7 @@ const nav = [
   ["Tenis", "/deporte/tenis"],
   ["Esports", "/esports"],
   ["Resultados", "/resultados"],
+  ["Blog", "/blog"],
   ["Favoritos", "/favoritos"],
 ];
 

@@ -15,6 +15,7 @@ export function Footer() {
           <Link href="/deportes">Todos los deportes</Link>
           <Link href="/esports">Esports</Link>
           <Link href="/resultados">Resultados</Link>
+          <Link href="/blog">Blog</Link>
           <Link href="/deporte/futbol">Fútbol</Link>
           <Link href="/deporte/baloncesto">Baloncesto</Link>
         </div>
@@ -22,12 +23,16 @@ export function Footer() {
           <strong>Información</strong>
           <Link href="/acerca-de">Acerca de</Link>
           <Link href="/contacto">Contacto</Link>
+          <a href="mailto:hola@dondejuega.com">hola@dondejuega.com</a>
           <Link href="/privacidad">Política de privacidad</Link>
           <Link href="/terminos">Términos de uso</Link>
         </div>
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Dónde Juega</span>
+        <span>
+          Contacto: <a href="mailto:hola@dondejuega.com">hola@dondejuega.com</a>
+        </span>
         <span>No alojamos ni transmitimos contenido deportivo.</span>
       </div>
     </footer>

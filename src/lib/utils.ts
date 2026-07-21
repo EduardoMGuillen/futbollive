@@ -32,6 +32,8 @@ export function adsenseSlot(position: keyof typeof DEFAULT_ADSENSE_SLOTS) {
 export function siteUrl() {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (explicit && !explicit.includes("localhost")) return explicit.replace(/\/$/, "");
+  // Custom domain in production even if env vars are missing on Vercel.
+  if (process.env.VERCEL_ENV === "production") return DEFAULT_SITE_URL;
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
   if (vercel) return `https://${vercel.replace(/\/$/, "")}`;
   if (explicit) return explicit.replace(/\/$/, "");
@@ -68,7 +70,9 @@ export function eventDurationMs(event: SportsEvent) {
 export function isPubliclyVisible(event: SportsEvent, now = Date.now()) {
   if (event.status !== "finished") return true;
   const estimatedEnd = new Date(event.startsAt).getTime() + eventDurationMs(event);
-  return now - estimatedEnd < 6 * 60 * 60 * 1000;
+  const graceMs =
+    event.importance >= 97 || event.leagueSlug === "copa-del-mundo-fifa" ? 48 * 60 * 60 * 1000 : 6 * 60 * 60 * 1000;
+  return now - estimatedEnd < graceMs;
 }
 
 /** Editorial ranking for the homepage: major football first, then other sports. */

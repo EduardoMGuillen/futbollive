@@ -1,5 +1,16 @@
 export type EventStatus = "live" | "upcoming" | "finished";
 
+export type EventPhase =
+  | "groups"
+  | "league"
+  | "round-of-32"
+  | "round-of-16"
+  | "quarterfinal"
+  | "semifinal"
+  | "third-place"
+  | "final"
+  | "other";
+
 export interface Participant {
   name: string;
   slug: string;
@@ -167,6 +178,9 @@ export interface SportsEvent {
   sportSlug: string;
   league: string;
   leagueSlug: string;
+  /** Fase legible (Final, Octavos de final, Jornada 12, …). */
+  roundLabel?: string;
+  phase?: EventPhase;
   format?: "versus" | "multi";
   eventName?: string;
   participants?: RankedParticipant[];
