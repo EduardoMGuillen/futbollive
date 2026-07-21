@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import {
   generateParticipantMetadata,
-  generateParticipantStaticParams,
   ParticipantPage,
 } from "@/lib/participant-page";
 
-export async function generateStaticParams() {
-  return generateParticipantStaticParams("atleta");
-}
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

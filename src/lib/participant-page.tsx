@@ -44,7 +44,8 @@ async function loadParticipantEvents(slug: string, kind: "equipo" | "atleta") {
   const calendars = paths.size
     ? await Promise.all(
       Array.from(paths).map((path) =>
-        fetchEspnLeagueCalendar(path, { pastDays: 30, futureDays: 160 }),
+        // Ventana corta + trozos en espn.ts: evita scoreboards de 3–7MB en el build.
+        fetchEspnLeagueCalendar(path, { pastDays: 14, futureDays: 45 }),
       ),
     )
     : [];
@@ -68,20 +69,6 @@ async function loadParticipantEvents(slug: string, kind: "equipo" | "atleta") {
   }
 
   return Array.from(merged.values());
-}
-
-export async function generateParticipantStaticParams(kind: "equipo" | "atleta") {
-  const data = await readStore();
-  const slugs = new Set<string>();
-  for (const event of data.events.filter((event) => !event.hidden && !isEsport(event))) {
-    const individual = isIndividualSport(event);
-    if (kind === "atleta" && !individual) continue;
-    if (kind === "equipo" && individual) continue;
-    slugs.add(event.home.slug);
-    slugs.add(event.away.slug);
-    for (const participant of event.participants || []) slugs.add(participant.slug);
-  }
-  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 export async function generateParticipantMetadata(slug: string, kind: "equipo" | "atleta"): Promise<Metadata> {

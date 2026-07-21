@@ -474,7 +474,8 @@ async function fetchLeagueRange(league: EspnLeague, range: string): Promise<Spor
   try {
     const response = await fetch(
       `https://site.api.espn.com/apis/site/v2/sports/${league.path}/scoreboard?dates=${range}&limit=1000`,
-      { next: { revalidate: 900 }, headers: { accept: "application/json" } },
+      // Scoreboards can exceed Next's 2MB data-cache limit; avoid caching huge payloads.
+      { cache: "no-store", headers: { accept: "application/json" } },
     );
     if (!response.ok) return [];
     const body = (await response.json()) as { events?: EspnEvent[] };
@@ -491,16 +492,35 @@ function formatEspnDate(offsetDays: number) {
   return date.toISOString().slice(0, 10).replace(/-/g, "");
 }
 
-/** Calendario amplio bajo demanda (p. ej. perfil de equipo): temporada / varios meses. */
+/** Split a relative day window into small ESPN date ranges (keeps payloads under ~2MB). */
+function splitRelativeDateWindow(pastDays: number, futureDays: number, chunkDays = 10): string[] {
+  const ranges: string[] = [];
+  for (let start = -pastDays; start <= futureDays; start += chunkDays) {
+    const end = Math.min(start + chunkDays - 1, futureDays);
+    ranges.push(`${formatEspnDate(start)}-${formatEspnDate(end)}`);
+  }
+  return ranges;
+}
+
+/** Calendario bajo demanda (perfil de equipo): ventanas cortas en trozos para no saturar el build. */
 export async function fetchEspnLeagueCalendar(
   leaguePath: string,
   opts: { pastDays?: number; futureDays?: number } = {},
 ): Promise<SportsEvent[]> {
   const league = leagues.find((item) => item.path === leaguePath);
   if (!league) return [];
-  const past = opts.pastDays ?? 21;
-  const future = opts.futureDays ?? 150;
-  return fetchLeagueRange(league, `${formatEspnDate(-past)}-${formatEspnDate(future)}`);
+  const past = opts.pastDays ?? 14;
+  const future = opts.futureDays ?? 45;
+  const ranges = splitRelativeDateWindow(past, future, 10);
+  const results: SportsEvent[] = [];
+  for (let index = 0; index < ranges.length; index += 3) {
+    const batch = await Promise.all(
+      ranges.slice(index, index + 3).map((range) => fetchLeagueRange(league, range)),
+    );
+    results.push(...batch.flat());
+  }
+  const unique = new Map(results.map((event) => [event.id, event]));
+  return Array.from(unique.values());
 }
 
 export async function fetchEspnEvents(): Promise<SportsEvent[]> {
