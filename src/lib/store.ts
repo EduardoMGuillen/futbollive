@@ -100,6 +100,7 @@ export async function writeStore(data: StoreData): Promise<StoreData> {
       updated_at: new Date().toISOString(),
     });
     if (!error) return data;
+    throw new Error(`Supabase site_state: ${error.message}`);
   }
   try {
     await fs.mkdir(path.dirname(dataPath), { recursive: true });

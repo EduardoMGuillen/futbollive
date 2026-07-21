@@ -1,7 +1,6 @@
 import { readStore } from "@/lib/store";
 
-export const dynamic = "force-static";
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 const DEFAULT_TZ = "America/Mexico_City";
 
@@ -37,15 +36,24 @@ function syncMeta(iso: string | null | undefined) {
 export async function GET() {
   const data = await readStore();
   const eventCount = data.events.filter((e) => !e.hidden).length;
+  const storage = process.env.SUPABASE_URL?.trim() ? "supabase" : "file-or-build";
+  const cronConfigured = Boolean(process.env.CRON_SECRET?.trim());
   return Response.json(
     {
       ok: true,
       events: eventCount,
+      storage,
+      cronConfigured,
       ...syncMeta(data.settings.lastSync),
+      hint: syncMeta(data.settings.lastSync).syncStale
+        ? cronConfigured
+          ? "Ejecuta GET /api/admin/sync con Authorization: Bearer CRON_SECRET para forzar actualización."
+          : "Falta CRON_SECRET en Vercel (Production) y redeploy."
+        : undefined,
     },
     {
       headers: {
-        "cache-control": "public, max-age=60",
+        "cache-control": "no-store, max-age=0",
       },
     },
   );
