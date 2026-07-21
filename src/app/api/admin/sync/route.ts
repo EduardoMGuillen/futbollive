@@ -4,8 +4,12 @@ import { isAuthenticated } from "@/lib/auth";
 import { runSync } from "@/lib/sync";
 
 async function authorized(request: Request) {
-  const bearer = request.headers.get("authorization");
-  return (await isAuthenticated()) || (process.env.CRON_SECRET && bearer === `Bearer ${process.env.CRON_SECRET}`);
+  const bearer = request.headers.get("authorization")?.trim();
+  const cronSecret = process.env.CRON_SECRET?.trim().replace(/^["']|["']$/g, "");
+  return (
+    (await isAuthenticated()) ||
+    Boolean(cronSecret && bearer === `Bearer ${cronSecret}`)
+  );
 }
 
 async function synchronize(request: Request) {
