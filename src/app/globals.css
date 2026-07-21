@@ -739,6 +739,51 @@ button { color: inherit; }
 .sport-tile .live-badge { justify-self: start; margin-top: 4px; }
 .deportes-hero { padding-bottom: 36px; }
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.blog-filters-wrap { display: grid; gap: 18px; }
+.blog-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(140px, .7fr) minmax(140px, .7fr) auto;
+  gap: 12px;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+.blog-filter-field { display: grid; gap: 6px; min-width: 0; }
+.blog-filter-field > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.blog-filter-field select,
+.blog-search-input {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--background);
+  color: var(--foreground);
+}
+.blog-filter-field select { width: 100%; padding: 0 11px; }
+.blog-search-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+.blog-search-input svg { color: var(--muted); flex: none; }
+.blog-search-input input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--foreground);
+}
+.blog-filter-clear { min-height: 44px; white-space: nowrap; }
+.blog-filter-count { margin: 0; color: var(--muted); font-size: 13px; font-weight: 700; }
 .blog-card { display: grid; gap: 8px; padding: 22px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; transition: .2s; }
 .blog-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--green) 40%, var(--line)); box-shadow: var(--shadow); }
 .blog-card-emoji { font-size: 32px; }
@@ -982,6 +1027,8 @@ button { color: inherit; }
   .timeline-stage { grid-template-columns: 28px 1fr; }
   .favorites-tabs { overflow-x: auto; justify-content: center; }
   .blog-grid { grid-template-columns: 1fr; }
+  .blog-filters { grid-template-columns: 1fr; }
+  .blog-filter-clear { width: 100%; justify-content: center; }
   .blog-card { text-align: center; justify-items: center; }
   .blog-cta,
   .blog-match-banner {
