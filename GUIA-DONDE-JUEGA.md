@@ -1,6 +1,6 @@
 # Dónde Juega — Guía completa del proyecto
 
-Última actualización: 19 de julio de 2026.
+Última actualización: 21 de julio de 2026.
 
 Este documento describe qué contiene Dónde Juega, cómo funciona, cómo se ejecuta, cómo se despliega y cómo se mantiene. También sirve como plantilla para reconstruir o ampliar el proyecto.
 
@@ -8,7 +8,7 @@ Este documento describe qué contiene Dónde Juega, cómo funciona, cómo se eje
 >
 > Repositorio local: `futbolive`
 >
-> Stack principal: Next.js 16, React 19, TypeScript, ESPN, TheSportsDB, PandaScore, Vercel y Supabase opcional.
+> Stack principal: Next.js 16, React 19, TypeScript, ESPN, TheSportsDB, PandaScore, Vercel y **Supabase obligatorio en producción**.
 
 ---
 
@@ -51,10 +51,11 @@ El sitio no aloja ni retransmite señales deportivas. Los enlaces de transmisió
 - ESPN: agenda, resultados, marcadores, detalles y estadísticas.
 - TheSportsDB: fuente complementaria y alineaciones.
 - PandaScore: Valorant, League of Legends y CS2.
-- Supabase: almacenamiento persistente opcional.
-- JSON local: almacenamiento de desarrollo y respaldo.
-- Vercel: hosting, funciones y cron.
-- GitHub Actions: sincronización programada adicional.
+- Supabase: **persistencia compartida obligatoria en Vercel** (tabla `site_state`).
+- JSON local: almacenamiento de desarrollo y respaldo de build.
+- Vercel: hosting, funciones y cron cada 2 horas.
+- GitHub Actions: sincronización cada 30 minutos (+ manual).
+- Middleware: redirección permanente `www` → apex.
 
 ### Medición y monetización
 
@@ -110,6 +111,7 @@ THESPORTSDB_API_KEY=
 PANDASCORE_TOKEN=
 
 CRON_SECRET=
+SITE_TIMEZONE=America/Mexico_City
 NEXT_PUBLIC_SITE_URL=https://dondejuega.com
 
 SUPABASE_URL=
@@ -134,10 +136,11 @@ NEXT_PUBLIC_ADSENSE_SLOT_FOOTER=
 | `AUTH_SECRET` | Sí en producción | Firma HMAC de sesiones |
 | `THESPORTSDB_API_KEY` | Recomendable | Eventos y alineaciones complementarias |
 | `PANDASCORE_TOKEN` | Para esports | Valorant, LoL y CS2 |
-| `CRON_SECRET` | Sí | Protege la sincronización programada |
-| `NEXT_PUBLIC_SITE_URL` | Sí | URL canónica |
-| `SUPABASE_URL` | Recomendable en Vercel | Persistencia compartida |
-| `SUPABASE_SERVICE_ROLE_KEY` | Recomendable en Vercel | Acceso servidor a Supabase |
+| `CRON_SECRET` | **Sí** (Vercel + GitHub) | Protege `/api/admin/sync` (Bearer) |
+| `SITE_TIMEZONE` | Opcional | Zona para `/api/health` (default `America/Mexico_City`) |
+| `NEXT_PUBLIC_SITE_URL` | Sí | URL canónica (`https://dondejuega.com`) |
+| `SUPABASE_URL` | **Sí en Vercel** | Persistencia compartida entre instancias |
+| `SUPABASE_SERVICE_ROLE_KEY` | **Sí en Vercel** | Acceso servidor a Supabase (nunca `NEXT_PUBLIC_`) |
 | `GOOGLE_SITE_VERIFICATION` | Opcional | Verificación de Search Console |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | Para anuncios | ID `ca-pub-*` |
 | `NEXT_PUBLIC_ADSENSE_SLOT_*` | Para anuncios | IDs de cada bloque |
@@ -149,6 +152,8 @@ NEXT_PUBLIC_ADSENSE_SLOT_FOOTER=
 - No depender de las credenciales de respaldo definidas en el código.
 - Configurar contraseñas y secretos largos y únicos.
 - Rotar `AUTH_SECRET`, `ADMIN_PASSWORD` y `CRON_SECRET` si se filtran.
+- `CRON_SECRET` debe ser **el mismo valor** en Vercel (Production) y en GitHub → Secrets → Actions.
+- Tras añadir o cambiar variables en Vercel: **Redeploy** obligatorio.
 
 ---
 
@@ -162,9 +167,18 @@ futbolive/
 │   ├── manifest.webmanifest
 │   └── recursos estáticos
 ├── src/
+│   ├── middleware.ts          # www → apex (308)
 │   ├── app/
 │   │   ├── api/
+│   │   │   ├── admin/sync/
+│   │   │   ├── health/        # probe uptime + lastSync local
+│   │   │   ├── live/
+│   │   │   ├── events/
+│   │   │   ├── results/
+│   │   │   └── search/
+│   │   ├── [sportToday]/      # /futbol-hoy, /nba-hoy, etc.
 │   │   ├── atleta/[slug]/
+│   │   ├── blog/
 │   │   ├── buscar/
 │   │   ├── contacto/
 │   │   ├── dashboard/
@@ -175,20 +189,29 @@ futbolive/
 │   │   ├── esports/
 │   │   ├── favoritos/
 │   │   ├── liga/[slug]/
+│   │   ├── llms.txt/
 │   │   ├── login/
 │   │   ├── partido/[slug]/
 │   │   ├── privacidad/
 │   │   ├── resultados/
 │   │   ├── terminos/
+│   │   ├── vs/[slug]/
 │   │   ├── acerca-de/
+│   │   ├── ads.txt/
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   ├── page.tsx
 │   │   ├── robots.ts
 │   │   └── sitemap.ts
 │   ├── components/
-│   │   └── event-details/
+│   │   ├── BlogFilters.tsx
+│   │   ├── event-details/
+│   │   └── …
 │   └── lib/
+│       ├── blog-posts.ts
+│       ├── sync.ts
+│       ├── store.ts
+│       └── …
 ├── supabase/schema.sql
 ├── next.config.ts
 ├── package.json
@@ -312,37 +335,47 @@ create table public.site_state (
 
 ### Importante para Vercel
 
-Sin Supabase:
+**Sin Supabase el sitio se degrada:**
 
-- El filesystem de Vercel puede ser efímero o de solo lectura.
-- La memoria no se comparte entre instancias.
-- Una actualización puede verse en una función y no en otra.
+- El filesystem de Vercel es de solo lectura / efímero.
+- La memoria **no se comparte** entre instancias serverless.
+- Una sync puede actualizar una instancia y `/api/health` leer otra con `store.json` viejo del build.
+- `/api/health` reportará `"storage": "file-or-build"` y `syncStale: true`.
 
-Para persistencia real en producción se recomienda configurar Supabase.
+**Con Supabase (obligatorio en producción):**
+
+1. Crear tabla `site_state` (ver `supabase/schema.sql`).
+2. Configurar `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` en Vercel **Production**.
+3. Redeploy.
+4. Verificar `https://dondejuega.com/api/health` → `"storage":"supabase"` y `syncStale:false`.
+
+Si el `upsert` a Supabase falla, `writeStore` lanza error (ya no se traga el fallo en silencio).
 
 ---
 
 ## 8. Estados y visibilidad
 
-Los estados se recalculan al leer el store.
+Los estados se recalculan al leer el store (`refreshTemporalStatuses`).
 
-### Duración estimada
+### Duración estimada (`heuristicFinishMs` / `eventDurationMs`)
 
 | Tipo | Duración |
 |---|---:|
 | Multi-participante | 5 días |
 | Esports | 70 minutos por mapa + 1 hora |
 | Cricket | 12 horas |
-| Béisbol | 8 horas |
+| Béisbol | **4,5 horas** |
 | MMA | 5 horas |
 | General | 3 horas |
 
 ### Reglas
 
-- Un estado reciente de ESPN o PandaScore tiene prioridad.
+- Un estado reciente de ESPN o PandaScore (< 2 min) tiene prioridad.
 - ESPN puede pasar automáticamente a “en vivo” por hora.
 - PandaScore solo pasa a “en vivo” cuando la fuente lo confirma.
-- Los eventos finalizados recientes continúan visibles hasta 6 horas después del final estimado.
+- **TheSportsDB**: no se fuerza “en vivo” durante toda la ventana; si lleva >3 h en vivo **sin marcador**, se marca finalizado (evita MLB fantasma 0–0).
+- Tras `runSync()`, se **eliminan duplicados TheSportsDB** cuando ESPN/PandaScore ya tienen el mismo cruce (home|away|fecha).
+- Los eventos finalizados recientes continúan visibles hasta 6 horas después del final estimado (48 h en torneos top).
 - El archivo de resultados consulta directamente a la fuente.
 
 ---
@@ -399,12 +432,13 @@ El catálogo incluye:
 - Participantes.
 - Clasificación.
 
-### Caché
+### Caché y tamaño de respuestas ESPN
 
-- Scoreboards: 15 minutos.
-- Broadcasts: 30 minutos.
-- Resumen de detalle: 90 segundos.
-- Actualización en vivo: sin caché.
+- Los scoreboards usan `cache: "no-store"` (Next.js no puede cachear ítems > **2 MB**).
+- Ventanas largas (p. ej. 30+160 días) rompían el build con WTA/MLS de 3–7 MB.
+- `fetchEspnLeagueCalendar` trocea en bloques de **10 días** y limita por defecto a ~14 atrás / 45 adelante.
+- Perfiles `/equipo` y `/atleta` son **`force-dynamic`** (no SSG masivo con calendarios ESPN).
+- Sync global usa ventanas cortas por liga (`dateWindowDays`).
 
 ### Resultados
 
@@ -556,13 +590,14 @@ Ejecuta en paralelo:
 Después:
 
 - Normaliza los datos.
-- Evita duplicados básicos.
+- Evita duplicados básicos (matchup key).
+- **Elimina eventos TheSportsDB** si ESPN/PandaScore ya cubren el mismo partido.
 - Conserva configuración editorial.
 - Conserva alineaciones y broadcasts anteriores si la fuente nueva no los entrega.
-- Protege marcadores actualizados recientemente.
+- Protege marcadores actualizados recientemente (< 5 min).
 - Elimina eventos demo cuando hay datos reales.
 - Poda resultados antiguos.
-- Actualiza `settings.lastSync`.
+- Actualiza `settings.lastSync` (ISO **UTC**).
 
 ### Retención
 
@@ -571,14 +606,21 @@ Después:
 - Eventos manuales: no se eliminan automáticamente.
 - La sección `/resultados` puede consultar años anteriores sin guardarlos todos.
 
-### Actualización automática
+### Actualización automática en SSR
 
-`ensureFreshEvents()` sincroniza si:
+`ensureFreshEvents(maxAgeMinutes = 30)`:
 
-- Han pasado más de 10 minutos.
-- Solo existen eventos demo o manuales.
+- Si los datos están frescos, no hace nada.
+- Si están viejos, lanza `runSync()` en background.
+- El SSR **espera como máximo 2,5 s** (no bloquea minutos).
+- Crawlers de Google/AdSense (`Mediapartners-Google`, `Googlebot`, etc.): **no esperan**; solo disparan sync en background.
 
-Los errores automáticos se ignoran para poder mostrar datos anteriores.
+`ensureLiveScores()`:
+
+- Tope de espera ~1,5 s.
+- Crawlers: no ejecutan refresh de live.
+
+Esto evita el rechazo de AdSense por “sitio no disponible” cuando el home se quedaba colgado sincronizando ~100 ligas ESPN.
 
 ---
 
@@ -641,7 +683,7 @@ Comportamiento:
 | `/resultados` | Archivo por deporte, torneo y año |
 | `/buscar` | Resultados de búsqueda |
 | `/favoritos` | Favoritos: partidos, ligas, equipos y “Mi agenda” |
-| `/blog` | Hub editorial (Mundial 2026) |
+| `/blog` | Hub editorial con filtros (categoría, mes, búsqueda) |
 | `/blog/[slug]` | Artículo con enlaces internos automáticos |
 | `/esports` | Hub de esports |
 | `/esports/[game]` | Landing del juego |
@@ -663,10 +705,15 @@ Comportamiento:
 
 | Ruta | Función |
 |---|---|
-| `/robots.txt` | Reglas para crawlers |
+| `/robots.txt` | Reglas para crawlers (+ allow explícito AdSense) |
 | `/sitemap.xml` | Sitemap dinámico |
 | `/ads.txt` | Declaración de AdSense |
-| `/llms.txt` | Resumen del sitio para agentes |
+| `/llms.txt` | Resumen Markdown para agentes (H1 requerido) |
+| `/api/health` | Probe: `ok`, `storage`, `lastSync`, `lastSyncLocal`, `syncStale`, `cronConfigured` |
+
+### Middleware
+
+`src/middleware.ts`: redirige `www.dondejuega.com` → `dondejuega.com` con **308 Permanent**.
 
 ---
 
@@ -1256,12 +1303,55 @@ google.com, pub-XXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
 
 ### Páginas de confianza
 
-En el footer:
+En el footer (también email visible):
 
 - Acerca de.
-- Contacto.
+- Contacto (`hola@dondejuega.com`).
 - Política de privacidad.
 - Términos de uso.
+
+JSON-LD de Organization incluye `email` y `contactPoint`.
+
+### Rechazo “El sitio web no funciona o no está disponible”
+
+Causa típica en este proyecto: el crawler de AdSense (`Mediapartners-Google` / `Google-Display-Ads-Bot`) recibía timeouts porque el SSR esperaba `runSync()` completo.
+
+Mitigaciones ya implementadas:
+
+1. Tope de espera SSR en sync/live.
+2. Bypass total de espera para user-agents de Google/AdSense.
+3. Cron frecuente (Vercel 2 h + GitHub 30 min) + Supabase.
+4. `robots.txt` con `allow: /` explícito para crawlers de anuncios.
+5. Contenido estable: legales, contacto, blog, agenda.
+
+Checklist antes de solicitar revisión:
+
+1. Deploy estable y `/api/health` con `syncStale: false` y `storage: supabase`.
+2. URL en AdSense: exactamente `https://dondejuega.com`.
+3. Comprobar en incógnito: `/`, `/contacto`, `/privacidad`, `/ads.txt`, `/robots.txt`.
+4. Search Console verificado.
+5. Esperar 24–48 h tras cambios grandes antes de reenviar.
+6. La revisión puede tardar días o 2–4 semanas; no spamear solicitudes.
+
+---
+
+## 26.1 Blog editorial
+
+Archivos:
+
+- `src/lib/blog-posts.ts` — posts estáticos (~15 artículos: Mundial, NBA, MLB, F1, Liga MX, UFC, Valorant, LoL, guías).
+- `src/components/BlogFilters.tsx` — filtros cliente.
+- `src/app/blog/page.tsx` — índice.
+- `src/app/blog/[slug]/page.tsx` — artículo + schema BlogPosting.
+
+Filtros en `/blog`:
+
+- Búsqueda por texto (título, descripción, tags).
+- Categoría.
+- Mes de publicación.
+- Contador de resultados y limpiar filtros.
+
+Añadir un post: agregar un objeto `BlogPost` en `blogPosts` con `slug`, `title`, `description`, fechas ISO, `category`, `tags`, `coverEmoji` y `body` (`p` | `h2` | `ul` | `link`).
 
 ---
 
@@ -1322,30 +1412,42 @@ Archivo: `vercel.json`.
   "crons": [
     {
       "path": "/api/admin/sync",
-      "schedule": "0 8 * * *"
+      "schedule": "0 */2 * * *"
     }
   ]
 }
 ```
 
-Ejecuta diariamente a las 08:00 UTC.
+Ejecuta **cada 2 horas**. Vercel envía automáticamente:
+
+```http
+Authorization: Bearer <CRON_SECRET>
+```
+
+Requiere `CRON_SECRET` en Environment Variables → **Production**.
 
 ### GitHub Actions
 
 Archivo: `.github/workflows/sync.yml`.
 
-Ejecuta aproximadamente cada 30 minutos y permite ejecución manual.
+- Schedule: cada **30 minutos**.
+- También `workflow_dispatch` (ejecución manual en Actions → Sync sports data → Run workflow).
+- `SITE_URL` fijo a `https://dondejuega.com`.
+- Secret requerido: solo **`CRON_SECRET`** (mismo valor que Vercel).
 
-Secrets del repositorio:
+Forzar sync manual (PowerShell):
 
-- `SITE_URL`
-- `CRON_SECRET`
-
-La llamada debe enviar:
-
-```http
-Authorization: Bearer CRON_SECRET
+```powershell
+$secret = "TU_CRON_SECRET"
+curl.exe -s -H "Authorization: Bearer $secret" "https://dondejuega.com/api/admin/sync"
+curl.exe -s "https://dondejuega.com/api/health"
 ```
+
+Respuestas esperadas:
+
+- Sync: `{"ok":true,"imported":...,"lastSync":"..."}`
+- Health: `storage: supabase`, `minutesSinceSync` bajo, `syncStale: false`
+- `lastSync` es **UTC**; `lastSyncLocal` muestra hora en `America/Mexico_City` (o `SITE_TIMEZONE`).
 
 ---
 
@@ -1356,13 +1458,11 @@ Authorization: Bearer CRON_SECRET
 1. Subir el repositorio a GitHub.
 2. Importarlo en Vercel.
 3. Elegir Next.js.
-4. Configurar variables.
+4. Configurar variables (abajo).
 5. Desplegar.
 6. Enlazar `dondejuega.com`.
-7. Definir redirección canónica entre `www` y el dominio raíz.
-8. Verificar `/robots.txt`.
-9. Verificar `/sitemap.xml`.
-10. Verificar `/ads.txt`.
+7. Middleware ya redirige `www` → apex (308).
+8. Verificar `/robots.txt`, `/sitemap.xml`, `/ads.txt`, `/api/health`.
 
 ### Variables mínimas de producción
 
@@ -1372,14 +1472,15 @@ ADMIN_PASSWORD=...
 AUTH_SECRET=...
 CRON_SECRET=...
 NEXT_PUBLIC_SITE_URL=https://dondejuega.com
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...
 PANDASCORE_TOKEN=...
 ```
 
 Recomendadas:
 
 ```dotenv
-SUPABASE_URL=...
-SUPABASE_SERVICE_ROLE_KEY=...
+SITE_TIMEZONE=America/Mexico_City
 THESPORTSDB_API_KEY=...
 GOOGLE_SITE_VERIFICATION=...
 NEXT_PUBLIC_ADSENSE_CLIENT=...
@@ -1390,20 +1491,47 @@ NEXT_PUBLIC_ADSENSE_SLOT_DETAIL=...
 NEXT_PUBLIC_ADSENSE_SLOT_FOOTER=...
 ```
 
+### Supabase (paso a paso)
+
+1. Proyecto existente o nuevo en [supabase.com](https://supabase.com).
+2. SQL Editor → ejecutar el SQL de `supabase/schema.sql` (tabla `site_state`).
+3. Settings → API → copiar **Project URL** y **service_role** (secret).
+4. Pegar en Vercel Production → Redeploy.
+5. Confirmar `/api/health` → `"storage":"supabase"`.
+
 ### Verificación posterior
+
+- Portada carga en < 3 s.
+- `/api/health` no stale.
+- Sync cron o workflow OK.
+- Evento en vivo / MLB no fantasma.
+- Contacto y privacidad indexables.
+- Build sin errores de lint (ESLint exit 0).
+
+### Builds lentos / logs ESPN
+
+Si aparecen `Failed to set Next.js data cache ... over 2MB`:
+
+- Ya mitigado con troceo de calendarios, `cache: no-store` en scoreboards y páginas de equipo/atleta dinámicas.
+- No volver a pedir ventanas de 6 meses en una sola URL de scoreboard.
+
+URLs de smoke test:
 
 ```text
 https://dondejuega.com
 https://dondejuega.com/en-vivo
 https://dondejuega.com/deportes
 https://dondejuega.com/esports
+https://dondejuega.com/blog
 https://dondejuega.com/resultados
 https://dondejuega.com/acerca-de
+https://dondejuega.com/contacto
 https://dondejuega.com/privacidad
 https://dondejuega.com/terminos
 https://dondejuega.com/robots.txt
 https://dondejuega.com/sitemap.xml
 https://dondejuega.com/ads.txt
+https://dondejuega.com/api/health
 ```
 
 ---
@@ -1470,8 +1598,9 @@ Incluye:
 - Tema claro persistido.
 - Header responsive.
 - Menú móvil.
-- Hero.
-- Tarjetas.
+- Hero / page-hero / landings centrados en móvil.
+- Tipografía proporcional en móvil (cards, scoreboards, footers).
+- Tarjetas de evento con footer centrado en pantallas pequeñas.
 - Scoreboards.
 - Estadísticas.
 - Cronologías.
@@ -1483,8 +1612,13 @@ Incluye:
 - Dashboard.
 - Publicidad.
 - Landings de esports.
+- Filtros del blog.
 - Páginas legales.
-- Footer.
+- Footer (centrado en móvil; email de contacto visible).
+
+### Contraste en modo claro
+
+Los botones claros (`secondary-btn`, chips, icon-btn) usan `color: var(--foreground)` de forma explícita. Así no heredan texto blanco de los heroes oscuros (fallo típico: botón gris con letra blanca ilegible).
 
 Los heroes de esports tienen estilos propios:
 
@@ -1515,8 +1649,11 @@ Los heroes de esports tienen estilos propios:
 | `GlobalAd` | Publicidad global |
 | `LiveRefresh` | Polling en vivo |
 | `ResultsFilters` | Filtros históricos |
+| `SearchableSelect` | Select con búsqueda (resultados) |
+| `BlogFilters` | Filtros del blog |
 | `BackLink` | Regreso contextual |
 | `DashboardClient` | Administración |
+| `ShareButton` | Compartir nativo / clipboard |
 
 ### Secciones del evento
 
@@ -1661,25 +1798,27 @@ Falta cobertura automatizada de:
 
 ### Alta prioridad
 
-1. Configurar Supabase para persistencia compartida.
+1. ~~Configurar Supabase para persistencia compartida.~~ → **Hecho en prod; mantener siempre activo.**
 2. Eliminar credenciales de respaldo utilizables en producción.
-3. Hacer obligatorio `AUTH_SECRET`.
+3. Hacer obligatorio `AUTH_SECRET` (fallar hard si falta).
 4. Proteger o limitar `/api/live`.
 5. Añadir rate limiting persistente.
 6. Validar también los `PATCH` del panel con Zod.
-7. Añadir logs y monitorización de fallos.
+7. Añadir logs y monitorización de fallos (alertar si `syncStale` > 2 h).
 8. Implementar consentimiento/Consent Mode donde corresponda.
+9. Mantener `CRON_SECRET` sincronizado entre Vercel y GitHub.
 
 ### Media prioridad
 
-1. Mejorar deduplicación entre fuentes.
+1. ~~Mejorar deduplicación entre fuentes.~~ → Dedup TheSportsDB vs ESPN en sync.
 2. Evitar sobrescribir marcadores con `undefined`.
 3. Añadir pruebas de proveedores.
-4. Añadir CI para lint, tipos, tests y build.
+4. Añadir CI para lint, tipos, tests y build (lint ya es crítico en Vercel).
 5. Marcar login/dashboard como `noindex`.
 6. Añadir Content Security Policy.
 7. Revisar sitemap para excluir resultados caducados.
 8. No modificar `data/store.json` automáticamente en commits.
+9. Mejorar `llms.txt` (`Content-Type: text/markdown`) si PageSpeed lo sigue marcando.
 
 ### Datos
 
@@ -1688,6 +1827,7 @@ Falta cobertura automatizada de:
 - La inversión local/visitante puede impedir deduplicar.
 - El histórico PandaScore está limitado a las páginas solicitadas.
 - Algunas ligas ESPN no entregan todas las estadísticas.
+- No pedir calendarios ESPN de muchos meses en una sola request (límite 2 MB de Next cache / deploys lentos).
 
 ---
 
@@ -1695,10 +1835,11 @@ Falta cobertura automatizada de:
 
 ### Cada semana
 
-- Revisar que ESPN/PandaScore sincronizan.
-- Comprobar eventos en vivo.
+- Revisar `https://dondejuega.com/api/health` (`syncStale: false`, `storage: supabase`).
+- Revisar que ESPN/PandaScore sincronizan (cron Vercel o Actions).
+- Comprobar eventos en vivo (sin fantasma 0–0 de TheSportsDB).
 - Verificar logos.
-- Revisar errores de Vercel.
+- Revisar errores de Vercel (lint, build, cache ESPN).
 - Revisar AdSense y `ads.txt`.
 - Revisar páginas 404.
 
@@ -1711,6 +1852,7 @@ Falta cobertura automatizada de:
 - Revisar privacidad y términos.
 - Revisar Search Console.
 - Revisar Analytics.
+- Publicar o actualizar posts del blog con eventos relevantes.
 
 ### Antes de cada deploy
 
@@ -1724,11 +1866,12 @@ npm run build
 Después:
 
 - Verificar portada.
+- Verificar `/api/health`.
 - Verificar evento.
 - Verificar `/api/live`.
-- Verificar esports.
+- Verificar esports y blog.
 - Verificar sitemap.
-- Verificar AdSense.
+- Verificar AdSense / contacto.
 
 ---
 
@@ -1799,26 +1942,31 @@ Una funcionalidad está lista cuando:
 | Archivo | Responsabilidad |
 |---|---|
 | `src/lib/types.ts` | Contratos |
-| `src/lib/store.ts` | Persistencia |
-| `src/lib/sync.ts` | Sincronización |
-| `src/lib/espn.ts` | ESPN |
+| `src/lib/store.ts` | Persistencia (Supabase / JSON / memoria) |
+| `src/lib/sync.ts` | Sync + límites SSR + bypass crawlers |
+| `src/lib/espn.ts` | ESPN (scoreboards troceados, `no-store`) |
 | `src/lib/espn-details.ts` | Detalles ESPN |
 | `src/lib/thesportsdb.ts` | TheSportsDB |
 | `src/lib/pandascore.ts` | Esports |
 | `src/lib/event-details.ts` | Despachador de detalles |
 | `src/lib/sports.ts` | Familias y etiquetas |
-| `src/lib/utils.ts` | Utilidades y ranking |
+| `src/lib/utils.ts` | Utilidades, AdSense, ranking, `siteUrl` |
+| `src/lib/blog-posts.ts` | Contenido del blog |
 | `src/lib/auth.ts` | Sesiones |
-| `src/app/layout.tsx` | Layout, scripts y metadata |
+| `src/middleware.ts` | Redirect www → apex |
+| `src/app/layout.tsx` | Layout, scripts, JSON-LD Organization |
 | `src/app/page.tsx` | Portada |
+| `src/app/api/health/route.ts` | Health / lastSync |
 | `src/app/partido/[slug]/page.tsx` | Evento |
-| `src/app/globals.css` | Diseño |
+| `src/app/globals.css` | Diseño + móvil + contraste claro |
 | `src/components/EventCard.tsx` | Tarjetas |
+| `src/components/BlogFilters.tsx` | Filtros del blog |
 | `src/components/event-details/SportSections.tsx` | Paneles |
 | `src/components/DashboardClient.tsx` | Panel |
 | `next.config.ts` | Next e imágenes |
-| `vercel.json` | Cron |
-| `supabase/schema.sql` | Base de datos |
+| `vercel.json` | Cron cada 2 h |
+| `.github/workflows/sync.yml` | Sync cada 30 min |
+| `supabase/schema.sql` | Tabla `site_state` |
 
 ---
 
@@ -1826,27 +1974,24 @@ Una funcionalidad está lista cuando:
 
 Dónde Juega es una aplicación deportiva dinámica y programática que:
 
-- Agrega múltiples fuentes.
+- Agrega múltiples fuentes (ESPN, TheSportsDB, PandaScore).
+- Persiste estado en **Supabase** en producción.
 - Normaliza deportes de equipo e individuales.
-- Actualiza marcadores.
+- Actualiza marcadores sin bloquear SSR ni crawlers de AdSense.
 - Presenta detalles específicos por deporte.
-- Ofrece resultados históricos.
-- Incluye esports.
+- Ofrece resultados históricos, landings SEO, blog filtrable y esports.
 - Convierte horarios localmente.
 - Permite favoritos sin cuenta.
-- Trabaja SEO programático.
-- Integra Analytics y AdSense.
-- Incluye administración editorial.
-- Puede persistir en Supabase.
-- Se despliega en Vercel.
+- Integra Analytics y AdSense con páginas de confianza.
+- Se sincroniza vía Vercel Cron (2 h) y GitHub Actions (30 min).
 
-Para producción estable, la configuración más importante es:
+Prioridades operativas:
 
-1. Secretos seguros.
-2. Supabase.
-3. Cron autenticado.
-4. PandaScore configurado.
-5. AdSense y consentimiento.
-6. Monitorización.
-7. Pruebas y CI.
+1. Supabase + `CRON_SECRET` siempre activos.
+2. `/api/health` verde (`syncStale: false`).
+3. Lint limpio antes de cada deploy.
+4. No reabrir ventanas ESPN gigantes.
+5. AdSense: URL canónica, sitio rápido y contenido estable.
+6. Secretos seguros y Consent Mode donde aplique.
+7. Monitorización y CI.
 
