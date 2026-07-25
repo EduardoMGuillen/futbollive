@@ -12,12 +12,14 @@ import { LeagueStandingsPanel } from "@/components/LeagueStandingsPanel";
 import { TournamentBracket } from "@/components/TournamentBracket";
 import { buildKnockoutBracket } from "@/lib/bracket";
 import { isSearchOrAdsCrawler } from "@/lib/crawler";
+import { VELADA_LOGO } from "@/lib/editorial-events";
 import { fetchEspnResults, fetchLeagueStandings, fetchLeagueStandingsGrouped } from "@/lib/espn";
 import { allLeagueSlugs, resolveLeagueBySlug } from "@/lib/leagues";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
 import type { SportsEvent } from "@/lib/types";
 import { compareHomepageEvents, isPubliclyVisible, siteUrl } from "@/lib/utils";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const data = await readStore();
@@ -194,7 +196,14 @@ export default async function LeaguePage({ params }: { params: Promise<{ slug: s
           <div className="sport-landing-grid">
             <div className="sport-landing-copy">
               <span className="eyebrow"><i /> {sport}</span>
-              <h1>{leagueName}</h1>
+              {slug === "la-velada-del-ano-vi" ? (
+                <div className="league-brand-row">
+                  <Image src={VELADA_LOGO} alt="" width={72} height={72} className="league-brand-logo" unoptimized />
+                  <h1>{leagueName}</h1>
+                </div>
+              ) : (
+                <h1>{leagueName}</h1>
+              )}
               <p>{blurb}</p>
               <div className="hero-actions">
                 <Link className="primary-btn" href={resultsHref}><Trophy size={18} /> Resultados {year}</Link>

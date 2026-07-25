@@ -8,6 +8,36 @@ const VELADA_BROADCASTS: BroadcastOption[] = [
   { name: "TikTok Ibai", type: "streaming", region: "global", url: "https://www.tiktok.com/@ibai" },
 ];
 
+/** Logo del evento y fotos de pelea (archivos en /public/velada). */
+export const VELADA_LOGO = "/velada/logo.png";
+
+const VELADA_PHOTOS: Record<string, string> = {
+  "fabiana-sevillano": "/velada/fabiana-sevillano.png",
+  "la-parce": "/velada/la-parce.png",
+  clersss: "/velada/clersss.png",
+  "natalia-mx": "/velada/natalia-mx.png",
+  "edu-aguirre": "/velada/edu-aguirre.png",
+  "gaston-edul": "/velada/gaston-edul.png",
+  "marta-diaz": "/velada/marta-diaz.png",
+  "tatiana-kaer": "/velada/tatiana-kaer.png",
+  viruzz: "/velada/viruzz.png",
+  "gero-arias": "/velada/gero-arias.png",
+  alondrissa: "/velada/alondrissa.png",
+  "angie-velasco": "/velada/angie-velasco.png",
+  "lit-killah": "/velada/lit-killah.png",
+  "kidd-keo": "/velada/kidd-keo.png",
+  "samy-rivers": "/velada/samy-rivers.png",
+  roro: "/velada/roro.png",
+  plex: "/velada/plex.png",
+  fernanfloo: "/velada/fernanfloo.png",
+  thegrefg: "/velada/thegrefg.png",
+  illojuan: "/velada/illojuan.png",
+};
+
+function photoFor(name: string) {
+  return VELADA_PHOTOS[slugify(name)] || VELADA_LOGO;
+}
+
 type EditorialFight = {
   id: string;
   home: string;
@@ -57,14 +87,13 @@ function fightToEvent(fight: EditorialFight, nowIso: string): SportsEvent {
     leagueSlug: "la-velada-del-ano-vi",
     roundLabel: fight.roundLabel,
     phase: fight.featured ? "final" : "other",
-    home: { name: fight.home, slug: homeSlug },
-    away: { name: fight.away, slug: awaySlug },
+    home: { name: fight.home, slug: homeSlug, logo: photoFor(fight.home) },
+    away: { name: fight.away, slug: awaySlug, logo: photoFor(fight.away) },
     startsAt: fight.startsAt,
     status,
     minute: status === "live" ? "EN VIVO" : undefined,
     venue: "Estadio La Cartuja",
     country: "España",
-    // Toda la cartelera queda destacada hasta que cierre la noche.
     importance: active ? Math.max(fight.importance, 98) : fight.importance,
     featured: active,
     description: `${fight.home} vs ${fight.away} en La Velada del Año VI (Ibai Llanos). Boxeo amateur de creadores en Sevilla. Transmisión gratis en Twitch, YouTube y TikTok.`,
@@ -104,7 +133,6 @@ export function getPinnedEditorialHero(events: SportsEvent[]): SportsEvent | nul
   if (!upcoming.length) return null;
 
   const firstStart = new Date(upcoming[0].startsAt).getTime();
-  // Antes del primer combate: mostrar el main event como cartelón.
   if (Date.now() < firstStart) {
     return upcoming.find((event) => event.id.endsWith("-10")) || upcoming[upcoming.length - 1];
   }
@@ -124,8 +152,16 @@ export function mergeEditorialEvents(events: SportsEvent[]): SportsEvent[] {
       ...editorial,
       status: current.status !== "upcoming" ? current.status : editorial.status,
       minute: current.status === "live" ? current.minute || editorial.minute : editorial.minute,
-      home: { ...editorial.home, score: current.home.score ?? editorial.home.score, logo: current.home.logo || editorial.home.logo },
-      away: { ...editorial.away, score: current.away.score ?? editorial.away.score, logo: current.away.logo || editorial.away.logo },
+      home: {
+        ...editorial.home,
+        score: current.home.score ?? editorial.home.score,
+        logo: editorial.home.logo || current.home.logo,
+      },
+      away: {
+        ...editorial.away,
+        score: current.away.score ?? editorial.away.score,
+        logo: editorial.away.logo || current.away.logo,
+      },
       featured: editorial.featured || current.featured,
       hidden: current.hidden,
       excludedFromLive: current.excludedFromLive,

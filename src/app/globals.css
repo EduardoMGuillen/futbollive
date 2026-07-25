@@ -602,6 +602,21 @@ button { color: inherit; }
 }
 .sport-landing-copy h1 { margin: 14px 0 12px; font-size: clamp(36px, 5.5vw, 58px); letter-spacing: -.045em; line-height: 1.02; }
 .sport-landing-copy h1 span { color: #9ef0c8; }
+.league-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 14px 0 12px;
+}
+.league-brand-row h1 { margin: 0; }
+.league-brand-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+}
 .sport-landing-copy > p { color: #b7c4bd; font-size: 17px; line-height: 1.65; max-width: 540px; }
 .sport-stat-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .sport-stat-pills span {
