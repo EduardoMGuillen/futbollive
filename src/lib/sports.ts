@@ -9,6 +9,7 @@ export const sportIcons: Record<string, string> = {
   hockey: "🏒",
   "futbol-americano": "🏈",
   mma: "🥊",
+  boxeo: "🥊",
   voleibol: "🏐",
   golf: "⛳",
   rugby: "🏉",
@@ -50,6 +51,7 @@ export function participantHref(event: Pick<SportsEvent, "sportSlug" | "format">
 const INDIVIDUAL_SPORTS = new Set([
   "tenis",
   "mma",
+  "boxeo",
   "automovilismo",
   "golf",
 ]);
@@ -64,7 +66,7 @@ export function participantEntityPath(event: Pick<SportsEvent, "sportSlug" | "fo
 
 export function sportFamily(event: Pick<SportsEvent, "sportSlug" | "format" | "sourceLeaguePath">): EventDetails["family"] {
   if (event.sportSlug === "tenis" || event.sourceLeaguePath?.startsWith("tennis/")) return "tennis";
-  if (event.sportSlug === "mma" || event.sourceLeaguePath?.startsWith("mma/")) return "combat";
+  if (event.sportSlug === "mma" || event.sportSlug === "boxeo" || event.sourceLeaguePath?.startsWith("mma/")) return "combat";
   if (event.sportSlug === "automovilismo" || event.sourceLeaguePath?.startsWith("racing/")) return "racing";
   if (event.sportSlug === "golf" || event.sourceLeaguePath?.startsWith("golf/")) return "golf";
   if (event.format === "multi") return "generic";
@@ -98,6 +100,15 @@ export function sportLabels(event: Pick<SportsEvent, "sportSlug" | "format">): E
       return {
         participantHref: "atleta",
         rosterTitle: "Peleadores",
+        contestsTitle: "Cartelera",
+        statsTitle: "Estadísticas",
+        whenLabel: "¿Cuándo pelean?",
+        whereLabel: "¿Dónde se realiza?",
+      };
+    case "boxeo":
+      return {
+        participantHref: "atleta",
+        rosterTitle: "Boxeadores",
         contestsTitle: "Cartelera",
         statsTitle: "Estadísticas",
         whenLabel: "¿Cuándo pelean?",

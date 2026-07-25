@@ -4,9 +4,27 @@
   "description": "Agenda deportiva y guía de partidos para Latinoamérica.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f6f8f7",
+  "background_color": "#0b0f0e",
   "theme_color": "#08a76a",
   "icons": [
+    {
+      "src": "/icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/icon.png",
       "sizes": "512x512",

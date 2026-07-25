@@ -1314,24 +1314,31 @@ JSON-LD de Organization incluye `email` y `contactPoint`.
 
 ### Rechazo “El sitio web no funciona o no está disponible”
 
-Causa típica en este proyecto: el crawler de AdSense (`Mediapartners-Google` / `Google-Display-Ads-Bot`) recibía timeouts porque el SSR esperaba `runSync()` completo.
+Causa real más reciente: el crawler de AdSense descargaba páginas demasiado pesadas o lentas.
 
-Mitigaciones ya implementadas:
+- `/en-vivo` llegaba a **~7 MB de HTML** (miles de `EventCard` sin paginar).
+- SSR podía esperar sync/ESPN en páginas de liga/equipo.
 
-1. Tope de espera SSR en sync/live.
-2. Bypass total de espera para user-agents de Google/AdSense.
-3. Cron frecuente (Vercel 2 h + GitHub 30 min) + Supabase.
-4. `robots.txt` con `allow: /` explícito para crawlers de anuncios.
-5. Contenido estable: legales, contacto, blog, agenda.
+Mitigaciones permanentes:
+
+1. `/en-vivo` pagina de 36 en 36 (tope duro).
+2. Home con ISR (`revalidate = 60`); crawlers solo leen el store.
+3. Bypass total de sync/live/ESPN pesado para user-agents AdSense/Google.
+4. Redirect `www` → apex en `vercel.json` + middleware 308.
+5. `robots.txt` con allow explícito (`Mediapartners-Google`, `AdsBot-Google`, `Google-Display-Ads-Bot`).
+6. Cron + Supabase para que el HTML no dependa de sync en request.
+7. `/ads.txt` y `/api/health` livianos.
 
 Checklist antes de solicitar revisión:
 
-1. Deploy estable y `/api/health` con `syncStale: false` y `storage: supabase`.
-2. URL en AdSense: exactamente `https://dondejuega.com`.
-3. Comprobar en incógnito: `/`, `/contacto`, `/privacidad`, `/ads.txt`, `/robots.txt`.
-4. Search Console verificado.
-5. Esperar 24–48 h tras cambios grandes antes de reenviar.
-6. La revisión puede tardar días o 2–4 semanas; no spamear solicitudes.
+1. Deploy en producción y comprobar:
+   - `https://dondejuega.com/` < 2 s
+   - `https://dondejuega.com/en-vivo` < 1 MB
+   - `/ads.txt`, `/robots.txt`, `/contacto`, `/privacidad` → 200
+   - `/api/health` → `ok: true`, `storage: supabase`, `syncStale: false`
+2. URL en AdSense: exactamente `https://dondejuega.com` (sin www).
+3. Esperar 24–48 h tras el deploy antes de reenviar.
+4. La revisión puede tardar días o 2–4 semanas; no spamear solicitudes.
 
 ---
 

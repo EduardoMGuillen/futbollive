@@ -112,6 +112,8 @@ export function homepageScore(event: SportsEvent) {
   if (event.sportSlug === "automovilismo") score -= 6;
   // Los esports viven en su propio hub; en la portada solo destacan los tier S.
   if (event.source === "pandascore" && !event.featured) score -= 14;
+  // La Velada: pin editorial hasta que termine la noche.
+  if (event.leagueSlug === "la-velada-del-ano-vi" && event.status !== "finished") score += 80;
   return score;
 }
 

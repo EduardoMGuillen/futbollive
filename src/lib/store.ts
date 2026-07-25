@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
+import { mergeEditorialEvents } from "./editorial-events";
 import { getSeedData } from "./seed";
 import type { SportsEvent, StoreData } from "./types";
 import { heuristicFinishMs, isPubliclyVisible } from "./utils";
@@ -64,28 +65,35 @@ function database() {
   return url && key ? createClient(url, key, { auth: { persistSession: false } }) : null;
 }
 
+function withEditorial(data: StoreData): StoreData {
+  return refreshTemporalStatuses({
+    ...data,
+    events: mergeEditorialEvents(data.events || []),
+  });
+}
+
 export async function readStore(): Promise<StoreData> {
   const db = database();
   if (db) {
     const { data, error } = await db.from("site_state").select("data").eq("id", "main").maybeSingle();
     if (!error && data?.data) {
-      memoryStore = refreshTemporalStatuses(data.data as StoreData);
+      memoryStore = withEditorial(data.data as StoreData);
       return structuredClone(memoryStore);
     }
   }
   // If the last write couldn't reach disk (read-only serverless filesystem),
   // memory is newer than the bundled store.json: never let the stale file win.
   if (memoryStore && memoryWriteStamp > fileWriteStamp) {
-    return structuredClone(refreshTemporalStatuses(memoryStore));
+    return structuredClone(withEditorial(memoryStore));
   }
   try {
     const raw = await fs.readFile(dataPath, "utf8");
     const parsed = JSON.parse(raw) as StoreData;
-    memoryStore = refreshTemporalStatuses(parsed);
+    memoryStore = withEditorial(parsed);
     return structuredClone(memoryStore);
   } catch {
     if (!memoryStore) memoryStore = getSeedData();
-    return structuredClone(refreshTemporalStatuses(memoryStore));
+    return structuredClone(withEditorial(memoryStore));
   }
 }
 

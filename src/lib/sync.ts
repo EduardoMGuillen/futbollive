@@ -1,5 +1,5 @@
-import { headers } from "next/headers";
 import { fetchEspnEvents, fetchEspnLiveUpdate } from "./espn";
+import { getEditorialEvents, mergeEditorialEvents } from "./editorial-events";
 import {
   fetchPandaScoreEvents,
   fetchPandaScoreMatchById,
@@ -10,6 +10,7 @@ import { getEvent, readStore, upsertEvent, writeStore } from "./store";
 import { fetchSportsDbEvents } from "./thesportsdb";
 import type { SportsEvent } from "./types";
 import { eventDurationMs } from "./utils";
+import { isSearchOrAdsCrawler } from "./crawler";
 
 export async function runSync() {
   const [espnResult, sportsDbResult, pandaResult] = await Promise.allSettled([
@@ -88,6 +89,10 @@ export async function runSync() {
     }
     return true;
   });
+
+  // Eventos editoriales (Velada, etc.): se reinyectan y no los pisa ESPN.
+  data.events = mergeEditorialEvents(data.events);
+
   data.settings.lastSync = new Date().toISOString();
   await writeStore(data);
   return { imported: incoming.length, total: data.events.length, lastSync: data.settings.lastSync };
@@ -96,7 +101,7 @@ export async function runSync() {
 let inflight: Promise<unknown> | null = null;
 
 /** Max time SSR waits on a background sync (AdSense/Google must get HTML quickly). */
-const SYNC_SSR_WAIT_MS = 2_500;
+const SYNC_SSR_WAIT_MS = 1_200;
 
 function kickoffSyncIfNeeded() {
   if (!inflight) {
@@ -105,20 +110,13 @@ function kickoffSyncIfNeeded() {
   return inflight;
 }
 
-/** Google AdSense / Search crawlers must receive HTML quickly — never block on sync. */
-async function isSearchOrAdsCrawler() {
-  const ua = (await headers()).get("user-agent")?.toLowerCase() ?? "";
-  return /googlebot|mediapartners-google|adsbot-google|google-display-ads-bot|google-inspectiontool|bingbot|duckduckbot|slurp|yandexbot/i.test(
-    ua,
-  );
-}
-
 export async function ensureFreshEvents(maxAgeMinutes = 30) {
   const data = await readStore();
   const last = data.settings.lastSync ? new Date(data.settings.lastSync).getTime() : 0;
   const stale = Date.now() - last > maxAgeMinutes * 60 * 1000;
   const onlyDemo = data.events.every((event) => event.source === "demo" || event.source === "manual");
   if (!stale && !onlyDemo) return;
+  // Nunca bloquear el HTML al crawler de AdSense (causa el rechazo “sitio no disponible”).
   if (await isSearchOrAdsCrawler()) {
     kickoffSyncIfNeeded();
     return;

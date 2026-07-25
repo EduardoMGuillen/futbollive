@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+/** Canonical host: apex only. AdSense fails if www/http chains look broken. */
 export function middleware(request: NextRequest) {
-  const host = request.headers.get("host") ?? "";
-  if (host.startsWith("www.")) {
+  const host = (request.headers.get("host") ?? "").toLowerCase();
+  if (host === "www.dondejuega.com" || host.startsWith("www.")) {
     const url = request.nextUrl.clone();
-    url.host = host.slice(4);
+    url.protocol = "https:";
+    url.host = host === "www.dondejuega.com" ? "dondejuega.com" : host.slice(4);
+    url.port = "";
     return NextResponse.redirect(url, 308);
   }
   return NextResponse.next();

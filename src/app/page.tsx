@@ -6,12 +6,15 @@ import { Countdown } from "@/components/Countdown";
 import { EventCard } from "@/components/EventCard";
 import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
+import { isSearchOrAdsCrawler } from "@/lib/crawler";
+import { getPinnedEditorialHero } from "@/lib/editorial-events";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents, ensureLiveScores } from "@/lib/sync";
 import { compareHomepageEvents, eventTitle, isPubliclyVisible } from "@/lib/utils";
 import { sportIcon } from "@/lib/sports";
 
-export const dynamic = "force-dynamic";
+/** ISR: HTML estable y rápido para AdSense; el cron mantiene el store fresco. */
+export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Partidos de hoy: horarios, en vivo y dónde ver",
   description: "Consulta los partidos de hoy y próximos eventos de fútbol, NBA, MLB, tenis y más. Horarios locales, sedes, participantes y dónde ver.",
@@ -20,8 +23,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  await ensureFreshEvents();
-  await ensureLiveScores();
+  // Crawlers: solo leer store (sin sync/live) para responder en milisegundos.
+  if (!(await isSearchOrAdsCrawler())) {
+    await ensureFreshEvents();
+    await ensureLiveScores();
+  }
   const data = await readStore();
   const visible = data.events.filter((event) => !event.hidden && isPubliclyVisible(event));
   const importantLive = visible
@@ -40,8 +46,8 @@ export default async function Home() {
       return new Date(b.startsAt).getTime() - new Date(a.startsAt).getTime();
     })
     .slice(0, 4);
-  const heroEvent = importantLive[0] || upcoming[0];
-  const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries());
+  const heroEvent = getPinnedEditorialHero(visible) || importantLive[0] || upcoming[0];
+  const sports = Array.from(new Map(visible.map((event) => [event.sportSlug, event.sport])).entries()).slice(0, 16);
 
   return (
     <>

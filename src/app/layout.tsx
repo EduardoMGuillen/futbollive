@@ -34,7 +34,17 @@ export const metadata: Metadata = {
     images: [{ url: "/logo.png", width: 1254, height: 1254, alt: "Dónde Juega" }],
   },
   twitter: { card: "summary_large_image" },
-  icons: { icon: "/icon.png", apple: "/icon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
   manifest: "/manifest.webmanifest",
   robots: {
     index: true,
@@ -60,7 +70,8 @@ export default function RootLayout({
         "@id": `${site}/#organization`,
         name: "Dónde Juega",
         url: site,
-        logo: { "@type": "ImageObject", url: `${site}/icon.png` },
+        logo: { "@type": "ImageObject", url: `${site}/icon-192.png`, width: 192, height: 192 },
+        image: `${site}/logo.png`,
         email: "hola@dondejuega.com",
         contactPoint: {
           "@type": "ContactPoint",
@@ -87,6 +98,13 @@ export default function RootLayout({
   };
   return (
     <html lang="es" data-theme="dark" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Iconos estables sin hash de Next — Google Search exige /favicon.ico limpio (≥48px). */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+      </head>
       <body>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-DB68T3MYWH" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">{`

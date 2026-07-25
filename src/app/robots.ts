@@ -7,8 +7,11 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       { userAgent: "*", allow: "/", disallow: ["/dashboard", "/api/admin"] },
       { userAgent: "Mediapartners-Google", allow: "/" },
+      { userAgent: "AdsBot-Google", allow: "/" },
       { userAgent: "Google-Display-Ads-Bot", allow: "/" },
+      { userAgent: "Googlebot", allow: "/", disallow: ["/dashboard", "/api/admin"] },
     ],
     sitemap: `${base}/sitemap.xml`,
+    host: base.replace(/^https?:\/\//, ""),
   };
 }

@@ -6,6 +6,7 @@ import { EventCard } from "@/components/EventCard";
 import { FavoriteTeamButton } from "@/components/FavoriteEntityButtons";
 import { TeamLogo } from "@/components/TeamLogo";
 import { fetchEspnLeagueCalendar } from "@/lib/espn";
+import { isSearchOrAdsCrawler } from "@/lib/crawler";
 import { resolveLeagueBySlug } from "@/lib/leagues";
 import { isEsport, isIndividualSport } from "@/lib/sports";
 import { readStore } from "@/lib/store";
@@ -34,6 +35,9 @@ async function loadParticipantEvents(slug: string, kind: "equipo" | "atleta") {
     (kind === "atleta" ? isIndividualSport(event) : !isIndividualSport(event)),
   );
 
+  // AdSense/Google: solo store (sin ESPN) para no timeout.
+  if (await isSearchOrAdsCrawler()) return fromStore;
+
   const paths = new Set<string>();
   for (const event of fromStore) {
     if (event.sourceLeaguePath) paths.add(event.sourceLeaguePath);
@@ -44,8 +48,10 @@ async function loadParticipantEvents(slug: string, kind: "equipo" | "atleta") {
   const calendars = paths.size
     ? await Promise.all(
       Array.from(paths).map((path) =>
-        // Ventana corta + trozos en espn.ts: evita scoreboards de 3–7MB en el build.
-        fetchEspnLeagueCalendar(path, { pastDays: 14, futureDays: 45 }),
+        Promise.race([
+          fetchEspnLeagueCalendar(path, { pastDays: 14, futureDays: 45 }),
+          new Promise<SportsEvent[]>((resolve) => setTimeout(() => resolve([]), 2_500)),
+        ]),
       ),
     )
     : [];
