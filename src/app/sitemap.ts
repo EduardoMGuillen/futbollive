@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getEspnSportsCatalog } from "@/lib/espn";
 import { getAllPosts } from "@/lib/blog-posts";
-import { allLeagueSlugs } from "@/lib/leagues";
+import { allLeagueSlugs, getSportsCatalog } from "@/lib/leagues";
 import { ESPORTS_GAMES, isEsport, participantHref } from "@/lib/sports";
 import { SPORT_TODAY_PAGES } from "@/lib/sport-today";
 import { readStore } from "@/lib/store";
@@ -25,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const data = await readStore();
   const events = data.events.filter((event) => !event.hidden);
   const staticRoutes = ["", "/en-vivo", "/deportes", "/esports", "/resultados", "/blog", "/acerca-de", "/contacto", "/privacidad", "/terminos"];
-  const catalogSports = getEspnSportsCatalog().map((sport) => `/deporte/${sport.slug}`);
+  const catalogSports = getSportsCatalog().map((sport) => `/deporte/${sport.slug}`);
   const leagueRoutes = allLeagueSlugs().map((slug) => `/liga/${slug}`);
   const sportTodayRoutes = SPORT_TODAY_PAGES.map((p) => `/${p.slug}`);
   const blogRoutes = getAllPosts().map((p) => `/blog/${p.slug}`);

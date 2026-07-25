@@ -3,23 +3,22 @@ import Link from "next/link";
 import { Countdown } from "@/components/Countdown";
 import { LocalTime } from "@/components/LocalTime";
 import { TeamLogo } from "@/components/TeamLogo";
-import { getEspnSportsCatalog } from "@/lib/espn";
-import { getLeagueCatalog } from "@/lib/leagues";
+import { getLeagueCatalog, getSportsCatalog } from "@/lib/leagues";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
 import { ESPORTS_GAMES, sportIcon } from "@/lib/sports";
 import { compareHomepageEvents, isPubliclyVisible } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Todos los deportes: fútbol, tenis, NBA, F1, UFC y más",
-  description: "Explora la agenda completa por deporte: fútbol, baloncesto, béisbol, tenis, automovilismo, MMA, golf, rugby y más.",
+  title: "Todos los deportes: fútbol, tenis, NBA, F1, UFC, boxeo y más",
+  description: "Explora la agenda completa por deporte: fútbol, baloncesto, béisbol, tenis, automovilismo, MMA, boxeo, golf, rugby y más.",
   alternates: { canonical: "/deportes" },
 };
 export const dynamic = "force-dynamic";
 
 export default async function SportsIndexPage() {
   await ensureFreshEvents();
-  const catalog = getEspnSportsCatalog();
+  const catalog = getSportsCatalog();
   const leagueCatalog = getLeagueCatalog();
   const data = await readStore();
   const visible = data.events.filter((e) => !e.hidden && isPubliclyVisible(e));

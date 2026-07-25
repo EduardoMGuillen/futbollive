@@ -6,8 +6,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { BackLink } from "@/components/BackLink";
 import { ExpandableEventList } from "@/components/ExpandableEventList";
 import { LandingHeroCard } from "@/components/LandingHeroCard";
-import { getEspnSportsCatalog } from "@/lib/espn";
-import { getLeagueCatalog } from "@/lib/leagues";
+import { getLeagueCatalog, getSportsCatalog } from "@/lib/leagues";
 import { sportIcon, isEsportSlug } from "@/lib/sports";
 import { readStore } from "@/lib/store";
 import { ensureFreshEvents } from "@/lib/sync";
@@ -15,7 +14,7 @@ import { SPORT_TODAY_PAGES } from "@/lib/sport-today";
 import { compareHomepageEvents, isPubliclyVisible, siteUrl } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  const catalog = getEspnSportsCatalog();
+  const catalog = getSportsCatalog();
   const data = await readStore();
   const slugs = new Set([
     ...catalog.map((sport) => sport.slug),
@@ -26,7 +25,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const catalogSport = getEspnSportsCatalog().find((item) => item.slug === slug);
+  const catalogSport = getSportsCatalog().find((item) => item.slug === slug);
   const data = await readStore();
   const event = data.events.find((item) => item.sportSlug === slug);
   const sport = event?.sport || catalogSport?.name;
@@ -48,13 +47,14 @@ const SPORT_COPY: Record<string, string> = {
   tenis: "ATP, WTA y Grand Slams: partidos del día y próximas rondas.",
   automovilismo: "Fórmula 1 y más: sesiones, carrera y clasificación.",
   mma: "UFC y cartelera: pelea principal, horarios y dónde ver.",
+  boxeo: "La Velada y cartelera de boxeo: combates, horarios y dónde ver en vivo.",
 };
 
 export default async function SportPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   if (isEsportSlug(slug)) redirect(`/esports/${slug}`);
   await ensureFreshEvents();
-  const catalogSport = getEspnSportsCatalog().find((item) => item.slug === slug);
+  const catalogSport = getSportsCatalog().find((item) => item.slug === slug);
   const data = await readStore();
   const allEvents = data.events.filter((event) => event.sportSlug === slug && !event.hidden);
   const sport = allEvents[0]?.sport || catalogSport?.name;

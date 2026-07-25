@@ -11,6 +11,19 @@ const VELADA_BROADCASTS: BroadcastOption[] = [
 /** Logo del evento y fotos de pelea (archivos en /public/velada). */
 export const VELADA_LOGO = "/velada/logo.png";
 
+/** Deportes y ligas solo editoriales (no están en ESPN). */
+export const EDITORIAL_SPORTS = [{ slug: "boxeo", name: "Boxeo" }] as const;
+
+export const EDITORIAL_LEAGUES = [
+  {
+    path: "editorial/la-velada-del-ano-vi",
+    league: "La Velada del Año VI",
+    leagueSlug: "la-velada-del-ano-vi",
+    sport: "Boxeo",
+    sportSlug: "boxeo",
+  },
+] as const;
+
 const VELADA_PHOTOS: Record<string, string> = {
   "fabiana-sevillano": "/velada/fabiana-sevillano.png",
   "la-parce": "/velada/la-parce.png",
